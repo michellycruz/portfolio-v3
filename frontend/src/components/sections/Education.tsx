@@ -1,6 +1,9 @@
 import type { Education as EducationItem, Institution } from "../../types/content";
 import { Card } from "../ui/Card";
+import { FormationChart } from "../ui/FormationChart";
+import { InstitutionAccordion } from "../ui/InstitutionAccordion";
 import { SectionHeading } from "../ui/SectionHeading";
+import { StudyStats } from "../ui/StudyStats";
 
 interface EducationProps {
   items: EducationItem[];
@@ -27,36 +30,25 @@ export function Education({ items, institutions }: EducationProps) {
         ))}
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-2">
-        {institutions.map((institution) => {
-          // Uma instituição vem com trilhas (DIO) ou com cursos soltos; a lista
-          // abaixo unifica as duas formas em "nome + situação".
-          const rows = institution.tracks
-            ? institution.tracks.map((track) => ({ name: track.name, note: track.status }))
-            : (institution.courses ?? []).map((course) => ({ name: course.title, note: course.area }));
+      {/* Cursos e certificações: total primeiro, a lista por instituição fechada
+          logo abaixo (são quase sessenta cursos — abertos, eles engoliriam a
+          seção) e o recorte por área no fim. */}
+      <Card className="flex flex-col gap-4">
+        <div className="flex flex-wrap items-baseline gap-3">
+          <h3 className="text-xl">Cursos e certificações</h3>
+          <span className="font-mono text-[10.5px] tracking-[0.1em] text-muted uppercase">
+            Toque para abrir cada instituição
+          </span>
+        </div>
 
-          if (rows.length === 0) return null;
+        <StudyStats institutions={institutions} />
 
-          return (
-            <Card key={institution.name} className="flex flex-col gap-3">
-              <h3 className="text-[15px]">{institution.name}</h3>
-              <ul className="flex flex-col gap-2.5">
-                {rows.map((row) => (
-                  <li
-                    key={row.name}
-                    className="flex items-center justify-between gap-3 border-b-2 border-dashed border-stroke-soft pb-2.5 text-sm last:border-b-0 last:pb-0"
-                  >
-                    <span>{row.name}</span>
-                    <span className="shrink-0 font-mono text-[10.5px] tracking-[0.06em] text-muted uppercase">
-                      {row.note}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </Card>
-          );
-        })}
-      </div>
+        <InstitutionAccordion institutions={institutions} />
+
+        <div className="border-t-2 border-dashed border-stroke-soft pt-4">
+          <FormationChart institutions={institutions} />
+        </div>
+      </Card>
     </section>
   );
 }
