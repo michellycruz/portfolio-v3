@@ -1,93 +1,61 @@
-import { motion } from "framer-motion";
 import type { InfraSkill, SkillCategory } from "../../types/content";
-import { Panel, PanelBody, PanelTitle } from "../ui/Panel";
+import { Card } from "../ui/Card";
 import { SectionHeading } from "../ui/SectionHeading";
-import { TechIcon } from "../ui/TechIcon";
+
+const chipBorders = ["border-yellow", "border-pink", "border-orange", "border-mint"];
 
 interface SkillsProps {
+  categories: SkillCategory[];
   infraSkills: InfraSkill[];
   infraHighlights: string[];
-  categories: SkillCategory[];
 }
 
-const infraAccents: Array<"mint" | "sky" | "butter"> = ["mint", "sky", "butter"];
-
-export function Skills({ infraSkills, infraHighlights, categories }: SkillsProps) {
+export function Skills({ categories, infraSkills, infraHighlights }: SkillsProps) {
   return (
-    <section id="habilidades" className="mx-auto max-w-6xl px-5 py-16">
-      <SectionHeading>Suporte e infraestrutura</SectionHeading>
+    <section id="habilidades" className="flex scroll-mt-24 flex-col gap-5">
+      <SectionHeading title="Habilidades" kicker="Dev + infra" />
 
-      <div className="grid gap-6 md:grid-cols-3">
-        {infraSkills.map((skill, i) => (
-          <motion.div
-            key={skill.title}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.5, delay: i * 0.1 }}
-          >
-            <Panel className="h-full">
-              <PanelTitle accent={infraAccents[i % infraAccents.length]} className="text-base">
-                {skill.title}
-              </PanelTitle>
-              <PanelBody className="text-sm text-ink-soft dark:text-white/80">{skill.description}</PanelBody>
-            </Panel>
-          </motion.div>
-        ))}
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-60px" }}
-        transition={{ duration: 0.5 }}
-        className="mt-8"
-      >
-        <Panel noShadowOnHover>
-          <PanelTitle accent="none">Atividades principais</PanelTitle>
-          <PanelBody>
-            <ul className="grid gap-3 sm:grid-cols-2">
-              {infraHighlights.map((h, i) => (
-                <li key={i} className="flex gap-3 text-sm text-ink-soft dark:text-white/80">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-coral" />
-                  {h}
+      <div className="grid gap-4 lg:grid-cols-2">
+        {categories.map((category, categoryIndex) => (
+          <Card key={category.title} className="flex flex-col gap-3">
+            <h3 className="text-[15px]">{category.title}</h3>
+            <ul className="flex flex-wrap gap-2">
+              {category.skills.map((skill, skillIndex) => (
+                <li
+                  key={skill}
+                  className={`rounded-lg border-2 bg-panel-2 px-2.5 py-1.5 font-mono text-[11.5px] ${
+                    chipBorders[(categoryIndex + skillIndex) % chipBorders.length]
+                  }`}
+                >
+                  {skill}
                 </li>
               ))}
             </ul>
-          </PanelBody>
-        </Panel>
-      </motion.div>
-
-      <h3 className="mt-16 mb-10 text-center font-mono-brand text-2xl text-ink dark:text-white">
-        Tecnologias
-      </h3>
-
-      <div className="grid gap-6 sm:grid-cols-2">
-        {categories.map((cat, i) => (
-          <motion.div
-            key={cat.title}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.5, delay: i * 0.1 }}
-          >
-            {/* Cards stretch to the tallest in the row, so categories with few
-                icons centre them instead of stacking the slack underneath. */}
-            <Panel noShadowOnHover className="flex h-full flex-col">
-              <PanelTitle accent="none" className="text-base">
-                {cat.title}
-              </PanelTitle>
-              <PanelBody className="flex flex-1 items-center justify-center">
-                <div className="flex flex-wrap justify-center gap-4">
-                  {cat.skills.map((s) => (
-                    <TechIcon key={s} skillKey={s} />
-                  ))}
-                </div>
-              </PanelBody>
-            </Panel>
-          </motion.div>
+          </Card>
         ))}
       </div>
+
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {infraSkills.map((skill) => (
+          <Card key={skill.title} className="flex flex-col gap-1.5">
+            <h3 className="font-display text-[15.5px]">{skill.title}</h3>
+            <p className="text-sm text-muted">{skill.description}</p>
+          </Card>
+        ))}
+      </div>
+
+      {infraHighlights.length > 0 && (
+        <ul className="flex flex-wrap gap-2">
+          {infraHighlights.map((highlight) => (
+            <li
+              key={highlight}
+              className="rounded-full border-2 border-stroke bg-panel px-3 py-1 font-mono text-[11px] tracking-[0.06em] uppercase"
+            >
+              {highlight}
+            </li>
+          ))}
+        </ul>
+      )}
     </section>
   );
 }

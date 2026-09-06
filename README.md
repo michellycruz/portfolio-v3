@@ -1,76 +1,70 @@
-# Portfólio — Michelly Cruz (v2)
+# Portfólio — Michelly Cruz (v3)
 
-Versão renovada do [portfólio original](https://github.com/michellycruz/portfolio), agora com **React + TypeScript + Tailwind** no frontend e **Go** no backend, mantendo a identidade visual neobrutalista (cores pastéis, bordas grossas, sombras duras) com um acabamento mais moderno, responsivo e animado.
+Base de um novo portfólio, partindo do código do [portfolio-v2](https://github.com/michellycruz/portfolio-v2):
+mesmo backend em **Go** e mesma camada de conteúdo, com o frontend refeito em
+outra identidade visual — neobrutalismo escuro, tipografia Archivo Black +
+JetBrains Mono e acentos em laranja, amarelo, menta e rosa.
+
+## O que muda em relação à v2
+
+- **Página inicial de tela cheia** (`Landing`): foto, nome, resumo profissional e
+  os links de contato. Sem menu à vista.
+- **Menu lateral que só aparece na rolagem**: passou da capa, a barra da esquerda
+  entra deslizando e passa a destacar a seção que está sendo lida. No celular ela
+  vira gaveta, aberta pelo botão da barra do topo.
+- **Tema escuro como padrão**, com o claro guardado no `localStorage`.
+- Seções reescritas em cartões com borda de 2px e sombra dura: Sobre,
+  Experiência, Formação, Habilidades, Projetos e Contato.
+
+O backend, os tipos (`src/types/content.ts`), o conteúdo de reserva
+(`src/data/fallback-content.ts`) e o cliente da API seguem os mesmos da v2.
 
 ## Estrutura
 
 ```
-portfolio-v2/
-├── backend/    # API em Go (conteúdo + formulário de contato)
-└── frontend/   # React + Vite + Tailwind v4 + Framer Motion
+Portfolio-novo/
+├── backend/    # API em Go (conteúdo + formulário de contato) — igual à v2
+└── frontend/   # React 19 + Vite + Tailwind v4
+    └── src/
+        ├── components/layout/    # Landing, Sidebar, Topbar, ThemeToggle, Footer
+        ├── components/sections/  # Sobre, Experiência, Formação, Habilidades, Projetos, Contato
+        ├── components/ui/        # Card, Button, SectionHeading, SocialIcon
+        ├── hooks/useScrollNav.ts # rolagem passou da capa, seção ativa, media query
+        └── lib/                  # api, nav, tech (rótulos e cores das tecnologias)
 ```
 
-## Backend (Go)
+## Rodando
 
 ```bash
-cd backend
-go run .
-```
-
-Roda por padrão em `http://localhost:8080`. Endpoints:
-
-- `GET /api/content` — todo o conteúdo do portfólio (perfil, experiência, formação, cursos, skills, projetos)
-- `GET /api/profile`, `/api/experience`, `/api/education`, `/api/skills`, `/api/projects` — seções individuais
-  (`/api/education` devolve `{ education, institutions }` e `/api/skills` devolve `{ infraSkills, infraHighlights, categories }`)
-- `POST /api/contact` — recebe `{ name, email, message }`, valida e envia por e-mail (ou loga no console se SMTP não estiver configurado)
-- `GET /healthz` — health check
-
-Configuração via variáveis de ambiente (copie `backend/.env.example` para `backend/.env` e exporte, ou defina direto no ambiente):
-
-| Variável | Descrição |
-|---|---|
-| `PORT` | Porta do servidor (padrão `8080`) |
-| `FRONTEND_ORIGIN` | Origem permitida no CORS (padrão `http://localhost:5173`) |
-| `STATIC_DIR` | Caminho do build do frontend (`frontend/dist`) para servir tudo por um único binário |
-| `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` | Credenciais SMTP para o formulário de contato |
-| `CONTACT_FROM_EMAIL`, `CONTACT_TO_EMAIL` | Remetente e destinatário das mensagens de contato |
-| `APP_ENV` | `production` marca o ambiente como deploy (ver abaixo) |
-| `ALLOW_UNCONFIGURED_SMTP` | `true` permite subir um deploy sem SMTP, aceitando o modo só-log |
-
-**Em desenvolvimento**, sem SMTP configurado o formulário continua funcionando — a mensagem é registrada no log do servidor em vez de enviada por e-mail, com um aviso no boot. Isso é o suficiente para desenvolvimento local.
-
-**Em deploy**, o servidor **se recusa a subir** se qualquer variável de SMTP estiver em branco, dizendo no log qual delas falta. O motivo: o envio por log devolve sucesso para o frontend, então um deploy sem credencial mostra "mensagem enviada" para o visitante enquanto a mensagem só chega ao log — uma falha silenciosa que pode passar semanas sem ser notada. É considerado deploy quando `STATIC_DIR` está preenchido ou `APP_ENV=production`; para subir assim mesmo, use `ALLOW_UNCONFIGURED_SMTP=true`.
-
-## Frontend (React)
-
-```bash
+# frontend
 cd frontend
 npm install
-npm run dev
+npm run dev      # http://localhost:5173
+
+# backend (opcional em desenvolvimento)
+cd backend
+go run .         # http://localhost:8080
 ```
 
-Roda por padrão em `http://localhost:5173` e consome a API do backend (`VITE_API_URL`, padrão `http://localhost:8080`). Se a API estiver offline, a página usa automaticamente um conteúdo local de fallback (`src/data/fallback-content.ts`) para nunca ficar em branco.
+Sem o backend no ar, o frontend cai no conteúdo local de reserva e mostra um
+aviso no topo — a página nunca fica em branco.
 
-Para build de produção:
+Para produção:
 
 ```bash
-npm run build
+cd frontend && npm run build          # gera frontend/dist
+cd ../backend && STATIC_DIR=../frontend/dist go run .
 ```
 
-Gera `frontend/dist`, que pode ser servido por qualquer host estático **ou** diretamente pelo binário Go (defina `STATIC_DIR=../frontend/dist` no backend).
+As variáveis de ambiente do backend (SMTP, CORS, porta) estão documentadas em
+`backend/.env.example` e seguem as mesmas regras da v2: em deploy o servidor se
+recusa a subir sem SMTP configurado, para o formulário não dar "enviado" sem
+enviar nada.
 
-## Deploy em um único binário
+## Onde continuar
 
-```bash
-cd frontend && npm run build
-cd ../backend
-STATIC_DIR=../frontend/dist FRONTEND_ORIGIN=* go run .
-```
-
-O Go passa a servir a SPA e a API na mesma porta.
-
-## Stack
-
-- **Frontend:** React 19, TypeScript, Vite, Tailwind CSS v4, Framer Motion, lucide-react
-- **Backend:** Go (biblioteca padrão `net/http`, sem framework externo)
-- **Conteúdo:** mesmo currículo/experiência/projetos do portfólio original, agora servidos via API em vez de hardcoded no HTML
+- Trocar o texto do currículo e a foto (`frontend/public/images/foto-pessoal.jpg`).
+- Ajustar a paleta em `frontend/src/index.css` (bloco `:root` / `html.dark`).
+- As seções são componentes independentes — dá para reordená-las no `App.tsx`
+  junto com a lista de `frontend/src/lib/nav.ts`, que alimenta o menu, o rastro
+  do topo e o destaque da seção ativa.

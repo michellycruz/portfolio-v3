@@ -1,71 +1,62 @@
-import { motion } from "framer-motion";
 import type { Education as EducationItem, Institution } from "../../types/content";
-import { FormationChart } from "../ui/FormationChart";
-import { InstitutionAccordion } from "../ui/InstitutionAccordion";
-import { Panel, PanelBody, PanelTitle } from "../ui/Panel";
-import { RobotScholar } from "../ui/RobotScholar";
+import { Card } from "../ui/Card";
 import { SectionHeading } from "../ui/SectionHeading";
-import { StudySummary } from "../ui/StudySummary";
 
-export function Education({ items, institutions }: { items: EducationItem[]; institutions: Institution[] }) {
+interface EducationProps {
+  items: EducationItem[];
+  institutions: Institution[];
+}
+
+export function Education({ items, institutions }: EducationProps) {
   return (
-    <section id="formacao" className="mx-auto max-w-6xl px-5 py-16">
-      <SectionHeading>Formação acadêmica</SectionHeading>
+    <section id="formacao" className="flex scroll-mt-24 flex-col gap-5">
+      <SectionHeading title="Formação" kicker="Acadêmica + cursos" />
 
-      <div className="flex items-start gap-8">
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6 }}
-          className="hidden w-56 shrink-0 animate-float select-none self-center lg:block"
-        >
-          <RobotScholar />
-        </motion.div>
-
-        <Panel noShadowOnHover className="flex-1">
-          <PanelTitle accent="sky">Trilha acadêmica</PanelTitle>
-          <PanelBody>
-          <div className="flex flex-col">
-            {items.map((edu, i) => (
-              <motion.div
-                key={edu.course}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className={i > 0 ? "mt-6 border-t-2 border-dashed border-ink/20 pt-6 dark:border-white/20" : ""}
-              >
-                <h3 className="font-mono-brand text-lg text-ink dark:text-white">{edu.course}</h3>
-                <p className="mt-1 text-ink-soft dark:text-white/80">{edu.institution}</p>
-                <p className="mt-1 text-sm opacity-50">
-                  {edu.hours ? `${edu.period} · ${edu.hours}` : edu.period}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-          </PanelBody>
-        </Panel>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {items.map((item) => (
+          <Card key={item.course} className="flex flex-col gap-2">
+            {item.hours && (
+              <span className="w-fit rounded-full border-2 border-stroke-soft bg-mint px-2.5 py-0.5 font-mono text-[10px] font-bold tracking-[0.1em] text-on-accent uppercase">
+                {item.hours}
+              </span>
+            )}
+            <h3 className="text-[16.5px] leading-tight">{item.course}</h3>
+            <p className="text-[13.5px] text-muted">{item.institution}</p>
+            <span className="mt-1 font-mono text-[11px] tracking-[0.05em] text-muted">{item.period}</span>
+          </Card>
+        ))}
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-60px" }}
-        transition={{ duration: 0.5 }}
-        className="mt-8"
-      >
-        <Panel noShadowOnHover>
-          <PanelTitle accent="mint">Cursos e certificações</PanelTitle>
-          <PanelBody>
-            <StudySummary institutions={institutions} />
-            <InstitutionAccordion institutions={institutions} />
-            <div className="mt-5 border-t-2 border-dashed border-ink/15 pt-4 dark:border-white/15">
-              <FormationChart institutions={institutions} />
-            </div>
-          </PanelBody>
-        </Panel>
-      </motion.div>
+      <div className="grid gap-4 lg:grid-cols-2">
+        {institutions.map((institution) => {
+          // Uma instituição vem com trilhas (DIO) ou com cursos soltos; a lista
+          // abaixo unifica as duas formas em "nome + situação".
+          const rows = institution.tracks
+            ? institution.tracks.map((track) => ({ name: track.name, note: track.status }))
+            : (institution.courses ?? []).map((course) => ({ name: course.title, note: course.area }));
+
+          if (rows.length === 0) return null;
+
+          return (
+            <Card key={institution.name} className="flex flex-col gap-3">
+              <h3 className="text-[15px]">{institution.name}</h3>
+              <ul className="flex flex-col gap-2.5">
+                {rows.map((row) => (
+                  <li
+                    key={row.name}
+                    className="flex items-center justify-between gap-3 border-b-2 border-dashed border-stroke-soft pb-2.5 text-sm last:border-b-0 last:pb-0"
+                  >
+                    <span>{row.name}</span>
+                    <span className="shrink-0 font-mono text-[10.5px] tracking-[0.06em] text-muted uppercase">
+                      {row.note}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </Card>
+          );
+        })}
+      </div>
     </section>
   );
 }

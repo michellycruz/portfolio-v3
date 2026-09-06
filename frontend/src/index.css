@@ -2,213 +2,133 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-@font-face {
-  font-family: "Suisse Mono";
-  src: url("/fonts/Suisse-Intl-Mono.ttf") format("truetype");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Mallory Compact";
-  src: url("/fonts/MalloryCompactMedium.ttf") format("truetype");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Mallory Black";
-  src: url("/fonts/MalloryBlack.ttf") format("truetype");
-  font-display: swap;
-}
-
-@theme {
-  --font-mono-brand: "Suisse Mono", ui-monospace, monospace;
-  --font-body: "Mallory Compact", system-ui, sans-serif;
-  --font-display: "Mallory Black", system-ui, sans-serif;
-
-  --color-cream: #fff0e5;
-  --color-cream-dark: #16140f;
-  --color-mint: #eafdc6;
-  --color-sky: #d3f2ff;
-  --color-butter: #fffae5;
-  --color-coral: #ed6058;
-  --color-ink: #282c33;
-  --color-ink-soft: #4a4f58;
-  --color-surface: #ffffff;
-  --color-surface-dark: #20242c;
-
-  --shadow-brutal: 8px 8px 0px 0px var(--color-ink);
-  --shadow-brutal-lg: 14px 14px 0px 0px var(--color-ink);
-  --shadow-brutal-sm: 4px 4px 0px 0px var(--color-ink);
-
-  --animate-float: float 6s ease-in-out infinite;
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-14px); }
-  }
-}
-
-/* Robots: the silhouette keeps the coral glow the old PNGs had, and the parts
-   move on their own timers so the idle loop never looks synchronised. */
-.robot {
-  overflow: visible;
-}
-
-.robot-glow {
-  filter: drop-shadow(0 0 5px rgba(237, 96, 88, 0.75));
-}
-
-/* Eyes squash shut briefly; the long pause between blinks is what reads as
-   alive rather than as a blinking cursor. */
-/* Each robot sets its own transform-origin inline, since the pivots live at
-   different coordinates in each drawing. */
-.robot-eyes {
-  animation: robot-blink 5.2s ease-in-out infinite;
-}
-
-@keyframes robot-blink {
-  0%, 92%, 100% { transform: scaleY(1); }
-  94% { transform: scaleY(0.08); }
-  96% { transform: scaleY(1); }
-  97.5% { transform: scaleY(0.08); }
-  99% { transform: scaleY(1); }
-}
-
-.robot-arm-left {
-  animation: robot-wave 4.4s ease-in-out infinite;
-}
-
-@keyframes robot-wave {
-  0%, 55%, 100% { transform: rotate(0deg); }
-  62% { transform: rotate(-13deg); }
-  70% { transform: rotate(4deg); }
-  78% { transform: rotate(-9deg); }
-  86% { transform: rotate(0deg); }
-}
-
-.robot-arm-right {
-  animation: robot-point 7s ease-in-out infinite;
-}
-
-@keyframes robot-point {
-  0%, 30%, 100% { transform: rotate(0deg); }
-  38%, 60% { transform: rotate(-7deg); }
-}
-
-/* Rocket: exhaust flickers fast, body sways slowly. */
-.robot-flame {
-  animation: robot-flame 0.42s ease-in-out infinite alternate;
-}
-
-@keyframes robot-flame {
-  from { transform: scaleY(0.82); opacity: 0.7; }
-  to { transform: scaleY(1.18); opacity: 1; }
-}
-
-.robot-hover {
-  animation: robot-hover 3.6s ease-in-out infinite;
-}
-
-@keyframes robot-hover {
-  0%, 100% { transform: rotate(-1.6deg); }
-  50% { transform: rotate(1.6deg); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .robot-eyes,
-  .robot-arm-left,
-  .robot-arm-right,
-  .robot-flame,
-  .robot-hover {
-    animation: none;
-  }
-}
-
+/* ---------------------------------------------------------------------------
+   Paleta. O tema claro fica no :root e o escuro sobrescreve as mesmas variáveis
+   em html.dark, então cada utilitário abaixo (via @theme inline) resolve para a
+   variável certa sem precisar de uma classe dark: em cada elemento.
+   Os acentos (laranja, amarelo, menta, rosa) são os mesmos nos dois temas — são
+   eles que dão a identidade; o que muda é o fundo, o traço e a sombra.
+--------------------------------------------------------------------------- */
 :root {
   color-scheme: light;
 
-  /* Behaviour-chart categorical palette. Both modes were validated against the
-     panel surfaces they render on (#ffffff light, #20242c dark): lightness band,
-     chroma floor, CVD separation and normal-vision floor all pass. The light
-     steps sit below 3:1 on white, which is allowed here because every bar
-     carries a visible percentage label. Do not re-step one slot in isolation —
-     the checks apply to the set. */
-  --viz-executor: #e34948;
-  --viz-comunicador: #eda100;
-  --viz-planejador: #1baf7a;
-  --viz-analista: #2a78d6;
-  --viz-track: #e1e0d9;
+  --c-bg: #f1efe7;
+  --c-panel: #ffffff;
+  --c-panel-2: #f8f6ee;
+  --c-text: #14141b;
+  --c-muted: #59586a;
+  --c-stroke: #14141b;
+  --c-stroke-soft: #14141b;
+  --c-shadow: #14141b;
+  --c-hover: #edeae0;
+}
 
-  /* Formation chart: one highlighted area against neutral bars. Both clear 3:1
-     against the panel surface (coral 3.27, neutral 3.86 on white). */
-  --viz-highlight: #ed6058;
-  --viz-neutral: #7c828e;
+html.dark {
+  color-scheme: dark;
+
+  --c-bg: #0f0f14;
+  --c-panel: #181821;
+  --c-panel-2: #20202c;
+  --c-text: #f4f2ec;
+  --c-muted: #9e9cae;
+  --c-stroke: #31313f;
+  --c-stroke-soft: #26262f;
+  --c-shadow: #05050a;
+  --c-hover: #23232f;
+}
+
+@theme inline {
+  --color-bg: var(--c-bg);
+  --color-panel: var(--c-panel);
+  --color-panel-2: var(--c-panel-2);
+  --color-ink: var(--c-text);
+  --color-muted: var(--c-muted);
+  --color-stroke: var(--c-stroke);
+  --color-stroke-soft: var(--c-stroke-soft);
+  --color-hover: var(--c-hover);
+
+  --color-orange: #ff5c2b;
+  --color-yellow: #ffc93c;
+  --color-mint: #3fe0c8;
+  --color-pink: #ff8fcf;
+  --color-on-accent: #12121a;
+
+  --font-display: "Archivo Black", "Archivo", system-ui, sans-serif;
+  --font-body: "Archivo", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --shadow-brutal-sm: 4px 4px 0 var(--c-shadow);
+  --shadow-brutal: 6px 6px 0 var(--c-shadow);
+  --shadow-brutal-lg: 8px 8px 0 var(--c-shadow);
+}
+
+@theme {
+  /* Largura da barra lateral. Fica no tema para servir tanto ao próprio menu
+     quanto ao respiro reservado no conteúdo (pl-sidebar), assim a entrada do
+     menu não empurra o texto. */
+  --spacing-sidebar: 262px;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-html.dark {
-  color-scheme: dark;
-
-  --viz-executor: #d03b3b;
-  --viz-comunicador: #c98500;
-  --viz-planejador: #199e70;
-  --viz-analista: #3987e5;
-  --viz-track: #2c2c2a;
-
-  /* coral 4.75, neutral 4.91 against #20242c */
-  --viz-highlight: #ed6058;
-  --viz-neutral: #8b919d;
-}
-
 body {
   margin: 0;
+  background-color: var(--c-bg);
+  color: var(--c-text);
   font-family: var(--font-body);
-  background-color: var(--color-cream);
-  color: var(--color-ink);
-  transition: background-color 0.35s ease, color 0.35s ease;
-  background-image:
-    radial-gradient(circle, rgba(40, 44, 51, 0.14) 1px, transparent 1px);
-  background-size: 22px 22px;
-  cursor: url("/cursors/cursor-25.png") 4 4, auto;
+  font-size: 15.5px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-a,
-button,
-abbr,
-input[type="submit"],
-[role="button"] {
-  cursor: url("/cursors/pointer-30.png") 6 3, pointer;
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
 }
 
-html.dark body {
-  background-color: var(--color-cream-dark);
-  color: #f4f1ea;
-  background-image:
-    radial-gradient(circle, rgba(237, 96, 88, 0.16) 1px, transparent 1px);
-  background-size: 22px 22px;
+:focus-visible {
+  outline: 3px solid var(--color-orange);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 ::selection {
-  background-color: var(--color-coral);
-  color: white;
+  background-color: var(--color-orange);
+  color: var(--color-on-accent);
 }
 
-/* Custom two-tone scrollbar to match the brutalist accent */
 ::-webkit-scrollbar {
   width: 12px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--c-bg);
 }
 ::-webkit-scrollbar-thumb {
-  background-color: var(--color-ink);
+  background-color: var(--color-orange);
   border-radius: 999px;
-  border: 3px solid var(--color-cream);
+  border: 3px solid var(--c-bg);
 }
-html.dark ::-webkit-scrollbar-thumb {
-  border-color: var(--color-cream-dark);
-  background-color: var(--color-coral);
+
+/* Seta do "role para ver mais" na página inicial. */
+@keyframes nudge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+.animate-nudge {
+  animation: nudge 1.9s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }

@@ -1,62 +1,54 @@
-import { motion } from "framer-motion";
 import type { Experience as ExperienceItem } from "../../types/content";
-import { Panel, PanelBody, PanelTitle } from "../ui/Panel";
-import { RobotMechanic } from "../ui/RobotMechanic";
+import { Card } from "../ui/Card";
 import { SectionHeading } from "../ui/SectionHeading";
 
-export function Experience({ items }: { items: ExperienceItem[] }) {
+interface ExperienceProps {
+  items: ExperienceItem[];
+}
+
+export function Experience({ items }: ExperienceProps) {
   return (
-    <section id="experiencia" className="mx-auto max-w-6xl px-5 py-16">
-      <SectionHeading>Experiência profissional</SectionHeading>
+    <section id="experiencia" className="flex scroll-mt-24 flex-col gap-5">
+      <SectionHeading
+        title="Experiência"
+        kicker={`${items.length} ${items.length === 1 ? "posição" : "posições"}`}
+      />
 
-      <div className="flex items-start gap-8">
-        <Panel noShadowOnHover className="flex-1">
-          <PanelTitle accent="mint">Trajetória</PanelTitle>
-          <PanelBody>
-          <div className="flex flex-col">
-            {items.map((exp, i) => (
-              <motion.div
-                key={exp.company}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className={i > 0 ? "mt-8 border-t-2 border-dashed border-ink/20 pt-8 dark:border-white/20" : ""}
-              >
-                <h3 className="font-mono-brand text-xl text-ink dark:text-white">{exp.company}</h3>
-                <p className="mt-1 font-semibold text-coral">{exp.role}</p>
-                <p className="mt-1 text-sm opacity-50">{exp.period}</p>
+      <div className="flex flex-col gap-4">
+        {items.map((item) => (
+          <Card key={`${item.company}-${item.period}`} className="grid gap-5 md:grid-cols-[170px_minmax(0,1fr)]">
+            <div className="font-mono text-[11.5px] tracking-[0.04em] text-muted">
+              <b className="mb-0.5 block text-[12.5px] text-ink">{item.period}</b>
+              {item.company}
+            </div>
 
-                <ul className="mt-4 flex flex-col gap-2 pl-1">
-                  {exp.bullets.map((b, bi) => (
-                    <li key={bi} className="flex gap-3 text-ink-soft dark:text-white/80">
-                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-coral" />
-                      {b}
-                    </li>
-                  ))}
-                </ul>
+            <div>
+              <h3 className="text-[19px]">{item.company}</h3>
+              <p className="mt-0.5 font-mono text-xs tracking-[0.06em] text-orange uppercase">{item.role}</p>
 
-                {exp.results && (
-                  <p className="mt-4 rounded-lg border-2 border-ink bg-butter px-4 py-3 text-sm dark:border-white/50 dark:bg-white/10">
-                    <strong>Resultados: </strong>
-                    {exp.results}
-                  </p>
-                )}
-              </motion.div>
-            ))}
-          </div>
-          </PanelBody>
-        </Panel>
+              <ul className="mt-3 flex flex-col gap-1.5">
+                {item.bullets.map((bullet) => (
+                  <li key={bullet} className="relative pl-5 text-[14.5px] text-muted">
+                    <span
+                      aria-hidden="true"
+                      className="absolute top-2 left-0 h-2 w-2 rounded-[2px] border border-stroke-soft bg-yellow"
+                    />
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
 
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6 }}
-          className="hidden w-56 shrink-0 animate-float select-none self-center lg:block"
-        >
-          <RobotMechanic />
-        </motion.div>
+              {item.results && (
+                <p className="mt-4 rounded-r-xl border-l-4 border-mint bg-panel-2 px-3.5 py-3 text-sm">
+                  <b className="mb-0.5 block font-mono text-[10.5px] tracking-[0.14em] text-mint uppercase">
+                    Resultados
+                  </b>
+                  {item.results}
+                </p>
+              )}
+            </div>
+          </Card>
+        ))}
       </div>
     </section>
   );

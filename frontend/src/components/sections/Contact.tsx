@@ -1,24 +1,28 @@
 import { useState, type FormEvent } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { AlertCircle, CheckCircle2, Loader2, Send } from "lucide-react";
-import { Panel, PanelBody, PanelTitle } from "../ui/Panel";
-import { SectionHeading } from "../ui/SectionHeading";
-import { Button } from "../ui/Button";
+import type { Profile } from "../../types/content";
 import { sendContactMessage } from "../../lib/api";
+import { Button } from "../ui/Button";
+import { Card } from "../ui/Card";
+import { SectionHeading } from "../ui/SectionHeading";
+import { SocialIcon } from "../ui/SocialIcon";
+
+const fieldClass =
+  "w-full rounded-xl border-2 border-stroke bg-panel-2 px-3 py-2.5 text-[14.5px] text-ink placeholder:text-muted";
 
 type Status = "idle" | "sending" | "success" | "error";
 
-const inputClasses =
-  "w-full rounded-lg border-2 border-ink bg-white px-4 py-3 font-body text-ink outline-none transition-shadow focus:shadow-brutal-sm dark:border-white/60 dark:bg-white/95";
+interface ContactProps {
+  profile: Profile;
+}
 
-export function Contact() {
+export function Contact({ profile }: ContactProps) {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [errorMsg, setErrorMsg] = useState("");
 
-  async function handleSubmit(e: FormEvent) {
-    e.preventDefault();
+  async function handleSubmit(event: FormEvent) {
+    event.preventDefault();
     setStatus("sending");
     setErrors({});
     setErrorMsg("");
@@ -33,123 +37,100 @@ export function Contact() {
 
     setStatus("error");
     setErrors(result.errors ?? {});
-    setErrorMsg(result.error ?? "Não foi possível enviar sua mensagem.");
+    setErrorMsg(result.error ?? "Falha ao enviar mensagem.");
   }
 
-  function updateField<K extends keyof typeof form>(field: K, value: string) {
-    setForm((f) => ({ ...f, [field]: value }));
-    // A new edit means the previous success/error banner no longer applies.
+  function update(field: keyof typeof form, value: string) {
+    setForm((current) => ({ ...current, [field]: value }));
     if (status === "success" || status === "error") setStatus("idle");
   }
 
   return (
-    <section id="contato" className="mx-auto max-w-3xl px-5 py-16">
-      <SectionHeading>Vamos conversar?</SectionHeading>
+    <section id="contato" className="flex scroll-mt-24 flex-col gap-5">
+      <SectionHeading title="Contato" kicker="Resposta rápida" />
 
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-60px" }}
-        transition={{ duration: 0.5 }}
-      >
-        <Panel noShadowOnHover>
-          <PanelTitle accent="mint">Envie uma mensagem</PanelTitle>
-          <PanelBody>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-              <div>
-                <label htmlFor="name" className="mb-2 block text-sm font-semibold">
-                  Nome
-                </label>
-                <input
-                  id="name"
-                  value={form.name}
-                  onChange={(e) => updateField("name", e.target.value)}
-                  className={inputClasses}
-                  placeholder="Seu nome"
-                  required
-                />
-                {errors.name && <p className="mt-1 text-sm text-coral">{errors.name}</p>}
-              </div>
+      <div className="grid gap-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(280px,1fr)]">
+        <Card className="flex flex-col gap-4">
+          <h3 className="text-[clamp(22px,3vw,28px)] leading-tight uppercase">
+            Vamos falar sobre o seu projeto
+          </h3>
 
-              <div>
-                <label htmlFor="email" className="mb-2 block text-sm font-semibold">
-                  E-mail
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  value={form.email}
-                  onChange={(e) => updateField("email", e.target.value)}
-                  className={inputClasses}
-                  placeholder="seu@email.com"
-                  required
-                />
-                {errors.email && <p className="mt-1 text-sm text-coral">{errors.email}</p>}
-              </div>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+            <label className="flex flex-col gap-1.5">
+              <span className="font-mono text-[10.5px] tracking-[0.12em] text-muted uppercase">Nome</span>
+              <input
+                required
+                value={form.name}
+                onChange={(event) => update("name", event.target.value)}
+                className={fieldClass}
+                placeholder="Como te chamo?"
+              />
+              {errors.name && <span className="text-xs text-orange">{errors.name}</span>}
+            </label>
 
-              <div>
-                <label htmlFor="message" className="mb-2 block text-sm font-semibold">
-                  Mensagem
-                </label>
-                <textarea
-                  id="message"
-                  value={form.message}
-                  onChange={(e) => updateField("message", e.target.value)}
-                  className={`${inputClasses} min-h-32 resize-y`}
-                  placeholder="Como posso ajudar?"
-                  required
-                />
-                {errors.message && <p className="mt-1 text-sm text-coral">{errors.message}</p>}
-              </div>
+            <label className="flex flex-col gap-1.5">
+              <span className="font-mono text-[10.5px] tracking-[0.12em] text-muted uppercase">E-mail</span>
+              <input
+                required
+                type="email"
+                value={form.email}
+                onChange={(event) => update("email", event.target.value)}
+                className={fieldClass}
+                placeholder="voce@email.com"
+              />
+              {errors.email && <span className="text-xs text-orange">{errors.email}</span>}
+            </label>
 
-              <Button type="submit" variant="coral" disabled={status === "sending"} className="self-start">
-                {status === "sending" ? (
-                  <>
-                    Enviando <Loader2 size={16} className="animate-spin" />
-                  </>
-                ) : (
-                  <>
-                    Enviar mensagem <Send size={16} />
-                  </>
-                )}
-              </Button>
+            <label className="flex flex-col gap-1.5">
+              <span className="font-mono text-[10.5px] tracking-[0.12em] text-muted uppercase">Mensagem</span>
+              <textarea
+                required
+                rows={4}
+                value={form.message}
+                onChange={(event) => update("message", event.target.value)}
+                className={`${fieldClass} resize-y`}
+                placeholder="Conta rapidamente o que você precisa."
+              />
+              {errors.message && <span className="text-xs text-orange">{errors.message}</span>}
+            </label>
 
-              <AnimatePresence mode="wait">
-                {status === "success" && (
-                  <motion.div
-                    key="success"
-                    initial={{ opacity: 0, y: -8, scale: 0.97 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -8, scale: 0.97 }}
-                    transition={{ duration: 0.25 }}
-                    role="status"
-                    className="flex items-start gap-3 rounded-lg border-2 border-ink bg-mint px-4 py-3 text-sm font-medium text-ink shadow-brutal-sm"
-                  >
-                    <CheckCircle2 size={20} className="mt-0.5 shrink-0" />
-                    <span>
-                      Mensagem enviada com sucesso! Obrigada pelo contato — respondo em breve.
-                    </span>
-                  </motion.div>
-                )}
-                {status === "error" && (
-                  <motion.div
-                    key="error"
-                    initial={{ opacity: 0, y: -8, scale: 0.97 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -8, scale: 0.97 }}
-                    transition={{ duration: 0.25 }}
-                    role="alert"
-                    className="flex items-start gap-3 rounded-lg border-2 border-ink bg-coral/20 px-4 py-3 text-sm font-medium text-ink shadow-brutal-sm dark:text-white"
-                  >
-                    <AlertCircle size={20} className="mt-0.5 shrink-0" />
-                    <span>{errorMsg}</span>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </form>
-          </PanelBody>
-        </Panel>
-      </motion.div>
+            <Button type="submit" variant="primary" disabled={status === "sending"} className="self-start">
+              {status === "sending" ? "Enviando…" : "Enviar mensagem"}
+            </Button>
+
+            {status === "success" && (
+              <p role="status" className="font-mono text-xs text-mint">
+                Mensagem enviada. Respondo assim que possível.
+              </p>
+            )}
+            {status === "error" && errorMsg && (
+              <p role="alert" className="font-mono text-xs text-orange">
+                {errorMsg}
+              </p>
+            )}
+          </form>
+        </Card>
+
+        <div className="flex flex-col gap-2.5">
+          {profile.social.map((link) => (
+              <a
+                key={link.name}
+                href={link.url}
+                target="_blank"
+                rel="noopener"
+                className="flex items-center gap-3 rounded-xl border-2 border-stroke bg-panel-2 px-3.5 py-3 transition-transform duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-brutal-sm"
+              >
+                <SocialIcon name={link.icon} className="h-[18px] w-[18px] shrink-0" />
+                <span>
+                  <span className="block text-sm font-semibold">{link.name}</span>
+                  <span className="block font-mono text-[11px] text-muted">
+                    {link.url.replace(/^https?:\/\/(www\.)?/, "")}
+                  </span>
+                </span>
+              </a>
+            ))}
+        </div>
+      </div>
     </section>
   );
 }
