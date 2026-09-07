@@ -267,11 +267,11 @@ export const fallbackContent: Content = {
       title: "Portfólio v2",
       year: "2026",
       description:
-        "Este site. React, TypeScript e Tailwind no front, API própria em Go no back — e um timer na VPS que puxa cada build novo direto da release.",
+        "A versão anterior deste portfólio. React, TypeScript e Tailwind no front, API própria em Go no back e um timer na VPS que puxava cada build novo direto da release. Hoje está no ar como site estático.",
       tech: ["react", "ts", "tailwind", "go"],
       imageUrl: "/images/projects/portfolio_v2.png",
-      linkUrl: "https://michellycruz.com.br",
-      repoUrl: "https://github.com/michellycruz/portfolio-v2",
+      linkUrl: "https://portfolio-v2-six-lac-34.vercel.app",
+      repoUrl: "https://github.com/michellycruz/portfolio-v3/tree/v2",
       private: false,
     },
     {
