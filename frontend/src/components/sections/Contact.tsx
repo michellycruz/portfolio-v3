@@ -1,12 +1,14 @@
 import { useState, type FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { AlertCircle, CheckCircle2, Loader2, Send } from "lucide-react";
+import { ArrowUpRight, Send } from "lucide-react";
 import { Panel, PanelBody, PanelTitle } from "../ui/Panel";
 import { SectionHeading } from "../ui/SectionHeading";
 import { Button } from "../ui/Button";
-import { sendContactMessage } from "../../lib/api";
+import { CURRENT_SITE_LABEL, CURRENT_SITE_URL } from "../../lib/site";
 
-type Status = "idle" | "sending" | "success" | "error";
+/** Só dois estados agora: o formulário não envia mais nada daqui. Ele existe
+ *  porque faz parte do desenho desta versão, e enviar leva à versão atual. */
+type Status = "idle" | "moved";
 
 const inputClasses =
   "w-full rounded-lg border-2 border-ink bg-white px-4 py-3 font-body text-ink outline-none transition-shadow focus:shadow-brutal-sm dark:border-white/60 dark:bg-white/95";
@@ -14,32 +16,19 @@ const inputClasses =
 export function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<Status>("idle");
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [errorMsg, setErrorMsg] = useState("");
 
-  async function handleSubmit(e: FormEvent) {
+  // Não há mais para onde enviar: esta versão é estática. Em vez do erro de
+  // conexão que aparecia aqui — "não foi possível conectar ao servidor", que não
+  // diz a ninguém o que fazer a seguir —, o envio explica onde o formulário
+  // funciona de verdade.
+  function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    setStatus("sending");
-    setErrors({});
-    setErrorMsg("");
-
-    const result = await sendContactMessage(form);
-
-    if (result.ok) {
-      setStatus("success");
-      setForm({ name: "", email: "", message: "" });
-      return;
-    }
-
-    setStatus("error");
-    setErrors(result.errors ?? {});
-    setErrorMsg(result.error ?? "Não foi possível enviar sua mensagem.");
+    setStatus("moved");
   }
 
   function updateField<K extends keyof typeof form>(field: K, value: string) {
     setForm((f) => ({ ...f, [field]: value }));
-    // A new edit means the previous success/error banner no longer applies.
-    if (status === "success" || status === "error") setStatus("idle");
+    if (status === "moved") setStatus("idle");
   }
 
   return (
@@ -55,6 +44,19 @@ export function Contact() {
         <Panel noShadowOnHover>
           <PanelTitle accent="mint">Envie uma mensagem</PanelTitle>
           <PanelBody>
+            {/* O aviso vem antes dos campos de propósito: descobrir que a
+                mensagem não vai a lugar nenhum só depois de escrevê-la seria
+                pior do que o erro que estava aqui. */}
+            <p className="mb-5 text-sm text-ink/70 dark:text-white/70">
+              O envio de mensagens funciona na versão atual do portfólio.{" "}
+              <a
+                href={CURRENT_SITE_URL}
+                className="font-semibold text-ink underline decoration-coral decoration-2 underline-offset-2 dark:text-white"
+              >
+                Ir para {CURRENT_SITE_LABEL}
+              </a>
+            </p>
+
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
               <div>
                 <label htmlFor="name" className="mb-2 block text-sm font-semibold">
@@ -68,7 +70,6 @@ export function Contact() {
                   placeholder="Seu nome"
                   required
                 />
-                {errors.name && <p className="mt-1 text-sm text-coral">{errors.name}</p>}
               </div>
 
               <div>
@@ -84,7 +85,6 @@ export function Contact() {
                   placeholder="seu@email.com"
                   required
                 />
-                {errors.email && <p className="mt-1 text-sm text-coral">{errors.email}</p>}
               </div>
 
               <div>
@@ -99,50 +99,34 @@ export function Contact() {
                   placeholder="Como posso ajudar?"
                   required
                 />
-                {errors.message && <p className="mt-1 text-sm text-coral">{errors.message}</p>}
               </div>
 
-              <Button type="submit" variant="coral" disabled={status === "sending"} className="self-start">
-                {status === "sending" ? (
-                  <>
-                    Enviando <Loader2 size={16} className="animate-spin" />
-                  </>
-                ) : (
-                  <>
-                    Enviar mensagem <Send size={16} />
-                  </>
-                )}
+              <Button type="submit" variant="coral" className="self-start">
+                Enviar mensagem <Send size={16} />
               </Button>
 
               <AnimatePresence mode="wait">
-                {status === "success" && (
+                {status === "moved" && (
                   <motion.div
-                    key="success"
+                    key="moved"
                     initial={{ opacity: 0, y: -8, scale: 0.97 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -8, scale: 0.97 }}
                     transition={{ duration: 0.25 }}
                     role="status"
-                    className="flex items-start gap-3 rounded-lg border-2 border-ink bg-mint px-4 py-3 text-sm font-medium text-ink shadow-brutal-sm"
+                    className="flex flex-col gap-3 rounded-lg border-2 border-ink bg-mint px-4 py-3 text-sm font-medium text-ink shadow-brutal-sm"
                   >
-                    <CheckCircle2 size={20} className="mt-0.5 shrink-0" />
                     <span>
-                      Mensagem enviada com sucesso! Obrigada pelo contato — respondo em breve.
+                      Esta é a versão anterior do portfólio, e ela não envia mensagens. Para falar
+                      comigo, use o formulário da versão atual — ou os links de contato no rodapé.
                     </span>
-                  </motion.div>
-                )}
-                {status === "error" && (
-                  <motion.div
-                    key="error"
-                    initial={{ opacity: 0, y: -8, scale: 0.97 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -8, scale: 0.97 }}
-                    transition={{ duration: 0.25 }}
-                    role="alert"
-                    className="flex items-start gap-3 rounded-lg border-2 border-ink bg-coral/20 px-4 py-3 text-sm font-medium text-ink shadow-brutal-sm dark:text-white"
-                  >
-                    <AlertCircle size={20} className="mt-0.5 shrink-0" />
-                    <span>{errorMsg}</span>
+                    <a
+                      href={CURRENT_SITE_URL}
+                      className="inline-flex w-fit items-center gap-1.5 rounded-lg border-2 border-ink bg-white px-3 py-1.5 font-semibold shadow-brutal-sm transition-transform hover:-translate-y-0.5"
+                    >
+                      Ir para {CURRENT_SITE_LABEL}
+                      <ArrowUpRight size={15} />
+                    </a>
                   </motion.div>
                 )}
               </AnimatePresence>

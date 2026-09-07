@@ -1,36 +1,16 @@
-import { useEffect, useState } from "react";
 import type { Content } from "../types/content";
-import { fetchContent } from "../lib/api";
 import { fallbackContent } from "../data/fallback-content";
 
-interface State {
-  content: Content;
-  loading: boolean;
-  offline: boolean;
-}
-
-export function usePortfolioContent(): State {
-  const [state, setState] = useState<State>({
-    content: fallbackContent,
-    loading: true,
-    offline: false,
-  });
-
-  useEffect(() => {
-    let cancelled = false;
-
-    fetchContent<Content>("/api/content")
-      .then((content) => {
-        if (!cancelled) setState({ content, loading: false, offline: false });
-      })
-      .catch(() => {
-        if (!cancelled) setState({ content: fallbackContent, loading: false, offline: true });
-      });
-
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
-  return state;
+/**
+ * Esta versão é servida como site estático, sem o backend ao lado, então o
+ * conteúdo vem direto do arquivo local — que sempre foi completo, porque existia
+ * como reserva para quando a API não respondesse.
+ *
+ * Antes daqui saía um fetch em /api/content que, sem servidor, falhava sempre:
+ * acendia a tarja de erro no topo em toda visita e deixava uma requisição
+ * vermelha no console de quem abrisse o inspetor. Sem API para consultar, não há
+ * o que esperar nem o que falhar.
+ */
+export function usePortfolioContent(): { content: Content } {
+  return { content: fallbackContent };
 }
