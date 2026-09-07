@@ -3,7 +3,8 @@
 Base de um novo portfólio, partindo do código do [portfolio-v2](https://github.com/michellycruz/portfolio-v2):
 mesmo backend em **Go** e mesma camada de conteúdo, com o frontend refeito em
 outra identidade visual — neobrutalismo escuro, tipografia Archivo Black +
-JetBrains Mono e acentos em laranja, amarelo, menta e rosa.
+JetBrains Mono e uma paleta terrosa: barro, ocre, sálvia e rosa-seco sobre
+papel/carvão.
 
 ## O que muda em relação à v2
 
@@ -65,6 +66,10 @@ enviar nada.
 
 - Trocar o texto do currículo e a foto (`frontend/public/images/foto-pessoal.jpg`).
 - Ajustar a paleta em `frontend/src/index.css` (bloco `:root` / `html.dark`).
+  Outras três ficam no mesmo arquivo atrás de `html[data-palette="…"]` — `riso`
+  (tintas de risografia sobre papel frio), `vitral` (acentos profundos de pedra,
+  com texto claro por cima) e `polar` (fria e contida) —, e um botão que só
+  existe em desenvolvimento alterna entre as quatro para comparar.
 - As seções são componentes independentes — dá para reordená-las no `App.tsx`
   junto com a lista de `frontend/src/lib/nav.ts`, que alimenta o menu, o rastro
   do topo e o destaque da seção ativa.

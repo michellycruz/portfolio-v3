@@ -3,38 +3,194 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ---------------------------------------------------------------------------
-   Paleta. O tema claro fica no :root e o escuro sobrescreve as mesmas variáveis
-   em html.dark, então cada utilitário abaixo (via @theme inline) resolve para a
-   variável certa sem precisar de uma classe dark: em cada elemento.
-   Os acentos (laranja, amarelo, menta, rosa) são os mesmos nos dois temas — são
-   eles que dão a identidade; o que muda é o fundo, o traço e a sombra.
+   Paleta "terra", a do site. O tema claro fica no :root e o escuro sobrescreve
+   as mesmas variáveis em html.dark, então cada utilitário abaixo (via @theme
+   inline) resolve para a variável certa sem precisar de uma classe dark: em
+   cada elemento.
+
+   É quente e terrosa — barro, ocre, sálvia e rosa-seco sobre papel/carvão. Os
+   quatro acentos são de meio-tom, com luminosidade parecida entre si, então
+   servem nos dois temas sem trocar e o texto escuro por cima continua legível
+   nos quatro. São eles que dão a identidade; o que muda entre claro e escuro é
+   o fundo, o traço e a sombra.
 --------------------------------------------------------------------------- */
 :root {
   color-scheme: light;
 
-  --c-bg: #f1efe7;
-  --c-panel: #ffffff;
-  --c-panel-2: #f8f6ee;
-  --c-text: #14141b;
-  --c-muted: #59586a;
-  --c-stroke: #14141b;
-  --c-stroke-soft: #14141b;
-  --c-shadow: #14141b;
-  --c-hover: #edeae0;
+  --c-bg: #eeeae0;
+  --c-panel: #fffdf8;
+  --c-panel-2: #f7f3e9;
+  --c-text: #23201c;
+  --c-muted: #6b6459;
+  --c-stroke: #23201c;
+  --c-stroke-soft: #23201c;
+  --c-shadow: #23201c;
+  --c-hover: #e6e1d5;
+
+  /* Os acentos passam por variável, e não direto no @theme, porque o @theme
+     inline grava valor literal no utilitário: escrito lá, .bg-orange viraria
+     #e2694a fixo e nenhuma troca de paleta o alcançaria. */
+  --c-orange: #e2694a;     /* barro */
+  --c-yellow: #e8b04b;     /* ocre */
+  --c-mint: #8fbf9f;       /* sálvia */
+  --c-pink: #dd9aa6;       /* rosa-seco */
+  --c-on-accent: #23201c;
 }
 
 html.dark {
   color-scheme: dark;
 
-  --c-bg: #0f0f14;
-  --c-panel: #181821;
-  --c-panel-2: #20202c;
-  --c-text: #f4f2ec;
-  --c-muted: #9e9cae;
-  --c-stroke: #31313f;
-  --c-stroke-soft: #26262f;
-  --c-shadow: #05050a;
-  --c-hover: #23232f;
+  --c-bg: #191713;
+  --c-panel: #22201b;
+  --c-panel-2: #2b2822;
+  --c-text: #f0ebe1;
+  --c-muted: #a49a8c;
+  --c-stroke: #3a362e;
+  --c-stroke-soft: #2f2c25;
+  --c-shadow: #0c0b08;
+  --c-hover: #2f2b24;
+}
+
+/* ---------------------------------------------------------------------------
+   Paleta "riso", a alternativa. Fica atrás de html[data-palette="riso"], então
+   as duas convivem no mesmo build e o botão do menu troca na hora — sem precisar
+   reescrever o bloco acima a cada vez.
+
+   É a direção contrária à terra em tudo: as quatro tintas de risografia — rosa
+   fluorescente, amarelo, água e violeta — saturadas, sobre papel frio em vez de
+   papel quente. A terra é meio-tom e discreta; esta é chapada e barulhenta, que
+   é onde o neobrutalismo também vive.
+
+   Vale a mesma regra da terra: os quatro acentos ficam numa faixa de luminosidade
+   parecida, senão o texto escuro por cima deixaria de funcionar em algum deles —
+   é uma cor de texto só para os quatro. O violeta é o mais escuro do conjunto e
+   define o limite; não dá para escurecê-lo mais sem quebrar o contraste.
+
+   Especificidade: html[data-palette="riso"] empata com html.dark (0,1,1), então
+   precisa vir depois para ganhar; a variante escura tem uma classe a mais e
+   ganha das duas.
+--------------------------------------------------------------------------- */
+html[data-palette="riso"] {
+  color-scheme: light;
+
+  --c-bg: #ecf0f2;
+  --c-panel: #ffffff;
+  --c-panel-2: #f4f7f8;
+  --c-text: #16181d;
+  --c-muted: #565d68;
+  --c-stroke: #16181d;
+  --c-stroke-soft: #16181d;
+  --c-shadow: #16181d;
+  --c-hover: #e2e8ea;
+
+  --c-orange: #ff5da2;     /* rosa fluorescente */
+  --c-yellow: #ffe24d;     /* amarelo */
+  --c-mint: #5cc8d8;       /* água */
+  --c-pink: #8f7ae8;       /* violeta */
+  --c-on-accent: #16181d;
+}
+
+html[data-palette="riso"].dark {
+  color-scheme: dark;
+
+  --c-bg: #10141c;
+  --c-panel: #181e28;
+  --c-panel-2: #212936;
+  --c-text: #eef1f5;
+  --c-muted: #93a0b0;
+  --c-stroke: #2e3847;
+  --c-stroke-soft: #232b37;
+  --c-shadow: #05070c;
+  --c-hover: #242d3a;
+}
+
+/* ---------------------------------------------------------------------------
+   Paleta "vitral". As outras três põem texto escuro sobre acento claro; esta
+   inverte — acentos profundos de pedra (rubi, âmbar queimado, esmeralda,
+   ametista) com texto claro por cima. Como --c-on-accent é por paleta, a
+   inversão cabe sem tocar em nenhum componente.
+
+   Vale a mesma regra de sempre, só espelhada: os quatro precisam ficar numa
+   faixa de luminosidade parecida, agora escura, porque a cor de texto sobre
+   acento é uma só. Aqui é o âmbar que define o limite — clareá-lo mais derruba
+   o contraste do texto claro.
+--------------------------------------------------------------------------- */
+html[data-palette="vitral"] {
+  color-scheme: light;
+
+  --c-bg: #f2f0eb;
+  --c-panel: #ffffff;
+  --c-panel-2: #f8f7f3;
+  --c-text: #14131a;
+  --c-muted: #56525f;
+  --c-stroke: #14131a;
+  --c-stroke-soft: #14131a;
+  --c-shadow: #14131a;
+  --c-hover: #e8e5de;
+
+  --c-orange: #9e2a4a;     /* rubi */
+  --c-yellow: #8a5a0f;     /* âmbar queimado */
+  --c-mint: #176b4f;       /* esmeralda */
+  --c-pink: #6b3f8f;       /* ametista */
+  --c-on-accent: #f7f4ee;
+}
+
+html[data-palette="vitral"].dark {
+  color-scheme: dark;
+
+  --c-bg: #14131a;
+  --c-panel: #1e1c26;
+  --c-panel-2: #272430;
+  --c-text: #f0edf5;
+  --c-muted: #9b95a8;
+  --c-stroke: #35313f;
+  --c-stroke-soft: #2a2733;
+  --c-shadow: #08070c;
+  --c-hover: #2b2836;
+}
+
+/* ---------------------------------------------------------------------------
+   Paleta "polar". É a mais contida das quatro: acentos frios e pálidos, de
+   chroma baixo, sobre quase-branco azulado ou ardósia. Onde a riso grita, esta
+   sussurra — e é fria, o que a separa da terra, que é discreta mas quente.
+
+   Aqui o risco é o oposto do vitral: acento claro demais deixa de registrar
+   como acento e some no painel branco (foi o que aconteceu quando a paleta da
+   v2 foi testada neste layout). Por isso os quatro param no meio-claro, e não
+   no quase-branco.
+--------------------------------------------------------------------------- */
+html[data-palette="polar"] {
+  color-scheme: light;
+
+  --c-bg: #f7f8fa;
+  --c-panel: #ffffff;
+  --c-panel-2: #f1f4f7;
+  --c-text: #1a1d24;
+  --c-muted: #5c6470;
+  --c-stroke: #1a1d24;
+  --c-stroke-soft: #1a1d24;
+  --c-shadow: #1a1d24;
+  --c-hover: #e7ebf0;
+
+  --c-orange: #f09e8c;     /* coral pálido */
+  --c-yellow: #ecd68f;     /* aveia */
+  --c-mint: #91cfc2;       /* espuma */
+  --c-pink: #aeaadd;       /* pervinca */
+  --c-on-accent: #1a1d24;
+}
+
+html[data-palette="polar"].dark {
+  color-scheme: dark;
+
+  --c-bg: #14171c;
+  --c-panel: #1c2027;
+  --c-panel-2: #252a33;
+  --c-text: #eef1f5;
+  --c-muted: #8f9aa8;
+  --c-stroke: #2f3742;
+  --c-stroke-soft: #242a33;
+  --c-shadow: #080a0e;
+  --c-hover: #262d37;
 }
 
 @theme inline {
@@ -47,11 +203,11 @@ html.dark {
   --color-stroke-soft: var(--c-stroke-soft);
   --color-hover: var(--c-hover);
 
-  --color-orange: #ff5c2b;
-  --color-yellow: #ffc93c;
-  --color-mint: #3fe0c8;
-  --color-pink: #ff8fcf;
-  --color-on-accent: #12121a;
+  --color-orange: var(--c-orange);
+  --color-yellow: var(--c-yellow);
+  --color-mint: var(--c-mint);
+  --color-pink: var(--c-pink);
+  --color-on-accent: var(--c-on-accent);
 
   --font-display: "Archivo Black", "Archivo", system-ui, sans-serif;
   --font-body: "Archivo", system-ui, -apple-system, sans-serif;

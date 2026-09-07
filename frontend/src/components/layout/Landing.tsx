@@ -4,6 +4,7 @@ import type { Profile } from "../../types/content";
 import { Button } from "../ui/Button";
 import { SocialIcon } from "../ui/SocialIcon";
 import { ThemeToggle } from "./ThemeToggle";
+import { PaletteToggle } from "./PaletteToggle";
 
 interface LandingProps {
   profile: Profile;
@@ -25,7 +26,10 @@ export const Landing = forwardRef<HTMLElement, LandingProps>(function Landing({ 
       id="inicio"
       className="relative flex min-h-svh flex-col justify-center px-6 py-20 sm:px-10 lg:px-16"
     >
-      <div className="absolute top-6 right-6 sm:right-10">
+      <div className="absolute top-6 right-6 flex items-center gap-2 sm:right-10">
+        {/* Só em desenvolvimento: o menu lateral ainda não existe na capa, então
+            o seletor de paleta precisa de um lugar aqui também. */}
+        {import.meta.env.DEV && <PaletteToggle />}
         <ThemeToggle />
       </div>
 

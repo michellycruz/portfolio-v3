@@ -8,7 +8,7 @@
       name="description"
       content="Michelly Cruz — Analista de Sistemas. Portfólio com resumo profissional, experiência, formação, habilidades e projetos."
     />
-    <meta name="theme-color" content="#0f0f14" />
+    <meta name="theme-color" content="#191713" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -23,6 +23,10 @@
         if (localStorage.getItem('theme') !== 'light') {
           document.documentElement.classList.add('dark');
         }
+        // Paleta: sem nada guardado vale a terra, que mora no :root e não
+        // precisa de atributo. Só a alternativa é que se marca aqui.
+        var p = localStorage.getItem('palette');
+        if (p) document.documentElement.dataset.palette = p;
       } catch (e) {
         document.documentElement.classList.add('dark');
       }
