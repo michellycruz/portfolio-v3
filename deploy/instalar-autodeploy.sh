@@ -13,7 +13,7 @@
 
 set -Eeuo pipefail
 
-REPO="${REPO:-michellycruz/portfolio-v2}"
+REPO="${REPO:-michellycruz/portfolio-v3}"
 TAG="${TAG:-deploy-latest}"
 ASSET="${ASSET:-portfolio-build.tar.gz}"
 APP_DIR="${APP_DIR:-/opt/portfolio}"

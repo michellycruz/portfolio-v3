@@ -98,12 +98,35 @@ perde a mudança na próxima execução.
 
 ```bash
 # na VPS
-git clone https://github.com/michellycruz/portfolio-v2 ~/portfolio-v2   # ou: cd ~/portfolio-v2 && git pull
-sudo bash ~/portfolio-v2/deploy/instalar-autodeploy.sh
+git clone https://github.com/michellycruz/portfolio-v3 ~/portfolio-v3   # ou: cd ~/portfolio-v3 && git pull
+sudo bash ~/portfolio-v3/deploy/instalar-autodeploy.sh
 ```
 
 Os padrões saem por variável de ambiente, sem editar o script —
 `INTERVALO=2min`, `APP_DIR=`, `SERVICE=`, `APP_USER=`, `REPO=`.
+
+### Se o repositório for renomeado
+
+O nome fica gravado em `/usr/local/bin/portfolio-autodeploy`, na linha `REPO=`, e
+as URLs da API do GitHub são montadas a partir dele. O script usa `curl -fsSL`,
+que **segue redirecionamento**, então logo após um rename ele continua
+funcionando — o GitHub redireciona o nome antigo para o novo.
+
+Mas esse redirecionamento não é para sempre: ele deixa de existir no momento em
+que alguém cria um repositório novo com o nome antigo. Como o nome antigo aqui é
+justamente `portfolio-v2`, e a versão anterior do portfólio é candidata natural a
+ganhar um repositório próprio um dia, não vale depender dele.
+
+Depois de renomear, atualize a linha na VPS:
+
+```bash
+sudo sed -i 's|^REPO=.*|REPO="${REPO:-michellycruz/portfolio-v3}"|' /usr/local/bin/portfolio-autodeploy
+sudo systemctl start portfolio-autodeploy.service   # força um ciclo agora
+journalctl -u portfolio-autodeploy.service -n 30 --no-pager
+```
+
+Ou, mais simples, rode o instalador de novo a partir do clone atualizado: ele
+reescreve o script inteiro com o padrão novo.
 
 O instalador cuida **só** do autodeploy. O serviço `portfolio` em si, o usuário
 `portfolio` e o `/opt/portfolio/.env` são pré-requisitos instalados à mão; se
