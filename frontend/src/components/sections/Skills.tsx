@@ -1,4 +1,5 @@
 import type { InfraSkill, SkillCategory } from "../../types/content";
+import { techLabel } from "../../lib/tech";
 import { Card } from "../ui/Card";
 import { SectionHeading } from "../ui/SectionHeading";
 
@@ -27,7 +28,7 @@ export function Skills({ categories, infraSkills, infraHighlights }: SkillsProps
                     chipBorders[(categoryIndex + skillIndex) % chipBorders.length]
                   }`}
                 >
-                  {skill}
+                  {techLabel(skill)}
                 </li>
               ))}
             </ul>
