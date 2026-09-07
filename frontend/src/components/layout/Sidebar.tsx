@@ -99,8 +99,7 @@ export function Sidebar({ profile, shown, open, onClose, activeId }: SidebarProp
             </span>
           </div>
           <ThemeToggle withLabel className="w-full" />
-          {/* Só em desenvolvimento: é o seletor para comparar as paletas. */}
-          {import.meta.env.DEV && <PaletteToggle withLabel className="w-full" />}
+          <PaletteToggle withLabel className="w-full" />
         </div>
       </aside>
     </>

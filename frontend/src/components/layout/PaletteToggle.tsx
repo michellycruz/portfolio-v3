@@ -20,9 +20,11 @@ function currentIndex(): number {
 }
 
 /**
- * Alterna entre as paletas para comparar. É ferramenta de trabalho, não parte do
- * site: quem chama só monta em desenvolvimento, então este botão não existe no
- * build de produção.
+ * Alterna entre as paletas. Nasceu como ferramenta de comparação, montada só em
+ * desenvolvimento, e virou parte do site: quem visita escolhe em qual das quatro
+ * quer ler, do mesmo jeito que escolhe claro ou escuro. A escolha fica no
+ * localStorage e o boot script em index.html a aplica antes da primeira pintura,
+ * para a paleta não piscar na troca.
  */
 export function PaletteToggle({ withLabel = false, className = "" }: {
   withLabel?: boolean;

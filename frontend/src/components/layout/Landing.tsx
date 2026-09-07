@@ -27,9 +27,9 @@ export const Landing = forwardRef<HTMLElement, LandingProps>(function Landing({ 
       className="relative flex min-h-svh flex-col justify-center px-6 py-20 sm:px-10 lg:px-16"
     >
       <div className="absolute top-6 right-6 flex items-center gap-2 sm:right-10">
-        {/* Só em desenvolvimento: o menu lateral ainda não existe na capa, então
-            o seletor de paleta precisa de um lugar aqui também. */}
-        {import.meta.env.DEV && <PaletteToggle />}
+        {/* O menu lateral ainda não existe na capa, então o seletor de paleta
+            precisa de um lugar aqui também. */}
+        <PaletteToggle />
         <ThemeToggle />
       </div>
 
