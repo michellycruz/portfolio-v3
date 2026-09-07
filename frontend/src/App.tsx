@@ -62,11 +62,7 @@ function PortfolioApp() {
           <About profile={content.profile} />
           <Experience items={content.experience} />
           <Education items={content.education} institutions={content.institutions} />
-          <Skills
-            categories={content.skillCategories}
-            infraSkills={content.infraSkills}
-            infraHighlights={content.infraHighlights}
-          />
+          <Skills categories={content.skillCategories} infraSkills={content.infraSkills} />
           <Projects items={content.projects} />
           <Contact profile={content.profile} />
           <Footer name={content.profile.name} />

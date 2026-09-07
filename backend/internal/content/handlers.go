@@ -39,9 +39,8 @@ func HandleEducation(w http.ResponseWriter, r *http.Request) {
 func HandleSkills(w http.ResponseWriter, r *http.Request) {
 	c := Get()
 	writeJSON(w, http.StatusOK, map[string]any{
-		"infraSkills":     c.InfraSkills,
-		"infraHighlights": c.InfraHighlights,
-		"categories":      c.SkillCategories,
+		"infraSkills": c.InfraSkills,
+		"categories":  c.SkillCategories,
 	})
 }
 

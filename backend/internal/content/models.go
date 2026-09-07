@@ -73,10 +73,13 @@ type Institution struct {
 	Courses []Course `json:"courses,omitempty"`
 }
 
-// InfraSkill is a highlighted support/infrastructure competency card.
+// InfraSkill is a support/infrastructure area: what the area is, plus the
+// concrete tasks carried out in it. The tasks used to be a flat list on Content,
+// which left them orphaned from the area they belong to.
 type InfraSkill struct {
-	Title       string `json:"title"`
-	Description string `json:"description"`
+	Title       string   `json:"title"`
+	Description string   `json:"description"`
+	Highlights  []string `json:"highlights"`
 }
 
 // SkillCategory groups a set of tool/tech icons under a title.
@@ -106,7 +109,6 @@ type Content struct {
 	Education      []Education     `json:"education"`
 	Institutions   []Institution   `json:"institutions"`
 	InfraSkills    []InfraSkill    `json:"infraSkills"`
-	InfraHighlights []string       `json:"infraHighlights"`
 	SkillCategories []SkillCategory `json:"skillCategories"`
 	Projects       []Project       `json:"projects"`
 }

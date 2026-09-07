@@ -55,9 +55,12 @@ export interface Institution {
   courses?: Course[];
 }
 
+/** Uma área de atuação: o que é, mais as tarefas concretas feitas nela. As
+ *  tarefas eram uma lista solta no Content, órfãs da área a que pertencem. */
 export interface InfraSkill {
   title: string;
   description: string;
+  highlights: string[];
 }
 
 export interface SkillCategory {
@@ -83,7 +86,6 @@ export interface Content {
   education: Education[];
   institutions: Institution[];
   infraSkills: InfraSkill[];
-  infraHighlights: string[];
   skillCategories: SkillCategory[];
   projects: Project[];
 }

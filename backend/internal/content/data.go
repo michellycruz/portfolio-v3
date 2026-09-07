@@ -209,19 +209,32 @@ func Get() Content {
 			},
 		},
 		InfraSkills: []InfraSkill{
-			{Title: "Suporte a Usuários", Description: "Atendimento via GLPI, resolução de chamados, instalação e configuração de softwares e aplicativos."},
-			{Title: "Manutenção e Hardware", Description: "Correções preventivas e corretivas, atualização de antivírus, configuração de impressoras."},
-			{Title: "Infraestrutura em Nuvem", Description: "Gerenciamento de serviços em nuvem AWS e Azure, configuração e manutenção de servidores virtuais, implementação de soluções de backup e recuperação em nuvem."},
-		},
-		InfraHighlights: []string{
-			"Atendimento primário a usuários internos e externos.",
-			"Manutenção de hardware e software (instalação, configuração e suporte).",
-			"Programação e configuração de impressoras.",
-			"Atualização de antivírus e segurança básica.",
-			"Monitoramento de conexões de rede.",
-			"Acompanhamento completo de chamados, do registro à solução.",
-			"Administração e suporte em ambientes de nuvem (AWS e Azure).",
-			"Criação e gerenciamento de recursos de infraestrutura em cloud.",
+			{
+				Title:       "Suporte a Usuários",
+				Description: "Atendimento via GLPI, resolução de chamados, instalação e configuração de softwares e aplicativos.",
+				Highlights: []string{
+					"Atendimento primário a usuários internos e externos.",
+					"Acompanhamento completo de chamados, do registro à solução.",
+				},
+			},
+			{
+				Title:       "Manutenção e Hardware",
+				Description: "Correções preventivas e corretivas, atualização de antivírus, configuração de impressoras.",
+				Highlights: []string{
+					"Manutenção de hardware e software (instalação, configuração e suporte).",
+					"Programação e configuração de impressoras.",
+					"Atualização de antivírus e segurança básica.",
+					"Monitoramento de conexões de rede.",
+				},
+			},
+			{
+				Title:       "Infraestrutura em Nuvem",
+				Description: "Gerenciamento de serviços em nuvem AWS e Azure, configuração e manutenção de servidores virtuais, implementação de soluções de backup e recuperação em nuvem.",
+				Highlights: []string{
+					"Administração e suporte em ambientes de nuvem (AWS e Azure).",
+					"Criação e gerenciamento de recursos de infraestrutura em cloud.",
+				},
+			},
 		},
 		SkillCategories: []SkillCategory{
 			{Title: "Prototipação", Skills: []string{"figma", "balsamiq"}},
