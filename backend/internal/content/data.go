@@ -259,7 +259,7 @@ func Get() Content {
 				Description: "A versão anterior deste portfólio. React, TypeScript e Tailwind no front, API própria em Go no back e um timer na VPS que puxava cada build novo direto da release. Hoje está no ar como site estático.",
 				Tech:        []string{"react", "ts", "tailwind", "go"},
 				ImageURL:    "/images/projects/portfolio_v2.png",
-				LinkURL:     "https://portfolio-v2-six-lac-34.vercel.app",
+				LinkURL:     "https://v2.michellycruz.com.br",
 				RepoURL:     "https://github.com/michellycruz/portfolio-v3/tree/v2",
 				Private:     false,
 			},
