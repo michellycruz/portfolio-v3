@@ -46,6 +46,8 @@ export interface Course {
 export interface Track {
   name: string;
   status: string;
+  /** Grade de um curso matriculado que ainda não começou: lista, mas não conta. */
+  planned?: boolean;
   courses: Course[];
 }
 

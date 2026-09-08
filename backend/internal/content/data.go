@@ -86,6 +86,12 @@ func Get() Content {
 				Institution: "UNINTER - Centro Universitário Internacional",
 				Period:      "Junho 2024 - Trancado em maio de 2025",
 			},
+			{
+				Course:      "Pós-graduação em Inteligência Artificial e Aprendizagem das Máquinas",
+				Institution: "Multivix - Empresa Brasileira de Ensino, Pesquisa e Extensão",
+				Period:      "Setembro 2026 - Em andamento",
+				Hours:       "400h",
+			},
 		},
 		Institutions: []Institution{
 			{
@@ -109,6 +115,28 @@ func Get() Content {
 							{Title: "Arquitetura e Modelagem de Dados", Date: "Junho 2024", Hours: "30h", Area: "Dados e Fundamentos"},
 							{Title: "Análise de Dados e BI para Tomada de Decisão", Date: "Julho 2024", Hours: "30h", Area: "Dados e Fundamentos"},
 							{Title: "Cloud Diversity AWS", Hours: "30h", Area: "Infra e DevOps"},
+						},
+					},
+				},
+			},
+			{
+				Name: "Multivix",
+				Tracks: []Track{
+					{
+						// Grade conforme o portal do aluno (turma PGEAD-6069).
+						// Matrícula feita, nenhum módulo liberado ainda — daí
+						// Planned: as matérias aparecem, mas ficam fora do
+						// total de cursos e de horas.
+						Name:    "Pós-graduação em Inteligência Artificial e Aprendizagem das Máquinas",
+						Status:  "Matriculada · aulas não iniciadas",
+						Planned: true,
+						Courses: []Course{
+							{Title: "Empreendedorismo e Liderança", Area: "Processos e Design"},
+							{Title: "Estrutura de Dados para I.A.", Area: "Dados e Fundamentos"},
+							{Title: "Inteligência Artificial", Area: "IA e Automação"},
+							{Title: "Probabilidade e Perceptrons", Area: "IA e Automação"},
+							{Title: "Python, Redes Multicamadas e Estatísticas para I.A.", Area: "IA e Automação"},
+							{Title: "Redes Neurais", Area: "IA e Automação"},
 						},
 					},
 				},

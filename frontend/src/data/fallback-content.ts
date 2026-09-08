@@ -87,6 +87,12 @@ export const fallbackContent: Content = {
       institution: "UNINTER - Centro Universitário Internacional",
       period: "Junho 2024 - Trancado em maio de 2025",
     },
+    {
+      course: "Pós-graduação em Inteligência Artificial e Aprendizagem das Máquinas",
+      institution: "Multivix - Empresa Brasileira de Ensino Pesquisa e Extensão",
+      period: "Setembro 2026 - Em andamento",
+      hours: "400h",
+    },
   ],
   institutions: [
     {
@@ -110,6 +116,27 @@ export const fallbackContent: Content = {
             { title: "Arquitetura e Modelagem de Dados", date: "Junho 2024", hours: "30h", area: "Dados e Fundamentos" },
             { title: "Análise de Dados e BI para Tomada de Decisão", date: "Julho 2024", hours: "30h", area: "Dados e Fundamentos" },
             { title: "Cloud Diversity AWS", hours: "30h", area: "Infra e DevOps" },
+          ],
+        },
+      ],
+    },
+    {
+      name: "Multivix",
+      tracks: [
+        {
+          // Grade conforme o portal do aluno (turma PGEAD-6069). Matrícula
+          // feita, nenhum módulo liberado ainda — daí `planned`: as matérias
+          // aparecem aqui, mas ficam fora do total de cursos e de horas.
+          name: "Pós-graduação em Inteligência Artificial e Aprendizagem das Máquinas",
+          status: "Matriculada · aulas não iniciadas",
+          planned: true,
+          courses: [
+            { title: "Empreendedorismo e Liderança", area: "Processos e Design" },
+            { title: "Estrutura de Dados para I.A.", area: "Dados e Fundamentos" },
+            { title: "Inteligência Artificial", area: "IA e Automação" },
+            { title: "Probabilidade e Perceptrons", area: "IA e Automação" },
+            { title: "Python, Redes Multicamadas e Estatísticas para I.A.", area: "IA e Automação" },
+            { title: "Redes Neurais", area: "IA e Automação" },
           ],
         },
       ],

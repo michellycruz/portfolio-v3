@@ -58,10 +58,13 @@ type Course struct {
 
 // Track is a multi-course program (a DIO "formação"). Status says whether the
 // track itself is finished — its Courses are the ones already certified, so a
-// track can be in progress while holding completed courses.
+// track can be in progress while holding completed courses. Planned marks a
+// track whose enrolment is done but whose classes have not started: it is
+// listed, but never counted as study already done.
 type Track struct {
 	Name    string   `json:"name"`
 	Status  string   `json:"status"`
+	Planned bool     `json:"planned,omitempty"`
 	Courses []Course `json:"courses"`
 }
 
