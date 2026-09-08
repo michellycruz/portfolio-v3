@@ -285,16 +285,6 @@ func Get() Content {
 				Private:     false,
 			},
 			{
-				Title:       "Portal Fiscal",
-				Year:        "2025",
-				Description: "Portal interno do setor fiscal de uma empresa, organizado por módulos. O primeiro deles cuida da entrada de notas fiscais.",
-				Tech:        []string{"html", "css", "js"},
-				ImageURL:    "/images/projects/setor_fiscal.png",
-				LinkURL:     "https://setor-fiscal-cedisa.vercel.app",
-				RepoURL:     "",
-				Private:     true,
-			},
-			{
 				Title:       "Go Gateway API",
 				Year:        "2025",
 				Description: "Primeira API em Go: gateway de pagamento com domínio, repositório e serviço separados, migrations e Docker Compose. Parou no cadastro de contas — mas é a estrutura que uso hoje.",

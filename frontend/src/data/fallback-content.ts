@@ -298,17 +298,6 @@ export const fallbackContent: Content = {
       private: false,
     },
     {
-      title: "Portal Fiscal",
-      year: "2025",
-      description:
-        "Portal interno do setor fiscal de uma empresa, organizado por módulos. O primeiro deles cuida da entrada de notas fiscais.",
-      tech: ["html", "css", "js"],
-      imageUrl: "/images/projects/setor_fiscal.png",
-      linkUrl: "https://setor-fiscal-cedisa.vercel.app",
-      repoUrl: "",
-      private: true,
-    },
-    {
       title: "Go Gateway API",
       year: "2025",
       description:
