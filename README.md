@@ -25,6 +25,7 @@ O backend, os tipos (`src/types/content.ts`), o conteúdo de reserva
 ```
 Portfolio-novo/
 ├── backend/    # API em Go (conteúdo + formulário de contato) — igual à v2
+├── resume/     # fonte HTML do currículo em PDF (formato ATS) + script que o gera
 └── frontend/   # React 19 + Vite + Tailwind v4
     └── src/
         ├── components/layout/    # Landing, Sidebar, Topbar, ThemeToggle, Footer

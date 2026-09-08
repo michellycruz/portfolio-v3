@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Michelly Cruz - Analista de Sistemas</title>
+<!--
+  Fonte do PDF em frontend/public/resume/curriculo_michelly.pdf.
+  Para regerar, veja resume/README.md.
+
+  Formato ATS: uma coluna só, sem imagem, sem ícone, sem tabela de layout e sem
+  caixa de texto. O que o robô lê é o texto na ordem em que ele aparece aqui,
+  então nada pode depender de posição na tela. Os títulos de seção usam os
+  nomes que os parsers procuram (PERFIL, EXPERIÊNCIA PROFISSIONAL, FORMAÇÃO
+  ACADÊMICA, COMPETÊNCIAS TÉCNICAS, PROJETOS, CURSOS E CERTIFICAÇÕES).
+
+  O conteúdo espelha backend/internal/content/data.go — se um dos dois mudar, o
+  outro tem de acompanhar.
+-->
+<style>
+  @page {
+    size: A4;
+    margin: 12mm 14mm;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    /* Fonte de sistema comum: parser de ATS lida mal com fonte incorporada
+       exótica, e Arial existe em qualquer máquina que abrir o PDF. */
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    line-height: 1.4;
+    color: #000;
+    background: #fff;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 19pt;
+    letter-spacing: 0.2px;
+  }
+
+  .cargo {
+    margin: 1px 0 4px;
+    font-size: 11.5pt;
+    font-weight: bold;
+  }
+
+  .contato {
+    margin: 0 0 10px;
+    font-size: 9.5pt;
+  }
+
+  h2 {
+    margin: 13px 0 5px;
+    padding-bottom: 2px;
+    border-bottom: 1px solid #000;
+    font-size: 10.5pt;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+  }
+
+  h3 {
+    margin: 8px 0 0;
+    font-size: 10.5pt;
+  }
+
+  h3:first-of-type { margin-top: 2px; }
+
+  /* Cargo e período em linhas separadas, nunca lado a lado: em duas colunas o
+     extrator embaralha a ordem e o período se cola no cargo errado. */
+  .periodo {
+    margin: 0 0 3px;
+    font-size: 9.5pt;
+    font-style: italic;
+  }
+
+  p { margin: 0 0 4px; }
+
+  ul {
+    margin: 0 0 4px;
+    padding-left: 16px;
+  }
+
+  li { margin-bottom: 1px; }
+
+  .resultado { margin: 2px 0 0; }
+
+  .bloco { margin-bottom: 7px; }
+
+  /* Uma entrada nunca deve ficar com o título no fim de uma página e o corpo no
+     começo da outra. */
+  .bloco, li { break-inside: avoid; }
+  h2, h3 { break-after: avoid; }
+</style>
+</head>
+<body>
+
+<h1>Michelly Cruz</h1>
+<p class="cargo">Analista de Sistemas</p>
+<p class="contato">
+  Serra, Espírito Santo - Brasil | (27) 99694-2003 | michxcrz@gmail.com<br>
+  linkedin.com/in/michxcrz | github.com/michellycruz | michellycruz.com.br
+</p>
+
+<h2>Perfil</h2>
+<p>
+  Analista de Sistemas na Hostbraza, onde construo o checkout do novo ecossistema de vendas
+  da empresa: carrinho, pagamento e área do cliente em React e TypeScript, sobre uma API
+  própria em Go que valida o acesso e concentra as integrações. Venho do suporte técnico e da
+  análise de sistemas — GLPI, SQL, levantamento de requisitos e protótipos —, e dali trago o
+  hábito de documentar e testar o que entrego. Pós-graduada em Engenharia de Software e
+  cursando pós-graduação em Inteligência Artificial e Aprendizagem das Máquinas, atuo bem na
+  fronteira entre o time técnico e o usuário: entendo a necessidade, desenho a solução e
+  acompanho até a produção.
+</p>
+
+<h2>Experiência Profissional</h2>
+
+<div class="bloco">
+  <h3>Analista de Sistemas - Hostbraza LTDA</h3>
+  <p class="periodo">Abril 2026 - Atual</p>
+  <ul>
+    <li>Desenvolvimento do checkout do novo ecossistema de vendas da empresa (projeto interno): carrinho, cadastro, pagamento e resumo do pedido em React e TypeScript, sobre uma API própria em Go.</li>
+    <li>Integração com gateway de pagamento: parcelamento coerente com o plano contratado, cupom, webhook de confirmação e idempotência contra cobrança duplicada.</li>
+    <li>Autenticação via OIDC validada na API em Go, vínculo com o cliente já existente na base e CPF, CNPJ e endereço conferidos ainda no navegador.</li>
+    <li>Plugins e aplicações para WordPress em PHP, além da manutenção das aplicações web da empresa.</li>
+    <li>Desenvolvimento orientado por IA com o Claude Code, com revisão minha do que vai para produção.</li>
+    <li>Atendimento N1 aos clientes de hospedagem.</li>
+  </ul>
+  <p class="resultado"><b>Resultados:</b> checkout levado do zero ao ponto de operar, com o fluxo de pagamento coberto contra cobrança duplicada, confirmação perdida e parcelamento incompatível com o meio de pagamento.</p>
+</div>
+
+<div class="bloco">
+  <h3>Analista de Sistemas - Secretaria de Estado da Educação (SEDU)</h3>
+  <p class="periodo">Outubro 2023 - Setembro 2024</p>
+  <ul>
+    <li>Atendimento e resolução de chamados técnicos (GLPI) relacionados aos sistemas educacionais.</li>
+    <li>Consultas SQL no banco de dados para extração e análise de informações.</li>
+    <li>Criação de protótipos de interface em Figma e Balsamiq para apoio no design e no levantamento de requisitos.</li>
+    <li>Colaboração em reuniões de análise e levantamento de requisitos de sistemas para identificar necessidades de negócios.</li>
+    <li>Atendimento e suporte ao usuário final.</li>
+  </ul>
+  <p class="resultado"><b>Resultados:</b> redução de retrabalho em homologações ao estruturar melhor os testes; maior clareza em fluxos de processos com documentação aplicada.</p>
+</div>
+
+<div class="bloco">
+  <h3>Secretária - Multivix (Polo Serra)</h3>
+  <p class="periodo">Abril 2021 - Outubro 2023</p>
+  <ul>
+    <li>Suporte direto aos alunos (presencial ou remoto).</li>
+    <li>Controle e organização de processos administrativos.</li>
+    <li>Gestão de provas presenciais e apoio acadêmico.</li>
+  </ul>
+  <p class="resultado"><b>Resultados:</b> melhoria no fluxo de atendimento aos alunos, com otimização no tempo de resposta às demandas acadêmicas.</p>
+</div>
+
+<h2>Formação Acadêmica</h2>
+
+<div class="bloco">
+  <h3>Pós-graduação em Inteligência Artificial e Aprendizagem das Máquinas (400h)</h3>
+  <p class="periodo">Multivix | Setembro 2026 - Em andamento</p>
+
+  <h3>Pós-graduação em Engenharia de Software (540h)</h3>
+  <p class="periodo">Descomplica / UniAmérica | Agosto 2023 - Agosto 2024</p>
+
+  <h3>Bacharelado em Ciência da Computação</h3>
+  <p class="periodo">UNINTER | Junho 2024 - Trancado em maio de 2025</p>
+
+  <h3>CST em Análise e Desenvolvimento de Sistemas</h3>
+  <p class="periodo">Multivix | Julho 2021 - Julho 2023</p>
+</div>
+
+<h2>Competências Técnicas</h2>
+<p><b>Linguagens:</b> JavaScript, TypeScript, Go, PHP, SQL, HTML, CSS</p>
+<p><b>Front-end:</b> React, Tailwind CSS, Sass, Bootstrap</p>
+<p><b>Back-end e integrações:</b> APIs REST em Go, gateway de pagamento, autenticação OIDC, webhooks, WordPress (plugins em PHP)</p>
+<p><b>Banco de dados:</b> SQL Server, MySQL, Oracle</p>
+<p><b>Infraestrutura e DevOps:</b> AWS, Azure, Git, GitHub, GitLab, CI/CD, Docker, servidor Linux (VPS), backup e recuperação</p>
+<p><b>Inteligência artificial:</b> desenvolvimento orientado por IA (Claude Code), engenharia de prompts</p>
+<p><b>Suporte e sistemas:</b> GLPI, Windows (instalação, configuração e suporte), manutenção de hardware e software, impressoras, redes e antivírus, Totvs (usuária)</p>
+<p><b>Análise e processos:</b> levantamento de requisitos, mapeamento de processos, documentação técnica, análise de pontos de função, Scrum e Kanban</p>
+<p><b>Prototipação:</b> Figma, Balsamiq, Excalidraw</p>
+<p><b>Ferramentas:</b> Notion, Teams, Excel, Word, Outlook</p>
+
+<h2>Projetos</h2>
+<div class="bloco">
+  <p><b>Checkout de pagamento</b> - React, TypeScript e Go (projeto interno, 2026). Carrinho, pagamento e área do cliente, com trava contra cobrança duplicada e parcelamento coerente com o meio de pagamento.</p>
+  <p><b>Portfólio v2</b> - React, TypeScript, Tailwind e API em Go (2026) | michellycruz.com.br. Site próprio, com deploy automatizado puxando cada build novo direto da release na VPS.</p>
+  <p><b>Plugins WordPress</b> - PHP (2026). Otimizador de desempenho com cada ajuste ligável pelo painel, e central de avisos de hospedagem (domínio expirando, conta a vencer, disco cheio) no wp-admin e no site.</p>
+</div>
+
+<h2>Cursos e Certificações</h2>
+<div class="bloco">
+  <p>DIO Campus Expert, 13ª turma - DIO, 2025 (30h)</p>
+  <p>Formação DevOps - DIO, 2025</p>
+  <p>Formação IA Generativa - DIO, 2025-2026</p>
+  <p>Formação React - DIO, 2024</p>
+  <p>Curso de PHP Moderno, Módulo 01 - Curso em Vídeo, 2026 (40h)</p>
+  <p>Algoritmo - Curso em Vídeo, 2025 (40h)</p>
+  <p>MySQL - Curso em Vídeo, 2023 (40h)</p>
+  <p>JavaScript I a VI - OneBitCode, 2024 (40h)</p>
+  <p>TypeScript - OneBitCode, 2024 (5h)</p>
+  <p>Análise de Requisitos e Scrum - OneBitCode, 2024</p>
+  <p>UI/UX Design - OneBitCode e Cubos Academy, 2024</p>
+  <p>IA aplicada à produtividade - Conquer, 2024 (10h)</p>
+  <p>Inglês - CCAA (2018) e CEI Serra (2013-2015)</p>
+</div>
+
+</body>
+</html>
