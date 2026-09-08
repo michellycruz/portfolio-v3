@@ -185,6 +185,7 @@ func Get() Content {
 					{Title: "JavaScript", Date: "Junho 2023", Hours: "40h", Area: "Front-end"},
 					{Title: "Segurança da Informação: Módulo 00", Date: "Setembro 2023", Hours: "20h", Area: "Infra e DevOps"},
 					{Title: "Algoritmo", Date: "Setembro 2025", Hours: "40h", Area: "Dados e Fundamentos"},
+					{Title: "Curso de PHP Moderno: Módulo 01", Date: "Setembro 2026", Hours: "40h", Area: "Back-end"},
 				},
 			},
 			{

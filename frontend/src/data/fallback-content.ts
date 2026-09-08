@@ -196,6 +196,7 @@ export const fallbackContent: Content = {
         { title: "JavaScript", date: "Junho 2023", hours: "40h", area: "Front-end" },
         { title: "Segurança da Informação: Módulo 00", date: "Setembro 2023", hours: "20h", area: "Infra e DevOps" },
         { title: "Algoritmo", date: "Setembro 2025", hours: "40h", area: "Dados e Fundamentos" },
+        { title: "Curso de PHP Moderno: Módulo 01", date: "Setembro 2026", hours: "40h", area: "Back-end" },
       ],
     },
     {
