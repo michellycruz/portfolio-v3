@@ -26,6 +26,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: backend/go.mod
+          cache: false   # o projeto nao tem dependencias externas, nao ha go.sum
+
+      # As regras que mantem os numeros do site honestos (carga no formato "Nh",
+      # area e status numa lista fechada, curso previsto sem data nem carga...)
+      # vivem em backend/internal/content/rules_test.go. Rodam antes de qualquer
+      # build: um portfolio.json que quebre uma delas nao chega a virar release.
+      - name: Testes do backend
+        working-directory: backend
+        run: go test ./...
+
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -43,11 +56,6 @@ jobs:
         run: |
           npm ci
           npm run build
-
-      - uses: actions/setup-go@v5
-        with:
-          go-version-file: backend/go.mod
-          cache: false   # o projeto nao tem dependencias externas, nao ha go.sum
 
       - name: Build do backend
         working-directory: backend

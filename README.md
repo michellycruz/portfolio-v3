@@ -44,6 +44,25 @@ o serve em `/api/content`; o front importa o mesmo arquivo como conteúdo de
 reserva, para a página nunca ficar em branco. Para mudar o site, é esse o arquivo
 a editar.
 
+Os números da seção de formação ("Cursos concluídos", "Horas de estudo", o
+gráfico por área) são calculados a partir dele, então o arquivo segue regras:
+
+- cada curso tem um `status`: `concluido`, `cursando` ou `previsto`. Só
+  `concluido` conta, e só ele tem data e carga, que vêm do certificado;
+- a carga é sempre em horas inteiras no formato `"30h"`, e um curso sem carga
+  declarada conta como curso mas não soma horas;
+- a área sai de uma lista fechada, porque o gráfico agrupa pelo texto exato;
+- carga de formação em andamento vai em `plannedHours` e aparece como prevista.
+
+As regras são testes, em `backend/internal/content/rules_test.go`, e o CI roda
+`go test ./...` antes de qualquer build. Para ver o efeito de uma mudança nos
+totais antes do commit:
+
+```bash
+cd frontend
+npm run totais   # compara com o último commit, usando as mesmas funções do site
+```
+
 ## Rodando
 
 ```bash
