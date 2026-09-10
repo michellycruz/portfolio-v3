@@ -125,6 +125,7 @@ func TestParseIsStrict(t *testing.T) {
 		"campo desconhecido":    `{"education":[{"course":"x","hourz":"10h"}]}`,
 		"carga como número":     `{"education":[{"course":"x","hours":10}]}`,
 		"dado depois do objeto": `{} {}`,
+		"planned no arquivo":    `{"institutions":[{"name":"x","tracks":[{"name":"y","status":"Em andamento","planned":true}]}]}`,
 	} {
 		if _, err := parse([]byte(doc)); err == nil {
 			t.Errorf("%s: o parse aceitou %s", name, doc)

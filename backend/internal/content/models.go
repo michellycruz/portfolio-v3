@@ -77,8 +77,15 @@ type Course struct {
 // own, so a track can be in progress while holding done courses, and a program
 // just enrolled in lists its grade with every course still planned.
 type Track struct {
-	Name    string   `json:"name"`
-	Status  string   `json:"status"`
+	Name   string `json:"name"`
+	Status string `json:"status"`
+	// Planned is derived, never read from portfolio.json: parse sets it when
+	// every course is planned. It exists only for bundles that browsers cached
+	// before courses had a status (September 2026). Those exclude a track from
+	// the totals by this flag alone, and without it they would count the
+	// postgraduate grade as done. It can go once those caches have expired, a
+	// few days after that deploy.
+	Planned bool     `json:"planned,omitempty"`
 	Courses []Course `json:"courses"`
 }
 
