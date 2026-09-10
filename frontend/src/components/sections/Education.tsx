@@ -10,6 +10,9 @@ interface EducationProps {
   institutions: Institution[];
 }
 
+const hoursBadge =
+  "w-fit rounded-full border-2 border-stroke-soft px-2.5 py-0.5 font-mono text-[10px] font-bold tracking-[0.1em] uppercase";
+
 export function Education({ items, institutions }: EducationProps) {
   return (
     <section id="formacao" className="flex scroll-mt-24 flex-col gap-5">
@@ -18,11 +21,14 @@ export function Education({ items, institutions }: EducationProps) {
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((item) => (
           <Card key={item.course} className="flex flex-col gap-2">
-            {item.hours && (
-              <span className="w-fit rounded-full border-2 border-stroke-soft bg-mint px-2.5 py-0.5 font-mono text-[10px] font-bold tracking-[0.1em] text-on-accent uppercase">
-                {item.hours}
-              </span>
-            )}
+            {/* A carga do certificado vai no selo verde. A prevista, de um curso
+                em andamento, fica neutra e diz que é prevista: lado a lado, as
+                duas não podem parecer a mesma coisa. */}
+            {item.hours ? (
+              <span className={`${hoursBadge} bg-mint text-on-accent`}>{item.hours}</span>
+            ) : item.plannedHours ? (
+              <span className={`${hoursBadge} bg-panel-2 text-muted`}>{item.plannedHours} previstas</span>
+            ) : null}
             <h3 className="text-[16.5px] leading-tight">{item.course}</h3>
             <p className="text-[13.5px] text-muted">{item.institution}</p>
             <span className="mt-1 font-mono text-[11px] tracking-[0.05em] text-muted">{item.period}</span>

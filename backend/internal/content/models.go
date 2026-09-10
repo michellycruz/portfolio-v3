@@ -38,11 +38,15 @@ type Experience struct {
 
 // Education describes one academic entry. Hours is the total workload stated on
 // the completion certificate, so it is only set for finished courses.
+// PlannedHours is the workload a course still in progress promises (the
+// enrolment contract's): shown as planned, never as done, and replaced by Hours
+// once the certificate exists.
 type Education struct {
-	Course      string `json:"course"`
-	Institution string `json:"institution"`
-	Period      string `json:"period"`
-	Hours       string `json:"hours,omitempty"`
+	Course       string `json:"course"`
+	Institution  string `json:"institution"`
+	Period       string `json:"period"`
+	Hours        string `json:"hours,omitempty"`
+	PlannedHours string `json:"plannedHours,omitempty"`
 }
 
 // Course statuses. Only CourseDone counts as study already done: a course in

@@ -33,7 +33,10 @@ export interface Education {
   course: string;
   institution: string;
   period: string;
+  /** Carga do certificado de conclusão: só em curso concluído. */
   hours?: string;
+  /** Carga prometida de um curso em andamento. Sai quando o certificado chega. */
+  plannedHours?: string;
 }
 
 export interface Course {
