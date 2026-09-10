@@ -16,6 +16,12 @@ O script imprime `curriculo.html` em
 `frontend/public/resume/curriculo_michelly.pdf` com o Chrome em modo headless,
 sem o cabeçalho e o rodapé que ele carimba por padrão.
 
+Depois ele atualiza o link do site (`resumeUrl` em
+`backend/internal/content/portfolio.json`) com um `?v=` tirado do hash do HTML. O
+Cloudflare guarda o PDF por 4 horas, então sem isso um currículo novo levaria
+horas para aparecer para quem clica no site. Faça o commit do PDF e do
+`portfolio.json` juntos.
+
 ## Formato ATS
 
 `curriculo.html` é escrito para passar por leitor automático de currículo, o que
