@@ -48,11 +48,15 @@ Os números da seção de formação ("Cursos concluídos", "Horas de estudo", o
 gráfico por área) são calculados a partir dele, então o arquivo segue regras:
 
 - cada curso tem um `status`: `concluido`, `cursando` ou `previsto`. Só
-  `concluido` conta, e só ele tem data e carga, que vêm do certificado;
+  `concluido` conta. Data e carga vêm do certificado, então só ele as tem, e
+  sempre pelo menos uma das duas;
 - a carga é sempre em horas inteiras no formato `"30h"`, e um curso sem carga
   declarada conta como curso mas não soma horas;
 - a área sai de uma lista fechada, porque o gráfico agrupa pelo texto exato;
-- carga de formação em andamento vai em `plannedHours` e aparece como prevista.
+- carga de formação em andamento vai em `plannedHours` e aparece como prevista;
+- quando a grade de uma formação aparece como trilha, as disciplinas não somam
+  mais do que a carga do cartão e, com a formação concluída, fecham exatamente
+  nela.
 
 As regras são testes, em `backend/internal/content/rules_test.go`, e o CI roda
 `go test ./...` antes de qualquer build. Para ver o efeito de uma mudança nos
