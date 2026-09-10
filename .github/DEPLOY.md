@@ -1,8 +1,9 @@
 # Deploy automático
 
-A cada push no `master`, o [workflow](workflows/deploy.yml) builda e publica o
-resultado na release **`deploy-latest`**. Um timer na VPS consulta essa release
-a cada 5 minutos e se atualiza quando o commit muda.
+A cada push no `master`, o [workflow](workflows/deploy.yml) roda os testes do
+backend, builda e publica o resultado na release **`deploy-latest`**. Um timer
+na VPS consulta essa release a cada 5 minutos e se atualiza quando o commit
+muda. Se um teste falha, não sai release e o site fica na versão anterior.
 
 ```
 push no master
@@ -138,6 +139,9 @@ faltar algum, ele avisa e segue.
 (com `contents: write`, para publicar a release).
 
 Os secrets `VPS_HOST`, `VPS_USER`, `VPS_SSH_KEY` e as variables `DEPLOY_PATH` e
-`SERVICE_NAME` sobraram da tentativa por SSH e **podem ser apagados**. Se apagar
-o `VPS_SSH_KEY`, remova também a chave pública correspondente do
-`~/.ssh/authorized_keys` na VPS.
+`SERVICE_NAME`, que sobraram da tentativa por SSH, foram apagados em 10/09/2026.
+A chave pública que correspondia ao `VPS_SSH_KEY` deve sair também do
+`~/.ssh/authorized_keys` na VPS; isso é feito à mão, pela SSH de casa.
+
+A `master` tem um ruleset ("Protege a master") que bloqueia force-push e
+exclusão da branch. Push normal continua funcionando.
