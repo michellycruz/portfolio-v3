@@ -45,26 +45,36 @@ type Education struct {
 	Hours       string `json:"hours,omitempty"`
 }
 
-// Course is a single completed course, backed by a certificate. Area is the
-// competency group it counts towards in the formation chart — tagged per course
-// because institutions mix areas, so the chart stays correct when courses are
-// added without touching any aggregate.
+// Course statuses. Only CourseDone counts as study already done: a course in
+// progress or merely on the grade of an enrolled program is listed, but stays
+// out of every total.
+const (
+	CourseDone       = "concluido"
+	CourseInProgress = "cursando"
+	CoursePlanned    = "previsto"
+)
+
+// Course is a single course. Status is one of the Course* constants, and a done
+// course is backed by a certificate: Date and Hours come from it, so they are
+// only set once the course is done. Area is the competency group it counts
+// towards in the formation chart — tagged per course because institutions mix
+// areas, so the chart stays correct when courses are added without touching any
+// aggregate.
 type Course struct {
-	Title string `json:"title"`
-	Date  string `json:"date,omitempty"`
-	Hours string `json:"hours,omitempty"`
-	Area  string `json:"area"`
+	Title  string `json:"title"`
+	Status string `json:"status"`
+	Date   string `json:"date,omitempty"`
+	Hours  string `json:"hours,omitempty"`
+	Area   string `json:"area"`
 }
 
-// Track is a multi-course program (a DIO "formação"). Status says whether the
-// track itself is finished — its Courses are the ones already certified, so a
-// track can be in progress while holding completed courses. Planned marks a
-// track whose enrolment is done but whose classes have not started: it is
-// listed, but never counted as study already done.
+// Track is a multi-course program (a DIO "formação", a postgraduate grade).
+// Status says whether the program itself is finished; each course carries its
+// own, so a track can be in progress while holding done courses, and a program
+// just enrolled in lists its grade with every course still planned.
 type Track struct {
 	Name    string   `json:"name"`
 	Status  string   `json:"status"`
-	Planned bool     `json:"planned,omitempty"`
 	Courses []Course `json:"courses"`
 }
 

@@ -13,18 +13,23 @@ export function allCourses(institutions: Institution[]): Course[] {
 }
 
 /**
- * Só o que já foi estudado. Uma trilha `planned` é a grade de um curso em que
- * a matrícula está feita mas nenhuma aula começou: ela aparece na lista, para
- * mostrar o que vem pela frente, e fica fora de tudo que conta estudo feito.
+ * Só "concluido" conta como estudo feito. Um curso "cursando", ou "previsto" na
+ * grade de uma pós em que a matrícula está feita, aparece na lista para mostrar
+ * o que está em curso e o que vem pela frente, mas fica fora de tudo que mede
+ * estudo já feito. Qualquer outro valor também fica fora: na dúvida, o total
+ * conta de menos, nunca de mais.
  */
-function studiedCourses(institutions: Institution[]): Course[] {
-  const fromTracks = (tracks: Track[] | undefined) =>
-    tracks?.filter((track) => !track.planned).flatMap((track) => track.courses) ?? [];
+export function isDone(course: Course): boolean {
+  return course.status === "concluido";
+}
 
-  return institutions.flatMap((institution) => [
-    ...fromTracks(institution.tracks),
-    ...(institution.courses ?? []),
-  ]);
+/** Trilha em que nenhuma matéria começou: a grade de um curso só matriculado. */
+export function isPlannedTrack(track: Track): boolean {
+  return track.courses.length > 0 && track.courses.every((course) => course.status === "previsto");
+}
+
+function studiedCourses(institutions: Institution[]): Course[] {
+  return allCourses(institutions).filter(isDone);
 }
 
 export interface StudyTotals {
@@ -61,14 +66,16 @@ export function coursesByArea(institutions: Institution[]): { area: string; coun
 }
 
 /**
- * O que contar no cabeçalho de uma instituição: cursos já feitos e matérias
- * apenas previstas são coisas diferentes e não somam no mesmo número.
+ * O que contar no cabeçalho de uma instituição: cursos já feitos, matérias em
+ * curso e matérias apenas previstas são coisas diferentes e não somam no mesmo
+ * número.
  */
-export function courseCounts(institution: Institution): { studied: number; planned: number } {
-  const planned = institution.tracks?.filter((track) => track.planned) ?? [];
+export function courseCounts(institution: Institution): { studied: number; inProgress: number; planned: number } {
+  const courses = coursesOf(institution);
 
   return {
-    studied: coursesOf(institution).length - planned.reduce((sum, track) => sum + track.courses.length, 0),
-    planned: planned.reduce((sum, track) => sum + track.courses.length, 0),
+    studied: courses.filter(isDone).length,
+    inProgress: courses.filter((course) => course.status === "cursando").length,
+    planned: courses.filter((course) => course.status === "previsto").length,
   };
 }

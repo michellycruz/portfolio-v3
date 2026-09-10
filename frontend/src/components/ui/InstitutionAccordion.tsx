@@ -1,22 +1,25 @@
 import { useId, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import type { Course, Institution } from "../../types/content";
-import { courseCounts } from "../../lib/courses";
+import { courseCounts, isDone, isPlannedTrack } from "../../lib/courses";
 
-function CourseRow({ course, planned }: { course: Course; planned?: boolean }) {
-  const note = [course.date, course.hours].filter(Boolean).join(" · ");
+function CourseRow({ course }: { course: Course }) {
+  const inProgress = course.status === "cursando";
+  // Curso em andamento ainda não tem data de conclusão nem carga certificada.
+  const note = inProgress ? "cursando" : [course.date, course.hours].filter(Boolean).join(" · ");
 
   // Abaixo de sm o título e a data empilham: lado a lado o título fica com uns
   // 130px e quebra em quatro linhas, e a data escapa pela direita.
   return (
     <li className="py-1 text-sm sm:flex sm:items-baseline sm:gap-2">
       <span className="flex min-w-0 items-baseline gap-2">
-        {/* Matéria ainda não cursada fica com o marcador vazado: dá para ver de
-            relance o que é grade prevista e o que é curso já feito. */}
+        {/* O marcador mostra a situação de relance: cheio para curso concluído,
+            vazado em laranja para o que está em curso e vazado neutro para
+            matéria só prevista. */}
         <span
           aria-hidden="true"
           className={`h-1.5 w-1.5 shrink-0 -translate-y-0.5 rounded-[2px] ${
-            planned ? "border-2 border-muted" : "bg-orange"
+            isDone(course) ? "bg-orange" : inProgress ? "border-2 border-orange" : "border-2 border-muted"
           }`}
         />
         <span className="text-muted">{course.title}</span>
@@ -33,12 +36,17 @@ function CourseRow({ course, planned }: { course: Course; planned?: boolean }) {
 function InstitutionRow({ institution }: { institution: Institution }) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
-  // Cursos feitos e matérias só previstas não somam no mesmo número. Quem só
-  // tem grade prevista (uma pós recém-matriculada) conta as matérias; o resto
-  // conta cursos, e as previstas aparecem ao abrir.
-  const { studied, planned } = courseCounts(institution);
-  const total = studied > 0 ? studied : planned;
-  const noun = studied > 0 ? (total === 1 ? "curso" : "cursos") : total === 1 ? "matéria prevista" : "matérias previstas";
+  // Cursos feitos, matérias em curso e matérias só previstas não somam no mesmo
+  // número. Quem tem curso feito conta os cursos, e o resto aparece ao abrir;
+  // uma pós recém-matriculada conta o que está em curso ou, antes da primeira
+  // aula, as matérias previstas.
+  const { studied, inProgress, planned } = courseCounts(institution);
+  const summary =
+    studied > 0
+      ? `${studied} ${studied === 1 ? "curso" : "cursos"}`
+      : inProgress > 0
+        ? `${inProgress} ${inProgress === 1 ? "matéria em curso" : "matérias em curso"}`
+        : `${planned} ${planned === 1 ? "matéria prevista" : "matérias previstas"}`;
 
   return (
     <div className="border-b-2 border-dashed border-stroke-soft last:border-b-0">
@@ -56,7 +64,7 @@ function InstitutionRow({ institution }: { institution: Institution }) {
         />
         <span className="font-display text-[15px]">{institution.name}</span>
         <span className="ml-auto shrink-0 font-mono text-[10.5px] tracking-[0.06em] text-muted uppercase">
-          {total} {noun}
+          {summary}
         </span>
       </button>
 
@@ -76,7 +84,7 @@ function InstitutionRow({ institution }: { institution: Institution }) {
                   <h4 className="font-display text-sm">{track.name}</h4>
                   <span
                     className={`shrink-0 rounded-full border-2 border-stroke-soft px-2 py-0.5 font-mono text-[10px] whitespace-nowrap ${
-                      track.planned
+                      isPlannedTrack(track)
                         ? "bg-panel-2 text-muted"
                         : track.status === "Concluída"
                           ? "bg-mint text-on-accent"
@@ -88,7 +96,7 @@ function InstitutionRow({ institution }: { institution: Institution }) {
                 </div>
                 <ul className="mt-1">
                   {track.courses.map((course) => (
-                    <CourseRow key={course.title} course={course} planned={track.planned} />
+                    <CourseRow key={course.title} course={course} />
                   ))}
                 </ul>
               </div>

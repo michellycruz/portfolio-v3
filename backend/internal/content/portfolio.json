@@ -125,72 +125,84 @@
           "courses": [
             {
               "title": "Programação Extrema",
+              "status": "concluido",
               "date": "Janeiro 2024",
               "hours": "60h",
               "area": "Processos e Design"
             },
             {
               "title": "Essencial DataBase",
+              "status": "concluido",
               "date": "Fevereiro 2024",
               "hours": "30h",
               "area": "Dados e Fundamentos"
             },
             {
               "title": "Lógica de Programação com Java",
+              "status": "concluido",
               "date": "Fevereiro 2024",
               "hours": "30h",
               "area": "Dados e Fundamentos"
             },
             {
               "title": "Interface de Software",
+              "status": "concluido",
               "date": "Fevereiro 2024",
               "hours": "60h",
               "area": "Processos e Design"
             },
             {
               "title": "Gerenciamento Avançado de Projetos",
+              "status": "concluido",
               "date": "Fevereiro 2024",
               "hours": "60h",
               "area": "Processos e Design"
             },
             {
               "title": "Metodologias de Desenvolvimento de Software",
+              "status": "concluido",
               "date": "Fevereiro 2024",
               "hours": "30h",
               "area": "Processos e Design"
             },
             {
               "title": "Estrutura de Dados para Sistemas Inteligentes",
+              "status": "concluido",
               "date": "Março 2024",
               "hours": "60h",
               "area": "Dados e Fundamentos"
             },
             {
               "title": "Arquitetura de BI e Big Data",
+              "status": "concluido",
               "date": "Abril 2024",
               "hours": "60h",
               "area": "Dados e Fundamentos"
             },
             {
               "title": "Plataformas para Desenvolvimento na Nuvem",
+              "status": "concluido",
               "date": "Maio 2024",
               "hours": "60h",
               "area": "Infra e DevOps"
             },
             {
               "title": "Arquitetura e Modelagem de Dados",
+              "status": "concluido",
               "date": "Junho 2024",
               "hours": "30h",
               "area": "Dados e Fundamentos"
             },
             {
               "title": "Análise de Dados e BI para Tomada de Decisão",
+              "status": "concluido",
               "date": "Julho 2024",
               "hours": "30h",
               "area": "Dados e Fundamentos"
             },
             {
               "title": "Cloud Diversity AWS",
+              "status": "concluido",
               "hours": "30h",
               "area": "Infra e DevOps"
             }
@@ -204,30 +216,35 @@
         {
           "name": "Pós-graduação em Inteligência Artificial e Aprendizagem das Máquinas",
           "status": "Matriculada · aulas não iniciadas",
-          "planned": true,
           "courses": [
             {
               "title": "Empreendedorismo e Liderança",
+              "status": "previsto",
               "area": "Processos e Design"
             },
             {
               "title": "Estrutura de Dados para I.A.",
+              "status": "previsto",
               "area": "Dados e Fundamentos"
             },
             {
               "title": "Inteligência Artificial",
+              "status": "previsto",
               "area": "IA e Automação"
             },
             {
               "title": "Probabilidade e Perceptrons",
+              "status": "previsto",
               "area": "IA e Automação"
             },
             {
               "title": "Python, Redes Multicamadas e Estatísticas para I.A.",
+              "status": "previsto",
               "area": "IA e Automação"
             },
             {
               "title": "Redes Neurais",
+              "status": "previsto",
               "area": "IA e Automação"
             }
           ]
@@ -243,30 +260,35 @@
           "courses": [
             {
               "title": "Introdução aos Fundamentos de IA Generativa com a Universia",
+              "status": "concluido",
               "date": "Outubro 2025",
               "hours": "1h",
               "area": "IA e Automação"
             },
             {
               "title": "Aplicações e Impacto da IA no Mundo Atual",
+              "status": "concluido",
               "date": "Maio 2026",
               "hours": "1h",
               "area": "IA e Automação"
             },
             {
               "title": "Aplicações Práticas da Inteligência Artificial",
+              "status": "concluido",
               "date": "Maio 2026",
               "hours": "2h",
               "area": "IA e Automação"
             },
             {
               "title": "A Era da IA: Machine Learning, LLMs, IA Generativa e Agentes",
+              "status": "concluido",
               "date": "Maio 2026",
               "hours": "2h",
               "area": "IA e Automação"
             },
             {
               "title": "Introdução à Engenharia de Prompts",
+              "status": "concluido",
               "date": "Junho 2026",
               "hours": "1h",
               "area": "IA e Automação"
@@ -279,54 +301,63 @@
           "courses": [
             {
               "title": "Configuração de Ambiente React",
+              "status": "concluido",
               "date": "Maio 2024",
               "hours": "1h",
               "area": "Front-end"
             },
             {
               "title": "Páginas Web com HTML",
+              "status": "concluido",
               "date": "Maio 2024",
               "hours": "2h",
               "area": "Front-end"
             },
             {
               "title": "Estilizando Páginas com CSS",
+              "status": "concluido",
               "date": "Maio 2024",
               "hours": "1h",
               "area": "Front-end"
             },
             {
               "title": "Tornando Páginas Web Interativas com JavaScript",
+              "status": "concluido",
               "date": "Maio 2024",
               "hours": "2h",
               "area": "Front-end"
             },
             {
               "title": "Entendendo a DOM (Document Object Model)",
+              "status": "concluido",
               "date": "Maio 2024",
               "hours": "1h",
               "area": "Front-end"
             },
             {
               "title": "Primeiros Passos na Biblioteca React",
+              "status": "concluido",
               "date": "Maio 2024",
               "hours": "1h",
               "area": "Front-end"
             },
             {
               "title": "Criando Uma Calculadora Com React",
+              "status": "concluido",
               "date": "Maio 2024",
               "hours": "1h",
               "area": "Front-end"
             },
             {
               "title": "Criando um Projeto React do Zero",
+              "status": "concluido",
               "date": "Junho 2024",
               "hours": "1h",
               "area": "Front-end"
             },
             {
               "title": "Convenções e Qualidade de Código React",
+              "status": "concluido",
               "date": "Junho 2024",
               "hours": "1h",
               "area": "Front-end"
@@ -339,54 +370,63 @@
           "courses": [
             {
               "title": "Onboarding - DevOps",
+              "status": "concluido",
               "date": "Junho 2025",
               "hours": "1h",
               "area": "Infra e DevOps"
             },
             {
               "title": "Entendendo O que é DevOps",
+              "status": "concluido",
               "date": "Junho 2025",
               "hours": "1h",
               "area": "Infra e DevOps"
             },
             {
               "title": "DevOps e Processos de Desenvolvimento de Software",
+              "status": "concluido",
               "date": "Junho 2025",
               "hours": "1h",
               "area": "Infra e DevOps"
             },
             {
               "title": "Introdução ao DevSecOps",
+              "status": "concluido",
               "date": "Junho 2025",
               "hours": "1h",
               "area": "Infra e DevOps"
             },
             {
               "title": "Qual é a diferença entre SRE e DevOps",
+              "status": "concluido",
               "date": "Junho 2025",
               "hours": "1h",
               "area": "Infra e DevOps"
             },
             {
               "title": "Introdução ao DevOps com CI/CD",
+              "status": "concluido",
               "date": "Junho 2025",
               "hours": "1h",
               "area": "Infra e DevOps"
             },
             {
               "title": "Criando seu Primeiro Projeto de DevOps com GitLab",
+              "status": "concluido",
               "date": "Junho 2025",
               "hours": "1h",
               "area": "Infra e DevOps"
             },
             {
               "title": "Cloud Computing e o DevOps",
+              "status": "concluido",
               "date": "Julho 2025",
               "hours": "1h",
               "area": "Infra e DevOps"
             },
             {
               "title": "Infraestrutura como Código no DevOps",
+              "status": "concluido",
               "date": "Julho 2025",
               "hours": "1h",
               "area": "Infra e DevOps"
@@ -399,18 +439,21 @@
           "courses": [
             {
               "title": "Onboarding | Boas-vindas ao DIO Campus Expert Turma 13",
+              "status": "concluido",
               "date": "Agosto 2025",
               "hours": "1h",
               "area": "Processos e Design"
             },
             {
               "title": "Como desenvolver a sua Liderança e Protagonismo como embaixador(a) da DIO!",
+              "status": "concluido",
               "date": "Agosto 2025",
               "hours": "2h",
               "area": "Processos e Design"
             },
             {
               "title": "Programa DIO Campus Expert",
+              "status": "concluido",
               "date": "Agosto - Setembro 2025",
               "hours": "30h",
               "area": "Processos e Design"
@@ -424,6 +467,7 @@
       "courses": [
         {
           "title": "Inteligência Artificial: eleve sua produtividade e acelere sua carreira",
+          "status": "concluido",
           "date": "Junho 2024",
           "hours": "10h",
           "area": "IA e Automação"
@@ -435,54 +479,63 @@
       "courses": [
         {
           "title": "MySQL",
+          "status": "concluido",
           "date": "Fevereiro 2023",
           "hours": "40h",
           "area": "Dados e Fundamentos"
         },
         {
           "title": "Curso HTML5 e CSS3: Módulo 1 de 5",
+          "status": "concluido",
           "date": "Março 2023",
           "hours": "40h",
           "area": "Front-end"
         },
         {
           "title": "Curso HTML5 e CSS3: Módulo 2 de 5",
+          "status": "concluido",
           "date": "Abril 2023",
           "hours": "40h",
           "area": "Front-end"
         },
         {
           "title": "Curso HTML5 e CSS3: Módulo 3 de 5",
+          "status": "concluido",
           "date": "Abril 2023",
           "hours": "40h",
           "area": "Front-end"
         },
         {
           "title": "Curso HTML5 e CSS3: Módulo 4 de 5",
+          "status": "concluido",
           "date": "Maio 2023",
           "hours": "40h",
           "area": "Front-end"
         },
         {
           "title": "JavaScript",
+          "status": "concluido",
           "date": "Junho 2023",
           "hours": "40h",
           "area": "Front-end"
         },
         {
           "title": "Segurança da Informação: Módulo 00",
+          "status": "concluido",
           "date": "Setembro 2023",
           "hours": "20h",
           "area": "Infra e DevOps"
         },
         {
           "title": "Algoritmo",
+          "status": "concluido",
           "date": "Setembro 2025",
           "hours": "40h",
           "area": "Dados e Fundamentos"
         },
         {
           "title": "Curso de PHP Moderno: Módulo 01",
+          "status": "concluido",
           "date": "Setembro 2026",
           "hours": "40h",
           "area": "Back-end"
@@ -494,49 +547,58 @@
       "courses": [
         {
           "title": "Análise de Requisitos",
+          "status": "concluido",
           "date": "Abril 2024",
           "area": "Processos e Design"
         },
         {
           "title": "Metodologias Ágeis - SCRUM",
+          "status": "concluido",
           "date": "Abril 2024",
           "area": "Processos e Design"
         },
         {
           "title": "Web Scraping",
+          "status": "concluido",
           "date": "Abril 2024",
           "area": "Dados e Fundamentos"
         },
         {
           "title": "UI/UX Design",
+          "status": "concluido",
           "date": "Maio 2024",
           "area": "Processos e Design"
         },
         {
           "title": "Sass",
+          "status": "concluido",
           "date": "Maio 2024",
           "hours": "2h",
           "area": "Front-end"
         },
         {
           "title": "Tailwind CSS",
+          "status": "concluido",
           "date": "Maio 2024",
           "area": "Front-end"
         },
         {
           "title": "Bootstrap",
+          "status": "concluido",
           "date": "Maio 2024",
           "hours": "7h",
           "area": "Front-end"
         },
         {
           "title": "JavaScript I, II, III, IV, V e VI",
+          "status": "concluido",
           "date": "Outubro 2024",
           "hours": "40h",
           "area": "Front-end"
         },
         {
           "title": "TypeScript",
+          "status": "concluido",
           "date": "Outubro 2024",
           "hours": "5h",
           "area": "Front-end"
@@ -548,6 +610,7 @@
       "courses": [
         {
           "title": "Minicurso de UX/UI Design",
+          "status": "concluido",
           "date": "Junho 2024",
           "hours": "5h",
           "area": "Processos e Design"
