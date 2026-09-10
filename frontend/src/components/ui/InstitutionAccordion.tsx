@@ -3,10 +3,16 @@ import { ChevronDown } from "lucide-react";
 import type { Course, Institution } from "../../types/content";
 import { courseCounts, isDone, isPlannedTrack } from "../../lib/courses";
 
-function CourseRow({ course }: { course: Course }) {
+function CourseRow({ course, showStatus = true }: { course: Course; showStatus?: boolean }) {
   const inProgress = course.status === "cursando";
-  // Curso em andamento ainda não tem data de conclusão nem carga certificada.
-  const note = inProgress ? "cursando" : [course.date, course.hours].filter(Boolean).join(" · ");
+  // Curso em andamento ou só previsto ainda não tem data de conclusão nem carga
+  // certificada. No lugar delas vai a situação, em texto, para não depender só
+  // da cor do marcador; numa trilha toda prevista, o selo dela já diz isso.
+  const note = isDone(course)
+    ? [course.date, course.hours].filter(Boolean).join(" · ")
+    : showStatus
+      ? course.status
+      : "";
 
   // Abaixo de sm o título e a data empilham: lado a lado o título fica com uns
   // 130px e quebra em quatro linhas, e a data escapa pela direita.
@@ -96,7 +102,7 @@ function InstitutionRow({ institution }: { institution: Institution }) {
                 </div>
                 <ul className="mt-1">
                   {track.courses.map((course) => (
-                    <CourseRow key={course.title} course={course} />
+                    <CourseRow key={course.title} course={course} showStatus={!isPlannedTrack(track)} />
                   ))}
                 </ul>
               </div>
