@@ -39,6 +39,6 @@ O texto tem de sair legível, acentuado e na mesma ordem da página.
 
 ## Relação com o conteúdo do site
 
-O currículo espelha `backend/internal/content/data.go` (e o espelho dele em
-`frontend/src/data/fallback-content.ts`). Quando um projeto, curso ou formação
-mudar lá, mude aqui também e regere o PDF.
+O currículo espelha `backend/internal/content/portfolio.json`, a fonte do
+conteúdo do site. Quando um projeto, curso ou formação mudar lá, mude aqui também
+e regere o PDF.

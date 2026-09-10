@@ -17,8 +17,9 @@ papel/carvão.
 - Seções reescritas em cartões com borda de 2px e sombra dura: Sobre,
   Experiência, Formação, Habilidades, Projetos e Contato.
 
-O backend, os tipos (`src/types/content.ts`), o conteúdo de reserva
-(`src/data/fallback-content.ts`) e o cliente da API seguem os mesmos da v2.
+O backend, os tipos (`src/types/content.ts`) e o cliente da API seguem os mesmos
+da v2. O conteúdo saiu do código: mora em `backend/internal/content/portfolio.json`
+(veja [Conteúdo](#conteúdo)).
 
 ## Estrutura
 
@@ -34,6 +35,14 @@ Portfolio-novo/
         ├── hooks/useScrollNav.ts # rolagem passou da capa, seção ativa, media query
         └── lib/                  # api, nav, tech (rótulos e cores das tecnologias)
 ```
+
+## Conteúdo
+
+Tudo o que o site mostra (perfil, experiência, formação, cursos e projetos) mora
+em `backend/internal/content/portfolio.json`. O Go embute o arquivo no binário e
+o serve em `/api/content`; o front importa o mesmo arquivo como conteúdo de
+reserva, para a página nunca ficar em branco. Para mudar o site, é esse o arquivo
+a editar.
 
 ## Rodando
 
