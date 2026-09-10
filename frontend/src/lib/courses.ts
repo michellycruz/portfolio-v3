@@ -1,4 +1,5 @@
-import type { Course, Institution, Track } from "../types/content";
+// Com a extensão: este arquivo também roda direto no Node, no npm run totais.
+import type { Course, Institution, Track } from "../types/content.ts";
 
 /** Junta os cursos de uma instituição, venham eles soltos ou dentro de trilhas. */
 export function coursesOf(institution: Institution): Course[] {

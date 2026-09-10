@@ -1,7 +1,7 @@
 # Portfólio — Michelly Cruz (v3)
 
 Base de um novo portfólio, partindo do código do [portfolio-v2](https://github.com/michellycruz/portfolio-v2):
-mesmo backend em **Go** e mesma camada de conteúdo, com o frontend refeito em
+do backend em **Go** e da camada de conteúdo dela, com o frontend refeito em
 outra identidade visual — neobrutalismo escuro, tipografia Archivo Black +
 JetBrains Mono e uma paleta terrosa: barro, ocre, sálvia e rosa-seco sobre
 papel/carvão.
@@ -17,15 +17,15 @@ papel/carvão.
 - Seções reescritas em cartões com borda de 2px e sombra dura: Sobre,
   Experiência, Formação, Habilidades, Projetos e Contato.
 
-O backend, os tipos (`src/types/content.ts`) e o cliente da API seguem os mesmos
-da v2. O conteúdo saiu do código: mora em `backend/internal/content/portfolio.json`
-(veja [Conteúdo](#conteúdo)).
+O cliente da API (`src/lib/api.ts`) segue o da v2. O backend e os tipos mudaram:
+o conteúdo saiu do código, mora em `backend/internal/content/portfolio.json` e
+segue regras próprias (veja [Conteúdo](#conteúdo)).
 
 ## Estrutura
 
 ```
 Portfolio-novo/
-├── backend/    # API em Go (conteúdo + formulário de contato) — igual à v2
+├── backend/    # API em Go: conteúdo (portfolio.json, embutido no binário) + formulário de contato
 ├── resume/     # fonte HTML do currículo em PDF (formato ATS) + script que o gera
 └── frontend/   # React 19 + Vite + Tailwind v4
     └── src/
@@ -64,8 +64,12 @@ totais antes do commit:
 
 ```bash
 cd frontend
-npm run totais   # compara com o último commit, usando as mesmas funções do site
+npm run totais   # último commit x cópia de trabalho, com as mesmas funções do site
 ```
+
+A coluna do último commit usa o `courses.ts` daquele commit, então uma mudança
+na própria regra de contagem também aparece. O script roda TypeScript direto no
+Node, o que pede o Node 22.18 ou mais novo.
 
 ## Rodando
 

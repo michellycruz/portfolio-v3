@@ -6,10 +6,10 @@
     "types": ["node"],
     "skipLibCheck": true,
 
-    /* Os scripts rodam direto no Node, mas importam src/lib, que é escrito para
-       o bundler (imports sem extensão). Por isso a resolução é a mesma do app. */
-    "module": "esnext",
-    "moduleResolution": "bundler",
+    /* Os scripts rodam direto no Node, que tira os tipos e exige a extensão em
+       todo import relativo. Por isso a resolução é a do Node, e o que eles
+       importam de src/lib escreve os imports com .ts. */
+    "module": "nodenext",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
