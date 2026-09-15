@@ -102,6 +102,13 @@ func checkMailConfig(cfg contact.Config, staticDir string) {
 // imagem, com quatro horas de validade -- a imagem certa chegou depois e nao
 // teve como aparecer. Alem disso, 200 em asset errado esconde o erro: o
 // caminho quebrado parece funcionar ate alguem repara que veio HTML.
+//
+// O index.html vai com Cache-Control: no-cache. Sem cabecalho nenhum, o
+// navegador calcula sozinho por quanto tempo reaproveitar a pagina a partir do
+// Last-Modified, e depois de um deploy continuava abrindo o HTML antigo -- que
+// aponta para o bundle antigo -- por horas. Com no-cache ele confere a cada
+// visita; como o ServeFile responde 304 quando nada mudou, conferir custa pouco.
+// Os arquivos de /assets tem hash no nome e ficam fora dessa regra.
 func spaFallback(dir string, fileServer http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if info, err := os.Stat(dir + r.URL.Path); err == nil && !info.IsDir() {
@@ -114,6 +121,7 @@ func spaFallback(dir string, fileServer http.Handler) http.Handler {
 			return
 		}
 
+		w.Header().Set("Cache-Control", "no-cache")
 		http.ServeFile(w, r, dir+"/index.html")
 	})
 }
