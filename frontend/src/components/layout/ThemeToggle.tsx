@@ -1,5 +1,5 @@
 import { Moon, Sun } from "lucide-react";
-import { useTheme } from "../../context/ThemeContext";
+import { useTheme } from "../../context/theme";
 
 interface ThemeToggleProps {
   /** Mostra o rótulo ao lado do ícone (usado no rodapé do menu lateral). */
