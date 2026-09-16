@@ -19,6 +19,12 @@ func TestSPAFallbackCache(t *testing.T) {
 	if err := os.WriteFile(filepath.Join(dir, "assets", "index-abc123.js"), []byte("0"), 0o644); err != nil {
 		t.Fatal(err)
 	}
+	if err := os.Mkdir(filepath.Join(dir, "images"), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(filepath.Join(dir, "images", "foto.webp"), []byte("0"), 0o644); err != nil {
+		t.Fatal(err)
+	}
 	h := spaFallback(dir, http.FileServer(http.Dir(dir)))
 
 	cases := []struct {
@@ -28,7 +34,10 @@ func TestSPAFallbackCache(t *testing.T) {
 	}{
 		{"/", http.StatusOK, "no-cache"},
 		{"/sobre", http.StatusOK, "no-cache"},
-		{"/assets/index-abc123.js", http.StatusOK, ""},
+		// O nome com hash muda a cada build, entao este arquivo nunca muda.
+		{"/assets/index-abc123.js", http.StatusOK, "public, max-age=31536000, immutable"},
+		// O resto repete o nome entre versoes: cache longo esconderia a troca.
+		{"/images/foto.webp", http.StatusOK, ""},
 		{"/images/nao-existe.png", http.StatusNotFound, ""},
 	}
 	for _, c := range cases {

@@ -14,6 +14,10 @@ import (
 	"portfolio/backend/internal/middleware"
 )
 
+// assetsComHash e a pasta em que o build do Vite grava os arquivos com hash no
+// nome.
+const assetsComHash = "/assets/"
+
 func getenv(key, fallback string) string {
 	if v := os.Getenv(key); v != "" {
 		return v
@@ -108,10 +112,18 @@ func checkMailConfig(cfg contact.Config, staticDir string) {
 // Last-Modified, e depois de um deploy continuava abrindo o HTML antigo -- que
 // aponta para o bundle antigo -- por horas. Com no-cache ele confere a cada
 // visita; como o ServeFile responde 304 quando nada mudou, conferir custa pouco.
-// Os arquivos de /assets tem hash no nome e ficam fora dessa regra.
+//
+// Ja o que esta em /assets tem hash no nome: o arquivo daquele nome nunca muda,
+// porque o build gera um nome novo a cada mudanca. Esses vao com um ano e
+// immutable, e o navegador nem pergunta de novo. Para qualquer outro arquivo
+// vale a regra conservadora: o nome se repete entre versoes, entao um cache
+// longo esconderia a troca -- que foi exatamente o problema do index.html.
 func spaFallback(dir string, fileServer http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if info, err := os.Stat(dir + r.URL.Path); err == nil && !info.IsDir() {
+			if strings.HasPrefix(r.URL.Path, assetsComHash) {
+				w.Header().Set("Cache-Control", "public, max-age=31536000, immutable")
+			}
 			fileServer.ServeHTTP(w, r)
 			return
 		}
