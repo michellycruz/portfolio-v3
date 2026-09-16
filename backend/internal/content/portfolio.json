@@ -26,7 +26,7 @@
         "percent": 33
       }
     ],
-    "photoUrl": "/images/foto-pessoal.jpg",
+    "photoUrl": "/images/foto-pessoal.webp",
     "resumeUrl": "/resume/curriculo_michelly.pdf?v=c21e7bda",
     "social": [
       {
@@ -715,7 +715,7 @@
         "tailwind",
         "go"
       ],
-      "imageUrl": "/images/projects/portfolio_v2.png",
+      "imageUrl": "/images/projects/portfolio_v2.webp",
       "linkUrl": "https://v2.michellycruz.com.br",
       "repoUrl": "https://github.com/michellycruz/portfolio-v3/tree/v2",
       "private": false
@@ -764,7 +764,7 @@
         "html",
         "sass"
       ],
-      "imageUrl": "/images/projects/agency.png",
+      "imageUrl": "/images/projects/agency.webp",
       "linkUrl": "https://projetos-sass-agency.vercel.app",
       "repoUrl": "",
       "private": true
@@ -777,7 +777,7 @@
         "html",
         "sass"
       ],
-      "imageUrl": "/images/projects/electrum.png",
+      "imageUrl": "/images/projects/electrum.webp",
       "linkUrl": "https://electrum-sass.vercel.app",
       "repoUrl": "",
       "private": true
@@ -791,7 +791,7 @@
         "css",
         "bootstrap"
       ],
-      "imageUrl": "/images/projects/codigo_certo.png",
+      "imageUrl": "/images/projects/codigo_certo.webp",
       "linkUrl": "https://trilha-front-end-jr-michelly-cruz.vercel.app/",
       "repoUrl": "https://github.com/michellycruz/TrilhaFrontEndJR-JUN15",
       "private": false
@@ -804,7 +804,7 @@
         "react",
         "tailwind"
       ],
-      "imageUrl": "/images/projects/pagina_de_emails.png",
+      "imageUrl": "/images/projects/pagina_de_emails.webp",
       "linkUrl": "https://paginadeemail.vercel.app/",
       "repoUrl": "",
       "private": true
@@ -818,7 +818,7 @@
         "css",
         "js"
       ],
-      "imageUrl": "/images/projects/calculadora_de_gorjetas.png",
+      "imageUrl": "/images/projects/calculadora_de_gorjetas.webp",
       "linkUrl": "https://michellycruz.github.io/projetos_javascript/9_calculadora_de_gorjetas//",
       "repoUrl": "https://github.com/michellycruz/projetos_javascript",
       "private": false
@@ -832,7 +832,7 @@
         "js",
         "css"
       ],
-      "imageUrl": "/images/projects/carrinho_de_compras.png",
+      "imageUrl": "/images/projects/carrinho_de_compras.webp",
       "linkUrl": "https://carrinho-de-compras-delta.vercel.app",
       "repoUrl": "https://github.com/michellycruz/carrinho_de_compras",
       "private": false
@@ -846,7 +846,7 @@
         "css",
         "js"
       ],
-      "imageUrl": "/images/projects/piano.png",
+      "imageUrl": "/images/projects/piano.webp",
       "linkUrl": "https://piano-zlpu.vercel.app",
       "repoUrl": "https://github.com/michellycruz/piano",
       "private": false
@@ -860,7 +860,7 @@
         "css",
         "js"
       ],
-      "imageUrl": "/images/projects/jogo_da_memoria.png",
+      "imageUrl": "/images/projects/jogo_da_memoria.webp",
       "linkUrl": "https://michellycruz.github.io/jogos-e-projetos/jogo_da_memoria/index.html",
       "repoUrl": "https://github.com/michellycruz/jogos-e-projetos",
       "private": false
@@ -874,7 +874,7 @@
         "css",
         "js"
       ],
-      "imageUrl": "/images/projects/petlife.png",
+      "imageUrl": "/images/projects/petlife.webp",
       "linkUrl": "https://michellycruz.github.io/jogos-e-projetos/petlife/index.html",
       "repoUrl": "https://github.com/michellycruz/jogos-e-projetos",
       "private": false
@@ -888,7 +888,7 @@
         "css",
         "js"
       ],
-      "imageUrl": "/images/projects/calculadora.png",
+      "imageUrl": "/images/projects/calculadora.webp",
       "linkUrl": "https://michellycruz.github.io/javascript-onebitcode/projetos/calculadora/index.html",
       "repoUrl": "https://github.com/michellycruz/javascript-onebitcode",
       "private": false

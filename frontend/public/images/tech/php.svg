@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="PHP">
-  <ellipse cx="64" cy="64" rx="62" ry="34" fill="#777BB4"/>
-  <text x="64" y="65" text-anchor="middle" dominant-baseline="central"
-        font-family="Helvetica, Arial, sans-serif" font-size="38" font-weight="700"
-        fill="#ffffff" letter-spacing="-1">php</text>
-</svg>
