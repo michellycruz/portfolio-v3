@@ -89,6 +89,9 @@ export const Landing = forwardRef<HTMLElement, LandingProps>(function Landing({ 
               alt={`Foto de ${profile.name}`}
               width={640}
               height={800}
+              // É o maior elemento da primeira tela: sem isto o navegador a
+              // trata como imagem qualquer e a busca depois do resto.
+              fetchPriority="high"
               // A foto é 9:16 e o quadro é 4:5, então sobra altura para cortar.
               // O ponto de corte fica abaixo do centro para tirar o teto e a
               // tomada do alto do original sem cortar o queixo.

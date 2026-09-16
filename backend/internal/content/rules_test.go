@@ -3,6 +3,8 @@ package content
 import (
 	"encoding/json"
 	"fmt"
+	"os"
+	"path/filepath"
 	"regexp"
 	"sort"
 	"strconv"
@@ -474,5 +476,32 @@ func TestUniqueNames(t *testing.T) {
 	project := unique("projeto")
 	for _, p := range c.Projects {
 		project(p.Title)
+	}
+}
+
+// O index.html pre-carrega a foto da capa, que e o maior elemento da primeira
+// tela. O endereco dela esta escrito nos dois lugares -- no portfolio.json e no
+// preload --, e um preload apontando para arquivo que nao existe mais gasta uma
+// requisicao e nao adianta a foto certa. Este teste segura os dois juntos.
+//
+// Fora do repositorio completo (a formatura do painel copia so o backend para
+// uma pasta temporaria) nao ha index.html para conferir, e o teste sai de fininho.
+func TestIndexPreloadaAFotoDaCapa(t *testing.T) {
+	caminho := filepath.Join("..", "..", "..", "frontend", "index.html")
+	html, err := os.ReadFile(caminho)
+	if err != nil {
+		t.Skip("sem o frontend por perto:", err)
+	}
+
+	foto := load(t).Profile.PhotoURL
+	if foto == "" {
+		t.Fatal("perfil sem foto")
+	}
+	preload := regexp.MustCompile(`<link rel="preload"[^>]*href="([^"]+)"`).FindSubmatch(html)
+	if preload == nil {
+		t.Fatalf("o index.html não pré-carrega imagem nenhuma; a foto %q vira a última coisa a ser pedida", foto)
+	}
+	if got := string(preload[1]); got != foto {
+		t.Errorf("o index.html pré-carrega %q e o site mostra %q", got, foto)
 	}
 }

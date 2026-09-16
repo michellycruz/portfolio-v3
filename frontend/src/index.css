@@ -1,5 +1,41 @@
 @import "tailwindcss";
 
+/* ---------------------------------------------------------------------------
+   As fontes são servidas pelo próprio site (src/fontes, com a licença e a
+   origem descritas lá). Carregá-las do Google custava duas conexões novas e uma
+   folha de estilo que bloqueia a primeira pintura; daqui elas vêm pela conexão
+   já aberta e com o cache imutável do /assets.
+
+   Archivo e JetBrains Mono são variáveis: um arquivo só cobre todos os pesos
+   que o site usa, e é por isso que o font-weight declara a faixa inteira.
+
+   swap: enquanto a fonte não chega, o texto aparece na fonte do sistema em vez
+   de ficar invisível.
+--------------------------------------------------------------------------- */
+@font-face {
+  font-family: "Archivo";
+  src: url("./fontes/archivo.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Archivo Black";
+  src: url("./fontes/archivo-black.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("./fontes/jetbrains-mono.woff2") format("woff2-variations");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ---------------------------------------------------------------------------
