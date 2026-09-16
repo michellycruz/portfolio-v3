@@ -63,6 +63,16 @@ baixa um pacote de um commit que ainda estava compilando.
 - **`VITE_API_URL` vai vazia** no build. Indefinida, `lib/api.ts` cai no default
   `http://localhost:8080` e o site publicado chamaria a máquina do visitante.
 
+## Não peça um arquivo novo antes de ele existir
+
+O Cloudflare guarda também a resposta 404, por alguns minutos. Se você pedir o
+endereço de um arquivo novo (uma imagem, um PDF) enquanto o deploy ainda não
+subiu, o 404 fica em cache e o arquivo continua "sumido" depois de instalado —
+aconteceu em 15/09/2026, com um `.webp` novo, e passou sozinho em três minutos.
+
+Para conferir se o deploy chegou, olhe o `deployed-sha` ou o `index.html`, que
+sai com `no-cache`, e só então peça o arquivo.
+
 ## Operação
 
 ```bash
