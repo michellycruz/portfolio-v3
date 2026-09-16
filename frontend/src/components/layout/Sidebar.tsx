@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { X } from "lucide-react";
 import { navItems } from "../../lib/nav";
 import type { Profile } from "../../types/content";
@@ -15,6 +16,28 @@ interface SidebarProps {
 }
 
 export function Sidebar({ profile, shown, open, onClose, activeId }: SidebarProps) {
+  const fechar = useRef<HTMLButtonElement>(null);
+  const focoAnterior = useRef<HTMLElement | null>(null);
+
+  // No celular a gaveta se comporta como uma janela: ao abrir, o foco entra
+  // nela; Esc fecha; ao fechar, o foco volta para quem a abriu. Sem isso o
+  // teclado continuaria navegando atras do veu, no conteudo que esta coberto.
+  useEffect(() => {
+    if (!open) {
+      focoAnterior.current?.focus();
+      focoAnterior.current = null;
+      return;
+    }
+    focoAnterior.current = document.activeElement as HTMLElement | null;
+    fechar.current?.focus();
+
+    const aoTeclar = (evento: KeyboardEvent) => {
+      if (evento.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", aoTeclar);
+    return () => document.removeEventListener("keydown", aoTeclar);
+  }, [open, onClose]);
+
   const initials = profile.name
     .split(" ")
     .slice(0, 2)
@@ -56,6 +79,7 @@ export function Sidebar({ profile, shown, open, onClose, activeId }: SidebarProp
             </span>
           </span>
           <button
+            ref={fechar}
             type="button"
             onClick={onClose}
             aria-label="Fechar menu"

@@ -76,8 +76,12 @@ function InstitutionRow({ institution }: { institution: Institution }) {
 
       {/* A abertura anima com grid-template-rows em vez de altura fixa: assim a
           lista cresce sozinha, sem ninguém precisar medir a altura antes. */}
+      {/* Fechada, a sanfona continua no documento por causa da animacao: o
+          inert e o que a tira da ordem de tabulacao e da leitura enquanto isso.
+          Sem ele, o leitor de tela anuncia "fechado" e le a lista mesmo assim. */}
       <div
         id={panelId}
+        inert={!open || undefined}
         className={`grid transition-[grid-template-rows] duration-200 ease-out ${
           open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
         }`}

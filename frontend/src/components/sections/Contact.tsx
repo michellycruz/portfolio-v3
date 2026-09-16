@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import type { Profile } from "../../types/content";
 import { sendContactMessage } from "../../lib/api";
 import { Button } from "../ui/Button";
@@ -20,6 +20,20 @@ export function Contact({ profile }: ContactProps) {
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [errorMsg, setErrorMsg] = useState("");
+
+  const campoNome = useRef<HTMLInputElement>(null);
+  const campoEmail = useRef<HTMLInputElement>(null);
+  const campoMensagem = useRef<HTMLTextAreaElement>(null);
+
+  // Quando o servidor recusa um campo, o foco vai para ele. Sem isso a pessoa
+  // fica olhando para o botao, com o problema escrito mais acima na tela -- e
+  // quem usa leitor de tela nem fica sabendo que existe.
+  useEffect(() => {
+    if (status !== "error") return;
+    if (errors.name) campoNome.current?.focus();
+    else if (errors.email) campoEmail.current?.focus();
+    else if (errors.message) campoMensagem.current?.focus();
+  }, [status, errors]);
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
@@ -55,17 +69,26 @@ export function Contact({ profile }: ContactProps) {
             Vamos falar sobre o seu projeto
           </h3>
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+          <form onSubmit={handleSubmit} aria-busy={status === "sending"} className="flex flex-col gap-3">
             <label className="flex flex-col gap-1.5">
               <span className="font-mono text-[10.5px] tracking-[0.12em] text-muted uppercase">Nome</span>
               <input
                 required
+                ref={campoNome}
+                name="nome"
+                autoComplete="name"
                 value={form.name}
                 onChange={(event) => update("name", event.target.value)}
+                aria-invalid={errors.name ? true : undefined}
+                aria-describedby={errors.name ? "erro-nome" : undefined}
                 className={fieldClass}
                 placeholder="Como te chamo?"
               />
-              {errors.name && <span className="text-xs text-orange">{errors.name}</span>}
+              {errors.name && (
+                <span id="erro-nome" className="text-xs text-orange">
+                  {errors.name}
+                </span>
+              )}
             </label>
 
             <label className="flex flex-col gap-1.5">
@@ -73,12 +96,21 @@ export function Contact({ profile }: ContactProps) {
               <input
                 required
                 type="email"
+                ref={campoEmail}
+                name="email"
+                autoComplete="email"
                 value={form.email}
                 onChange={(event) => update("email", event.target.value)}
+                aria-invalid={errors.email ? true : undefined}
+                aria-describedby={errors.email ? "erro-email" : undefined}
                 className={fieldClass}
                 placeholder="voce@email.com"
               />
-              {errors.email && <span className="text-xs text-orange">{errors.email}</span>}
+              {errors.email && (
+                <span id="erro-email" className="text-xs text-orange">
+                  {errors.email}
+                </span>
+              )}
             </label>
 
             <label className="flex flex-col gap-1.5">
@@ -86,12 +118,20 @@ export function Contact({ profile }: ContactProps) {
               <textarea
                 required
                 rows={4}
+                ref={campoMensagem}
+                name="mensagem"
                 value={form.message}
                 onChange={(event) => update("message", event.target.value)}
+                aria-invalid={errors.message ? true : undefined}
+                aria-describedby={errors.message ? "erro-mensagem" : undefined}
                 className={`${fieldClass} resize-y`}
                 placeholder="Conta rapidamente o que você precisa."
               />
-              {errors.message && <span className="text-xs text-orange">{errors.message}</span>}
+              {errors.message && (
+                <span id="erro-mensagem" className="text-xs text-orange">
+                  {errors.message}
+                </span>
+              )}
             </label>
 
             <Button type="submit" variant="primary" disabled={status === "sending"} className="self-start">

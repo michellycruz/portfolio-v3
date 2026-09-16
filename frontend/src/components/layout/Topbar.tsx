@@ -33,6 +33,9 @@ export function Topbar({ visible, onOpenMenu, crumb, resumeUrl }: TopbarProps) {
         href={resumeUrl}
         target="_blank"
         rel="noopener"
+        // Abaixo de sm o rotulo some e fica so o icone, que nao tem nome
+        // nenhum para quem usa leitor de tela. O rotulo fixo vale nos dois.
+        aria-label="Currículo em PDF"
         className="ml-auto inline-flex shrink-0 items-center gap-2 rounded-xl border-2 border-stroke-soft bg-panel-2 px-3 py-2 font-mono text-[11px] font-bold tracking-[0.08em] uppercase shadow-brutal-sm transition-transform duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5"
       >
         <Download className="h-4 w-4" strokeWidth={2} />
