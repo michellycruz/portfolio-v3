@@ -497,11 +497,51 @@ func TestIndexPreloadaAFotoDaCapa(t *testing.T) {
 	if foto == "" {
 		t.Fatal("perfil sem foto")
 	}
-	preload := regexp.MustCompile(`<link rel="preload"[^>]*href="([^"]+)"`).FindSubmatch(html)
-	if preload == nil {
+	link := regexp.MustCompile(`<link\s[^>]*rel="preload"[^>]*>`).Find(html)
+	if link == nil {
 		t.Fatalf("o index.html não pré-carrega imagem nenhuma; a foto %q vira a última coisa a ser pedida", foto)
 	}
-	if got := string(preload[1]); got != foto {
+	atributo := func(nome string) string {
+		m := regexp.MustCompile(`\s` + nome + `="([^"]*)"`).FindSubmatch(link)
+		if m == nil {
+			return ""
+		}
+		return string(m[1])
+	}
+	if got := atributo("href"); got != foto {
 		t.Errorf("o index.html pré-carrega %q e o site mostra %q", got, foto)
+	}
+
+	// As larguras menores: o preload tem de pedir o mesmo conjunto que a <img>
+	// escolhe, senao o navegador baixa a foto duas vezes. O conjunto e o
+	// tamanho moram no src/lib/foto.ts, e os arquivos em frontend/public.
+	fotoTS, err := os.ReadFile(filepath.Join("..", "..", "..", "frontend", "src", "lib", "foto.ts"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	constante := func(padrao string) string {
+		m := regexp.MustCompile(padrao).FindSubmatch(fotoTS)
+		if m == nil {
+			t.Fatalf("src/lib/foto.ts sem %s", padrao)
+		}
+		return string(m[1])
+	}
+	original := constante(`LARGURA_DA_ORIGINAL = (\d+);`)
+	tamanhos := constante(`TAMANHOS_DA_FOTO = "([^"]+)";`)
+	ext := filepath.Ext(foto)
+	var conjunto []string
+	for _, largura := range regexp.MustCompile(`\d+`).FindAll([]byte(constante(`LARGURAS_MENORES = \[([^\]]*)\]`)), -1) {
+		variante := strings.TrimSuffix(foto, ext) + "-" + string(largura) + ext
+		conjunto = append(conjunto, variante+" "+string(largura)+"w")
+		if _, err := os.Stat(filepath.Join("..", "..", "..", "frontend", "public", filepath.FromSlash(variante))); err != nil {
+			t.Errorf("a foto de %spx não existe: %v", largura, err)
+		}
+	}
+	conjunto = append(conjunto, foto+" "+original+"w")
+	if got, want := atributo("imagesrcset"), strings.Join(conjunto, ", "); got != want {
+		t.Errorf("o preload pede %q e a foto escolhe entre %q", got, want)
+	}
+	if got := atributo("imagesizes"); got != tamanhos {
+		t.Errorf("o preload diz tamanho %q e a foto diz %q", got, tamanhos)
 	}
 }

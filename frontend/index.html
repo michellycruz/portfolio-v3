@@ -11,9 +11,17 @@
     <meta name="theme-color" content="#191713" />
     <!-- A foto da capa é o maior elemento da primeira tela, e o React só a
          pede depois de montar. Este preload a começa junto com o HTML. O
-         endereço está duplicado do portfolio.json de propósito, e um teste do
-         backend não deixa os dois se separarem. -->
-    <link rel="preload" as="image" href="/images/foto-pessoal.webp" fetchpriority="high" />
+         endereço e as larguras estão duplicados do portfolio.json e do
+         src/lib/foto.ts de propósito, e um teste do backend não deixa os três
+         se separarem. -->
+    <link
+      rel="preload"
+      as="image"
+      href="/images/foto-pessoal.webp"
+      imagesrcset="/images/foto-pessoal-480.webp 480w, /images/foto-pessoal-640.webp 640w, /images/foto-pessoal.webp 880w"
+      imagesizes="(min-width: 1024px) 460px, 340px"
+      fetchpriority="high"
+    />
     <title>Michelly Cruz · Portfólio</title>
     <script>
       // O tema escuro é o padrão desta versão; só cai no claro se a pessoa

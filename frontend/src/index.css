@@ -274,7 +274,7 @@ body {
   line-height: 1.62;
   -webkit-font-smoothing: antialiased;
   transition: background-color 0.3s ease, color 0.3s ease;
-  cursor: url("/cursors/cursor-25.png") 4 4, auto;
+  cursor: url("./cursores/cursor-25.png") 4 4, auto;
 }
 
 /* O ponteiro desenhado da v2. Os dois PNGs têm contorno branco, então a seta
@@ -286,7 +286,7 @@ summary,
 label,
 select,
 [role="button"] {
-  cursor: url("/cursors/pointer-30.png") 6 3, pointer;
+  cursor: url("./cursores/pointer-30.png") 6 3, pointer;
 }
 
 /* Campo de texto fica com o cursor de texto: sobre um input a seta desenhada

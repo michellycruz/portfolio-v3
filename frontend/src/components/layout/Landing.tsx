@@ -5,6 +5,7 @@ import { Button } from "../ui/Button";
 import { SocialIcon } from "../ui/SocialIcon";
 import { ThemeToggle } from "./ThemeToggle";
 import { PaletteToggle } from "./PaletteToggle";
+import { srcsetDaFoto, TAMANHOS_DA_FOTO } from "../../lib/foto";
 
 interface LandingProps {
   profile: Profile;
@@ -86,6 +87,8 @@ export const Landing = forwardRef<HTMLElement, LandingProps>(function Landing({ 
           <div className="relative overflow-hidden rounded-2xl border-2 border-stroke bg-panel-2">
             <img
               src={profile.photoUrl}
+              srcSet={srcsetDaFoto(profile.photoUrl)}
+              sizes={TAMANHOS_DA_FOTO}
               alt={`Foto de ${profile.name}`}
               width={640}
               height={800}
