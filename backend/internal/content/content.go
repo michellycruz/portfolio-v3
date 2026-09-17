@@ -46,16 +46,6 @@ func parse(data []byte) (Content, error) {
 	if err := sameAsServed(data, c); err != nil {
 		return Content{}, err
 	}
-
-	for i := range c.Institutions {
-		for j := range c.Institutions[i].Tracks {
-			track := &c.Institutions[i].Tracks[j]
-			if track.Planned {
-				return Content{}, fmt.Errorf("portfolio.json: track %q sets \"planned\", which is derived: give each course a status instead", track.Name)
-			}
-			track.Planned = everyCoursePlanned(track.Courses)
-		}
-	}
 	return c, nil
 }
 
@@ -93,15 +83,6 @@ func canonical(data []byte) ([]byte, error) {
 		return nil, err
 	}
 	return json.Marshal(v)
-}
-
-func everyCoursePlanned(courses []Course) bool {
-	for _, course := range courses {
-		if course.Status != CoursePlanned {
-			return false
-		}
-	}
-	return len(courses) > 0
 }
 
 // mustParse stops the binary at startup if portfolio.json is broken, before it
