@@ -27,7 +27,7 @@
       }
     ],
     "photoUrl": "/images/foto-pessoal.webp",
-    "resumeUrl": "/resume/curriculo_michelly.pdf?v=f23dfa8d",
+    "resumeUrl": "/resume/curriculo_michelly.pdf?v=d75eda8e",
     "social": [
       {
         "name": "LinkedIn",
@@ -95,7 +95,8 @@
     {
       "course": "CST em Análise e Desenvolvimento de Sistemas",
       "institution": "Multivix - Empresa Brasileira de Ensino, Pesquisa e Extensão",
-      "period": "Julho 2021 - Julho 2023"
+      "period": "Julho 2021 - Julho 2023",
+      "hours": "2250h"
     },
     {
       "course": "Pós-graduação em Engenharia de Software",
