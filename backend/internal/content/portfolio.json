@@ -216,7 +216,7 @@
       "tracks": [
         {
           "name": "Pós-graduação em Inteligência Artificial e Aprendizagem das Máquinas",
-          "status": "Matriculada · aulas não iniciadas",
+          "status": "Em andamento",
           "courses": [
             {
               "title": "Empreendedorismo e Liderança",
@@ -230,7 +230,8 @@
             },
             {
               "title": "Inteligência Artificial",
-              "status": "previsto",
+              "status": "concluido",
+              "date": "Setembro 2026",
               "area": "IA e Automação"
             },
             {
