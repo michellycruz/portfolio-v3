@@ -54,6 +54,9 @@ gráfico por área) são calculados a partir dele, então o arquivo segue regras
   declarada conta como curso mas não soma horas;
 - a área sai de uma lista fechada, porque o gráfico agrupa pelo texto exato;
 - carga de formação em andamento vai em `plannedHours` e aparece como prevista;
+- `subjects` lista as matérias que uma disciplina reúne, como o portal as mostra.
+  Descrevem o curso: não contam como cursos nem somam horas, e curso `previsto`
+  não tem, porque nada dele foi estudado;
 - quando a grade de uma formação aparece como trilha, as disciplinas não somam
   mais do que a carga do cartão e, com a formação concluída, fecham exatamente
   nela.

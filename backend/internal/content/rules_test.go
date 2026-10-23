@@ -264,6 +264,64 @@ func TestCourseStatus(t *testing.T) {
 	}
 }
 
+// subjectsProblem says what is wrong with a course's subjects, or "" when they
+// are fine. Subjects ("matérias") are the parts a discipline lists in the
+// portal. They describe what was or is being studied, so a planned course has
+// none, and each one is a plain name: not empty, not padded, not repeated.
+func subjectsProblem(c Course) string {
+	if len(c.Subjects) == 0 {
+		return ""
+	}
+	if c.Status == CoursePlanned {
+		return "curso previsto não tem matérias: ainda não começou"
+	}
+	seen := map[string]bool{}
+	for _, s := range c.Subjects {
+		key := strings.ToLower(strings.Join(strings.Fields(s), " "))
+		switch {
+		case key == "":
+			return "matéria sem nome"
+		case s != strings.TrimSpace(s):
+			return fmt.Sprintf("matéria %q com espaço no começo ou no fim", s)
+		case seen[key]:
+			return fmt.Sprintf("matéria repetida: %q", s)
+		}
+		seen[key] = true
+	}
+	return ""
+}
+
+func TestCourseSubjects(t *testing.T) {
+	for _, lc := range everyCourse(load(t)) {
+		if problem := subjectsProblem(lc.course); problem != "" {
+			t.Errorf("%s: %s", lc.where, problem)
+		}
+	}
+}
+
+// The rule above only means something if it trips, and the real file has no bad
+// course to trip it.
+func TestSubjectsProblem(t *testing.T) {
+	for _, tc := range []struct {
+		name   string
+		course Course
+		want   string // a piece of the message; empty when the subjects are fine
+	}{
+		{"sem matérias", Course{Status: CourseDone}, ""},
+		{"curso concluído", Course{Status: CourseDone, Subjects: []string{"A", "B"}}, ""},
+		{"curso em andamento", Course{Status: CourseInProgress, Subjects: []string{"A"}}, ""},
+		{"curso previsto", Course{Status: CoursePlanned, Subjects: []string{"A"}}, "previsto"},
+		{"matéria vazia", Course{Status: CourseDone, Subjects: []string{"A", " "}}, "sem nome"},
+		{"espaço sobrando", Course{Status: CourseDone, Subjects: []string{"A ", "B"}}, "espaço"},
+		{"repetida", Course{Status: CourseDone, Subjects: []string{"Redes I", "redes  i"}}, "repetida"},
+	} {
+		got := subjectsProblem(tc.course)
+		if (got == "") != (tc.want == "") || !strings.Contains(got, tc.want) {
+			t.Errorf("%s: esperava um problema com %q, veio %q", tc.name, tc.want, got)
+		}
+	}
+}
+
 func TestTrackStatus(t *testing.T) {
 	c := load(t)
 	now := thisMonth()

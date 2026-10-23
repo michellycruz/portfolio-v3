@@ -46,6 +46,11 @@ export interface Course {
   date?: string;
   hours?: string;
   area: string;
+  /**
+   * As matérias que uma disciplina reúne, como o portal as lista. Dizem o que o
+   * curso cobre e não contam como cursos; curso previsto não tem.
+   */
+  subjects?: string[];
 }
 
 export interface Track {

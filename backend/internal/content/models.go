@@ -63,13 +63,16 @@ const (
 // only set once the course is done. Area is the competency group it counts
 // towards in the formation chart — tagged per course because institutions mix
 // areas, so the chart stays correct when courses are added without touching any
-// aggregate.
+// aggregate. Subjects are the parts a postgraduate discipline lists in the
+// student portal ("matérias"): they say what the course covers, never count as
+// courses of their own, and a planned course has none, since it was not started.
 type Course struct {
-	Title  string `json:"title"`
-	Status string `json:"status"`
-	Date   string `json:"date,omitempty"`
-	Hours  string `json:"hours,omitempty"`
-	Area   string `json:"area"`
+	Title    string   `json:"title"`
+	Status   string   `json:"status"`
+	Date     string   `json:"date,omitempty"`
+	Hours    string   `json:"hours,omitempty"`
+	Area     string   `json:"area"`
+	Subjects []string `json:"subjects,omitempty"`
 }
 
 // Track is a multi-course program (a DIO "formação", a postgraduate grade).

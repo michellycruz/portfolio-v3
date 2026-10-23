@@ -232,7 +232,11 @@
               "title": "Inteligência Artificial",
               "status": "concluido",
               "date": "Setembro 2026",
-              "area": "IA e Automação"
+              "area": "IA e Automação",
+              "subjects": [
+                "Testes de Turing",
+                "Diferentes Técnicas de IA"
+              ]
             },
             {
               "title": "Probabilidade e Perceptrons",
@@ -246,8 +250,14 @@
             },
             {
               "title": "Redes Neurais",
-              "status": "previsto",
-              "area": "IA e Automação"
+              "status": "cursando",
+              "area": "IA e Automação",
+              "subjects": [
+                "Redes Neurais Convolucionais I",
+                "Redes Neurais Convolucionais II",
+                "Redes Neurais Convolucionais III",
+                "Redes Neurais Artificiais I"
+              ]
             }
           ]
         }

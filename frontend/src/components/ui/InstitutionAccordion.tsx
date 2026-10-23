@@ -17,23 +17,42 @@ function CourseRow({ course, showStatus = true }: { course: Course; showStatus?:
   // Abaixo de sm o título e a data empilham: lado a lado o título fica com uns
   // 130px e quebra em quatro linhas, e a data escapa pela direita.
   return (
-    <li className="py-1 text-sm sm:flex sm:items-baseline sm:gap-2">
-      <span className="flex min-w-0 items-baseline gap-2">
-        {/* O marcador mostra a situação de relance: cheio para curso concluído,
-            vazado em laranja para o que está em curso e vazado neutro para
-            matéria só prevista. */}
-        <span
-          aria-hidden="true"
-          className={`h-1.5 w-1.5 shrink-0 -translate-y-0.5 rounded-[2px] ${
-            isDone(course) ? "bg-orange" : inProgress ? "border-2 border-orange" : "border-2 border-muted"
-          }`}
-        />
-        <span className="text-muted">{course.title}</span>
-      </span>
-      {note && (
-        <span className="ml-3.5 block shrink-0 font-mono text-[10.5px] whitespace-nowrap text-muted sm:ml-auto sm:pl-3">
-          {note}
+    <li className="py-1 text-sm">
+      <div className="sm:flex sm:items-baseline sm:gap-2">
+        <span className="flex min-w-0 items-baseline gap-2">
+          {/* O marcador mostra a situação de relance: cheio para curso concluído,
+              vazado em laranja para o que está em curso e vazado neutro para
+              matéria só prevista. */}
+          <span
+            aria-hidden="true"
+            className={`h-1.5 w-1.5 shrink-0 -translate-y-0.5 rounded-[2px] ${
+              isDone(course) ? "bg-orange" : inProgress ? "border-2 border-orange" : "border-2 border-muted"
+            }`}
+          />
+          <span className="text-muted">{course.title}</span>
         </span>
+        {note && (
+          <span className="ml-3.5 block shrink-0 font-mono text-[10.5px] whitespace-nowrap text-muted sm:ml-auto sm:pl-3">
+            {note}
+          </span>
+        )}
+      </div>
+
+      {/* As matérias são o que a disciplina reúne, como o portal as lista. Ficam
+          sob o título, presas por um filete tracejado como os das linhas da
+          lista, e não entram em contagem nenhuma: descrevem o curso, não são
+          cursos. O filete cai sob o marcador e o texto alinha com o título. */}
+      {course.subjects && course.subjects.length > 0 && (
+        <ul
+          aria-label={`Matérias de ${course.title}`}
+          className="mt-0.5 ml-0.5 border-l-2 border-dashed border-stroke-soft pl-2.5 text-[12.5px] text-muted"
+        >
+          {course.subjects.map((subject) => (
+            <li key={subject} className="py-0.5">
+              {subject}
+            </li>
+          ))}
+        </ul>
       )}
     </li>
   );
