@@ -628,6 +628,18 @@
           "area": "Processos e Design"
         }
       ]
+    },
+    {
+      "name": "IBM SkillsBuild",
+      "courses": [
+        {
+          "title": "Desenvolva seu primeiro robô de bate-papo",
+          "status": "concluido",
+          "date": "Outubro 2026",
+          "hours": "1h",
+          "area": "IA e Automação"
+        }
+      ]
     }
   ],
   "infraSkills": [
