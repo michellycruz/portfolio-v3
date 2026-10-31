@@ -5,8 +5,8 @@
     "location": "Espírito Santo, Brasil",
     "summary": [
       "Analista de Sistemas na Hostbraza. Hoje construo o checkout do novo ecossistema de vendas da empresa: carrinho, pagamento e área do cliente em React e TypeScript, sobre uma API própria em Go que valida o acesso e concentra as integrações.",
-      "Venho do suporte técnico e da análise de sistemas — GLPI, SQL, levantamento de requisitos e protótipos —, e dali trago o hábito de documentar e testar. Desenvolvo com apoio de IA, revisando o que entra em produção, e quero aplicar IA nos processos e no desenvolvimento de produtos.",
-      "Inglês: leio e entendo quando falam comigo; a fala ficou sem prática."
+      "Já trabalhei com suporte técnico e análise de sistemas, usando GLPI, SQL, levantamento de requisitos e protótipos. Foi aí que peguei o hábito de documentar e testar. Uso IA para desenvolver, mas reviso tudo o que vai para produção. Na pós da Multivix, tenho me interessado cada vez mais por machine learning e quero aplicar IA nos processos e nos produtos.",
+      "Inglês: leio e entendo quando falam comigo, mas estou sem prática na fala."
     ],
     "profileBadge": "Planejador Analista (PA)",
     "behavior": [
@@ -28,7 +28,7 @@
       }
     ],
     "photoUrl": "/images/foto-pessoal.webp",
-    "resumeUrl": "/resume/curriculo_michelly.pdf?v=2c7ae402",
+    "resumeUrl": "/resume/curriculo_michelly.pdf?v=e94e3df5",
     "social": [
       {
         "name": "LinkedIn",
