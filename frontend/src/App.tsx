@@ -49,7 +49,7 @@ function PortfolioApp() {
 
       {offline && (
         <div className="bg-orange px-4 py-2 text-center font-mono text-[11px] tracking-[0.06em] text-on-accent uppercase">
-          API fora do ar — exibindo o conteúdo local de reserva.
+          API fora do ar, exibindo o conteúdo local de reserva.
         </div>
       )}
 

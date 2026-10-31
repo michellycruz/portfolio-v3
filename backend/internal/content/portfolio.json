@@ -755,7 +755,7 @@
     {
       "title": "Avisos de Hospedagem",
       "year": "2026",
-      "description": "Plugin WordPress que reúne avisos de hospedagem — domínio expirando, conta a vencer, disco cheio — no wp-admin e no site. Cada aviso é um custom post type.",
+      "description": "Plugin WordPress que reúne avisos de hospedagem (domínio expirando, conta a vencer, disco cheio) no wp-admin e no site. Cada aviso é um custom post type.",
       "tech": [
         "php"
       ],
@@ -767,7 +767,7 @@
     {
       "title": "Go Gateway API",
       "year": "2025",
-      "description": "Primeira API em Go: gateway de pagamento com domínio, repositório e serviço separados, migrations e Docker Compose. Parou no cadastro de contas — mas é a estrutura que uso hoje.",
+      "description": "Primeira API em Go: gateway de pagamento com domínio, repositório e serviço separados, migrations e Docker Compose. Parou no cadastro de contas, mas é a estrutura que uso hoje.",
       "tech": [
         "go"
       ],
