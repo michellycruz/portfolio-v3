@@ -63,7 +63,7 @@ export const Landing = forwardRef<HTMLElement, LandingProps>(function Landing({ 
               <li key={link.name}>
                 <a
                   href={link.url}
-                  target="_blank"
+                  target={link.url.startsWith("http") ? "_blank" : undefined}
                   rel="noopener"
                   aria-label={link.name}
                   title={link.name}

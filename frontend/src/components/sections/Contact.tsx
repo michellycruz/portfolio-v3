@@ -68,6 +68,7 @@ export function Contact({ profile }: ContactProps) {
           <h3 className="text-[clamp(22px,3vw,28px)] leading-tight uppercase">
             Vamos falar sobre o seu projeto
           </h3>
+          <p className="text-sm text-muted">{profile.availability}</p>
 
           <form onSubmit={handleSubmit} aria-busy={status === "sending"} className="flex flex-col gap-3">
             <label className="flex flex-col gap-1.5">
@@ -156,7 +157,7 @@ export function Contact({ profile }: ContactProps) {
               <a
                 key={link.name}
                 href={link.url}
-                target="_blank"
+                target={link.url.startsWith("http") ? "_blank" : undefined}
                 rel="noopener"
                 className="flex items-center gap-3 rounded-xl border-2 border-stroke bg-panel-2 px-3.5 py-3 transition-transform duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-brutal-sm"
               >
@@ -164,7 +165,7 @@ export function Contact({ profile }: ContactProps) {
                 <span>
                   <span className="block text-sm font-semibold">{link.name}</span>
                   <span className="block font-mono text-[11px] text-muted">
-                    {link.url.replace(/^https?:\/\/(www\.)?/, "")}
+                    {link.url.replace(/^(https?:\/\/(www\.)?|mailto:)/, "")}
                   </span>
                 </span>
               </a>

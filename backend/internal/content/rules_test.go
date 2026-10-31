@@ -603,3 +603,66 @@ func TestIndexPreloadaAFotoDaCapa(t *testing.T) {
 		t.Errorf("o preload diz tamanho %q e a foto diz %q", got, tamanhos)
 	}
 }
+
+// Um projeto que agrupa partes (os exercicios dos primeiros cursos) so ajuda se
+// cada parte tiver nome proprio e algo para abrir: uma parte sem link e
+// enfeite, e duas com o mesmo nome fazem o cartao parecer maior do que e.
+func partsProblem(p Project) string {
+	seen := map[string]bool{}
+	for _, part := range p.Parts {
+		if part.Title == "" || part.Title != strings.TrimSpace(part.Title) {
+			return fmt.Sprintf("parte com nome vazio ou com espaço sobrando: %q", part.Title)
+		}
+		key := strings.ToLower(part.Title)
+		if seen[key] {
+			return fmt.Sprintf("parte repetida: %q", part.Title)
+		}
+		seen[key] = true
+		if part.LinkURL == "" && part.RepoURL == "" {
+			return fmt.Sprintf("parte %q sem link nem repositório", part.Title)
+		}
+	}
+	return ""
+}
+
+func TestProjectParts(t *testing.T) {
+	for _, p := range load(t).Projects {
+		if problem := partsProblem(p); problem != "" {
+			t.Errorf("projeto %q: %s", p.Title, problem)
+		}
+	}
+}
+
+func TestPartsProblem(t *testing.T) {
+	ok := ProjectPart{Title: "Piano", LinkURL: "https://exemplo.dev/piano"}
+	cases := []struct {
+		name  string
+		parts []ProjectPart
+		bad   bool
+	}{
+		{"sem partes", nil, false},
+		{"partes validas", []ProjectPart{ok, {Title: "Jogo", RepoURL: "https://exemplo.dev/jogo"}}, false},
+		{"nome vazio", []ProjectPart{{LinkURL: "https://exemplo.dev"}}, true},
+		{"nome com espaco sobrando", []ProjectPart{{Title: " Piano", LinkURL: "https://exemplo.dev"}}, true},
+		{"nome repetido", []ProjectPart{ok, {Title: "piano", LinkURL: "https://exemplo.dev/2"}}, true},
+		{"parte sem nada para abrir", []ProjectPart{{Title: "Piano"}}, true},
+	}
+	for _, c := range cases {
+		got := partsProblem(Project{Title: "x", Parts: c.parts}) != ""
+		if got != c.bad {
+			t.Errorf("%s: problema=%v, esperado %v", c.name, got, c.bad)
+		}
+	}
+}
+
+// As barras do perfil comportamental sao fatias de um mesmo total: somando mais
+// ou menos que 100, o grafico mostra um perfil que nao existe.
+func TestBehaviorSumsTo100(t *testing.T) {
+	total := 0
+	for _, trait := range load(t).Profile.Behavior {
+		total += trait.Percent
+	}
+	if total != 100 {
+		t.Errorf("o perfil comportamental soma %d%%, e deveria somar 100%%", total)
+	}
+}

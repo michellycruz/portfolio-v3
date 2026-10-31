@@ -57,6 +57,9 @@ gráfico por área) são calculados a partir dele, então o arquivo segue regras
 - `subjects` lista as matérias que uma disciplina reúne, como o portal as mostra.
   Descrevem o curso: não contam como cursos nem somam horas, e curso `previsto`
   não tem, porque nada dele foi estudado;
+- `parts` reúne, num cartão só, projetos pequenos (os exercícios dos primeiros cursos), cada
+  um com a própria demo e o próprio código; parte sem nome ou sem link não passa;
+- as barras do perfil comportamental somam 100%;
 - quando a grade de uma formação aparece como trilha, as disciplinas não somam
   mais do que a carga do cartão e, com a formação concluída, fecham exatamente
   nela.

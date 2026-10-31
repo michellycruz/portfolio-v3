@@ -118,7 +118,7 @@ export function Sidebar({ profile, shown, open, onClose, activeId }: SidebarProp
                 assim ele acompanha a troca em vez de ficar no verde da v3. */}
             <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-mint shadow-[0_0_0_3px_color-mix(in_srgb,var(--c-mint)_22%,transparent)]" />
             <span className="text-[12.5px] leading-tight">
-              <b className="block text-[13px]">Disponível</b>
+              <b className="block text-[13px]">Aberta a propostas</b>
               <span className="font-mono text-[10.5px] text-muted">{profile.location}</span>
             </span>
           </div>

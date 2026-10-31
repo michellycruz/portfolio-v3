@@ -17,6 +17,7 @@ const families: Record<string, { label: string; family: TechFamily }> = {
   go: { label: "Go", family: "back" },
   php: { label: "PHP", family: "back" },
   sql: { label: "SQL", family: "back" },
+  mysql: { label: "MySQL", family: "back" },
   figma: { label: "Figma", family: "tool" },
   balsamiq: { label: "Balsamiq", family: "tool" },
   git: { label: "Git", family: "tool" },
@@ -32,6 +33,10 @@ const families: Record<string, { label: string; family: TechFamily }> = {
   outlook: { label: "Outlook", family: "tool" },
   teams: { label: "Teams", family: "tool" },
   notion: { label: "Notion", family: "tool" },
+  docker: { label: "Docker", family: "tool" },
+  linux: { label: "Linux", family: "tool" },
+  "claude-code": { label: "Claude Code", family: "tool" },
+  prompts: { label: "Engenharia de prompts", family: "tool" },
   ia: { label: "IA", family: "tool" },
 };
 

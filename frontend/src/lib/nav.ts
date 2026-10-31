@@ -19,8 +19,8 @@ export interface NavItem {
 export const navItems: NavItem[] = [
   { id: "sobre", label: "Sobre", icon: User },
   { id: "experiencia", label: "Experiência", icon: Briefcase },
+  { id: "projetos", label: "Projetos", icon: LayoutGrid },
   { id: "formacao", label: "Formação", icon: GraduationCap },
   { id: "habilidades", label: "Habilidades", icon: SlidersHorizontal },
-  { id: "projetos", label: "Projetos", icon: LayoutGrid },
   { id: "contato", label: "Contato", icon: Mail },
 ];

@@ -29,6 +29,14 @@ export function isPlannedTrack(track: Track): boolean {
   return track.courses.length > 0 && track.courses.every((course) => course.status === "previsto");
 }
 
+/** Horas já concluídas de uma trilha: soma só o que está concluído e tem carga
+ *  declarada, a mesma conta do total do site. */
+export function trackHours(track: Track): number {
+  return track.courses
+    .filter(isDone)
+    .reduce((sum, course) => sum + (Number.parseInt(course.hours ?? "", 10) || 0), 0);
+}
+
 function studiedCourses(institutions: Institution[]): Course[] {
   return allCourses(institutions).filter(isDone);
 }

@@ -5,8 +5,10 @@
     "location": "Espírito Santo, Brasil",
     "summary": [
       "Analista de Sistemas na Hostbraza. Hoje construo o checkout do novo ecossistema de vendas da empresa: carrinho, pagamento e área do cliente em React e TypeScript, sobre uma API própria em Go que valida o acesso e concentra as integrações.",
-      "Venho do suporte técnico e da análise de sistemas — GLPI, SQL, levantamento de requisitos e protótipos —, e dali trago o hábito de documentar e testar. Desenvolvo com apoio de IA, revisando o que entra em produção."
+      "Venho do suporte técnico e da análise de sistemas — GLPI, SQL, levantamento de requisitos e protótipos —, e dali trago o hábito de documentar e testar. Desenvolvo com apoio de IA, revisando o que entra em produção, e quero aplicar IA nos processos e no desenvolvimento de produtos.",
+      "Inglês: leio e entendo quando falam comigo; a fala ficou sem prática."
     ],
+    "availability": "Hoje estou empregada. Converso sobre vaga CLT, projetos PJ e freelas, principalmente com IA aplicada a processos e ao desenvolvimento. Para projetos extras, tenho horário nos fins de semana.",
     "profileBadge": "Planejador Analista (PA)",
     "behavior": [
       {
@@ -23,11 +25,11 @@
       },
       {
         "label": "Analista",
-        "percent": 33
+        "percent": 32
       }
     ],
     "photoUrl": "/images/foto-pessoal.webp",
-    "resumeUrl": "/resume/curriculo_michelly.pdf?v=63ee5d88",
+    "resumeUrl": "/resume/curriculo_michelly.pdf?v=2c7ae402",
     "social": [
       {
         "name": "LinkedIn",
@@ -35,14 +37,14 @@
         "icon": "linkedin"
       },
       {
-        "name": "Instagram",
-        "url": "https://www.instagram.com/michxcrz00/",
-        "icon": "instagram"
-      },
-      {
         "name": "GitHub",
         "url": "https://github.com/michellycruz",
         "icon": "github"
+      },
+      {
+        "name": "E-mail",
+        "url": "mailto:michxcrz@gmail.com",
+        "icon": "mail"
       },
       {
         "name": "WhatsApp",
@@ -60,21 +62,24 @@
         "Desenvolvimento do checkout do novo ecossistema de vendas da empresa (projeto interno): carrinho, cadastro, pagamento e resumo do pedido em React e TypeScript, sobre uma API própria em Go.",
         "Integração com gateway de pagamento: parcelamento coerente com o plano contratado, cupom, webhook de confirmação e idempotência contra cobrança duplicada.",
         "Autenticação via OIDC validada na API em Go, vínculo com o cliente já existente na base e CPF, CNPJ e endereço conferidos ainda no navegador.",
+        "Regra do registro de domínio .com.br, que exige o CPF do titular antes de o cliente chegar ao passo de identificação: o pedido do domínio fica retido no fluxo e só segue para o sistema de hospedagem depois que o CPF é informado no cadastro.",
         "Plugins e aplicações para WordPress em PHP, além da manutenção das aplicações web da empresa.",
-        "Desenvolvimento orientado por IA com o Claude Code, com revisão minha do que vai para produção.",
-        "Atendimento N1 aos clientes de hospedagem."
+        "Desenvolvimento com apoio do Claude Code: a IA explica o cenário e propõe caminhos, eu decido a arquitetura e as prioridades, e nada vai para produção sem a minha revisão e a minha liberação.",
+        "Agendamento manual do backup das contas de novos clientes pelo painel de hospedagem, até a empresa automatizar o processo.",
+        "Atendimento comercial a clientes de hospedagem: oferta de upgrade, resgate de clientes com produtos suspensos e desconto para migração."
       ],
-      "results": "Checkout levado do zero ao ponto de operar, com o fluxo de pagamento coberto contra cobrança duplicada, confirmação perdida e parcelamento incompatível com o meio de pagamento."
+      "results": "Checkout no ar em produção, com pagamento por cartão habilitado e mais de 5 mil testes automatizados cobrindo cobrança duplicada, confirmação perdida e parcelamento incompatível com o meio de pagamento. A primeira venda de cliente ainda está por acontecer."
     },
     {
       "company": "Secretaria de Estado da Educação - SEDU",
       "role": "Analista de Sistemas",
       "period": "Outubro 2023 - Setembro 2024",
       "bullets": [
-        "Atendimento e resolução de chamados técnicos (GLPI) relacionados aos sistemas educacionais.",
-        "Consultas SQL no banco de dados para extração e análise de informações.",
-        "Criação de protótipos de interface em Figma e Balsamiq para apoio no design e no levantamento de requisitos.",
+        "Atuação na Gerência de Tecnologia da Informação, na função de analista de sistemas.",
         "Colaboração em reuniões de análise e levantamento de requisitos de sistemas para identificar necessidades de negócios.",
+        "Criação de protótipos de interface em Figma e Balsamiq para apoio no design e no levantamento de requisitos.",
+        "Consultas SQL no banco de dados para extração e análise de informações.",
+        "Atendimento e resolução de chamados técnicos (GLPI) relacionados aos sistemas educacionais.",
         "Atendimento e suporte ao usuário final."
       ],
       "results": "Redução de retrabalho em homologações ao estruturar melhor os testes; maior clareza em fluxos de processos com documentação aplicada."
@@ -652,21 +657,12 @@
       ]
     },
     {
-      "title": "Manutenção e Hardware",
-      "description": "Correções preventivas e corretivas, atualização de antivírus, configuração de impressoras.",
+      "title": "Servidor Linux (VPS)",
+      "description": "Servidor virtual cedido pela Hostbraza para prática, acessado pelo Proxmox e pelo terminal. Nele hospedo este portfólio.",
       "highlights": [
-        "Manutenção de hardware e software (instalação, configuração e suporte).",
-        "Programação e configuração de impressoras.",
-        "Atualização de antivírus e segurança básica.",
-        "Monitoramento de conexões de rede."
-      ]
-    },
-    {
-      "title": "Infraestrutura em Nuvem",
-      "description": "Gerenciamento de serviços em nuvem AWS e Azure, configuração e manutenção de servidores virtuais, implementação de soluções de backup e recuperação em nuvem.",
-      "highlights": [
-        "Administração e suporte em ambientes de nuvem (AWS e Azure).",
-        "Criação e gerenciamento de recursos de infraestrutura em cloud."
+        "Domínio apontado para o IP do servidor.",
+        "Deploy automático: um timer do systemd puxa cada release nova do GitHub.",
+        "O firewall da VPS só libera IPs conhecidos, então o deploy busca o build em vez de recebê-lo por SSH."
       ]
     }
   ],
@@ -682,13 +678,13 @@
       "title": "Ferramentas",
       "skills": [
         "sql",
-        "gitlab",
+        "mysql",
         "git",
         "github-icon",
+        "gitlab",
+        "docker",
+        "linux",
         "excel",
-        "teams",
-        "word",
-        "outlook",
         "notion"
       ]
     },
@@ -710,7 +706,8 @@
     {
       "title": "Inteligência Artificial",
       "skills": [
-        "ia"
+        "claude-code",
+        "prompts"
       ]
     }
   ],
@@ -718,7 +715,7 @@
     {
       "title": "Checkout de pagamento",
       "year": "2026",
-      "description": "Projeto interno, sob sigilo: carrinho, pagamento e área do cliente em React e TypeScript sobre uma API em Go, com trava contra cobrança duplicada e parcelamento coerente com o meio de pagamento.",
+      "description": "Projeto interno, sob sigilo: carrinho, pagamento e área do cliente em React e TypeScript sobre uma API em Go, com trava contra cobrança duplicada e parcelamento coerente com o meio de pagamento. No ar em produção, ainda sem a primeira venda de cliente.",
       "tech": [
         "react",
         "ts",
@@ -730,24 +727,24 @@
       "private": true
     },
     {
-      "title": "Portfólio v2",
+      "title": "Portfólio v3",
       "year": "2026",
-      "description": "A versão anterior deste portfólio. React, TypeScript e Tailwind no front, API própria em Go no back e um timer na VPS que puxava cada build novo direto da release. Hoje está no ar como site estático.",
+      "description": "Este site. React, TypeScript e Tailwind no front e uma API própria em Go. Testes em Go impedem que os totais da formação sejam inflados, o CI roda tudo antes do build e a VPS puxa cada release nova sozinha.",
       "tech": [
         "react",
         "ts",
         "tailwind",
         "go"
       ],
-      "imageUrl": "/images/projects/portfolio_v2.webp",
-      "linkUrl": "https://v2.michellycruz.com.br",
-      "repoUrl": "https://github.com/michellycruz/portfolio-v3/tree/v2",
+      "imageUrl": "",
+      "linkUrl": "https://michellycruz.com.br",
+      "repoUrl": "https://github.com/michellycruz/portfolio-v3",
       "private": false
     },
     {
       "title": "Otimizador WordPress",
       "year": "2026",
-      "description": "Plugin com tela de configurações onde cada otimização liga e desliga sozinha: remover scripts de emoji, desativar embeds, limitar revisões, defer nos scripts e heartbeat mais lento.",
+      "description": "Plugin com tela de configurações onde cada otimização liga e desliga sozinha: remover scripts de emoji, desativar embeds, limitar revisões, defer nos scripts e heartbeat mais lento. Foi um exercício proposto na Hostbraza e não chegou a ser usado em produção.",
       "tech": [
         "php"
       ],
@@ -791,7 +788,7 @@
       "imageUrl": "/images/projects/agency.webp",
       "linkUrl": "https://projetos-sass-agency.vercel.app",
       "repoUrl": "",
-      "private": true
+      "private": false
     },
     {
       "title": "Electrum",
@@ -804,7 +801,7 @@
       "imageUrl": "/images/projects/electrum.webp",
       "linkUrl": "https://electrum-sass.vercel.app",
       "repoUrl": "",
-      "private": true
+      "private": false
     },
     {
       "title": "Código Certo",
@@ -831,20 +828,6 @@
       "imageUrl": "/images/projects/pagina_de_emails.webp",
       "linkUrl": "https://paginadeemail.vercel.app/",
       "repoUrl": "",
-      "private": true
-    },
-    {
-      "title": "Calculadora de Gorjetas",
-      "year": "2024",
-      "description": "Recebe o valor da conta e a qualidade do serviço, devolve quanto deixar de gorjeta e o total a pagar.",
-      "tech": [
-        "html",
-        "css",
-        "js"
-      ],
-      "imageUrl": "/images/projects/calculadora_de_gorjetas.webp",
-      "linkUrl": "https://michellycruz.github.io/projetos_javascript/9_calculadora_de_gorjetas//",
-      "repoUrl": "https://github.com/michellycruz/projetos_javascript",
       "private": false
     },
     {
@@ -862,60 +845,59 @@
       "private": false
     },
     {
-      "title": "Piano",
-      "year": "2024",
-      "description": "Piano tocável pelo mouse ou pelo teclado, com as teclas identificadas sob demanda. Cada nota é uma amostra de áudio disparada por JavaScript.",
+      "title": "Portfólio v1",
+      "year": "2023",
+      "description": "A primeira versão do meu portfólio, em HTML, CSS e JavaScript puros, publicada na Vercel. Fica aqui para mostrar a evolução até o v3.",
       "tech": [
         "html",
         "css",
         "js"
       ],
-      "imageUrl": "/images/projects/piano.webp",
-      "linkUrl": "https://piano-zlpu.vercel.app",
-      "repoUrl": "https://github.com/michellycruz/piano",
+      "imageUrl": "",
+      "linkUrl": "https://mich-cruz-portfolio.vercel.app",
+      "repoUrl": "",
       "private": false
     },
     {
-      "title": "Jogo da Memória",
+      "title": "Primeiros estudos (2023–2024)",
       "year": "2023",
-      "description": "Tela de login, cartas embaralhadas a cada partida e a lógica de virar, comparar e travar os pares em JavaScript puro.",
+      "description": "Exercícios de HTML, CSS e JavaScript puros dos primeiros cursos. Cada um abre a demo e o código.",
       "tech": [
         "html",
         "css",
         "js"
       ],
-      "imageUrl": "/images/projects/jogo_da_memoria.webp",
-      "linkUrl": "https://michellycruz.github.io/jogos-e-projetos/jogo_da_memoria/index.html",
-      "repoUrl": "https://github.com/michellycruz/jogos-e-projetos",
-      "private": false
-    },
-    {
-      "title": "PetLife",
-      "year": "2023",
-      "description": "Site de clínica veterinária feito no início dos estudos: seções, navegação por âncora e responsividade escritas na mão, sem framework.",
-      "tech": [
-        "html",
-        "css",
-        "js"
-      ],
-      "imageUrl": "/images/projects/petlife.webp",
-      "linkUrl": "https://michellycruz.github.io/jogos-e-projetos/petlife/index.html",
-      "repoUrl": "https://github.com/michellycruz/jogos-e-projetos",
-      "private": false
-    },
-    {
-      "title": "Calculadora",
-      "year": "2023",
-      "description": "Monta a expressão inteira antes de resolver — com parênteses e módulo —, copia o resultado e alterna entre tema claro e escuro.",
-      "tech": [
-        "html",
-        "css",
-        "js"
-      ],
-      "imageUrl": "/images/projects/calculadora.webp",
-      "linkUrl": "https://michellycruz.github.io/javascript-onebitcode/projetos/calculadora/index.html",
-      "repoUrl": "https://github.com/michellycruz/javascript-onebitcode",
-      "private": false
+      "imageUrl": "",
+      "linkUrl": "",
+      "repoUrl": "",
+      "private": false,
+      "parts": [
+        {
+          "title": "Calculadora",
+          "linkUrl": "https://michellycruz.github.io/javascript-onebitcode/projetos/calculadora/index.html",
+          "repoUrl": "https://github.com/michellycruz/javascript-onebitcode"
+        },
+        {
+          "title": "Calculadora de Gorjetas",
+          "linkUrl": "https://michellycruz.github.io/projetos_javascript/9_calculadora_de_gorjetas//",
+          "repoUrl": "https://github.com/michellycruz/projetos_javascript"
+        },
+        {
+          "title": "Piano",
+          "linkUrl": "https://piano-zlpu.vercel.app",
+          "repoUrl": "https://github.com/michellycruz/piano"
+        },
+        {
+          "title": "Jogo da Memória",
+          "linkUrl": "https://michellycruz.github.io/jogos-e-projetos/jogo_da_memoria/index.html",
+          "repoUrl": "https://github.com/michellycruz/jogos-e-projetos"
+        },
+        {
+          "title": "PetLife",
+          "linkUrl": "https://michellycruz.github.io/jogos-e-projetos/petlife/index.html",
+          "repoUrl": "https://github.com/michellycruz/jogos-e-projetos"
+        }
+      ]
     }
   ]
 }

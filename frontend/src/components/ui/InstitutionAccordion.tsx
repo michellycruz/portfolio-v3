@@ -1,7 +1,7 @@
 import { useId, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import type { Course, Institution } from "../../types/content";
-import { courseCounts, isDone, isPlannedTrack } from "../../lib/courses";
+import { courseCounts, isDone, isPlannedTrack, trackHours } from "../../lib/courses";
 
 function CourseRow({ course, showStatus = true }: { course: Course; showStatus?: boolean }) {
   const inProgress = course.status === "cursando";
@@ -122,6 +122,11 @@ function InstitutionRow({ institution }: { institution: Institution }) {
                   >
                     {track.status}
                   </span>
+                  {trackHours(track) > 0 && (
+                    <span className="font-mono text-[10.5px] tracking-[0.06em] text-muted uppercase">
+                      {trackHours(track)}h concluídas
+                    </span>
+                  )}
                 </div>
                 <ul className="mt-1">
                   {track.courses.map((course) => (

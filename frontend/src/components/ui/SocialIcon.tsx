@@ -20,6 +20,12 @@ const paths: Record<string, React.ReactNode> = {
       <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none" />
     </>
   ),
+  mail: (
+    <>
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="m3 7 9 6 9-6" />
+    </>
+  ),
   whatsapp: (
     <>
       <path d="M3 21l1.7-4.4A8.5 8.5 0 1 1 8 20.2L3 21Z" />

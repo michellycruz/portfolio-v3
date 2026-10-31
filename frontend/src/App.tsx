@@ -81,9 +81,9 @@ function PortfolioApp() {
           <div className="mx-auto flex w-full max-w-[1000px] flex-col gap-16">
             <About profile={content.profile} />
             <Experience items={content.experience} />
+            <Projects items={content.projects} />
             <Education items={content.education} institutions={content.institutions} />
             <Skills categories={content.skillCategories} infraSkills={content.infraSkills} />
-            <Projects items={content.projects} />
             <Contact profile={content.profile} />
             <Footer name={content.profile.name} />
           </div>

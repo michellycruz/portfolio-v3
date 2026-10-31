@@ -297,7 +297,44 @@ function ProjectCard({ project, tone }: { project: Project; tone: string }) {
 
       <h3 className="text-[17px] leading-tight">{project.title}</h3>
 
-      <p className="flex-1 text-sm text-muted">{project.description}</p>
+      <div className="flex flex-1 flex-col gap-2.5">
+        <p className="text-sm text-muted">{project.description}</p>
+
+        {project.parts && project.parts.length > 0 && (
+          <ul
+            aria-label={`Partes de ${project.title}`}
+            className="flex flex-col gap-1.5 border-l-2 border-dashed border-stroke-soft pl-2.5 text-[12.5px]"
+          >
+            {project.parts.map((part) => (
+              <li key={part.title} className="flex flex-wrap items-baseline gap-x-2.5">
+                <span>{part.title}</span>
+                {part.linkUrl && (
+                  <a
+                    href={part.linkUrl}
+                    target="_blank"
+                    rel="noopener"
+                    draggable={false}
+                    className="border-b-2 border-orange font-mono text-[10.5px] tracking-[0.06em] uppercase"
+                  >
+                    Ver
+                  </a>
+                )}
+                {part.repoUrl && (
+                  <a
+                    href={part.repoUrl}
+                    target="_blank"
+                    rel="noopener"
+                    draggable={false}
+                    className="border-b-2 border-orange font-mono text-[10.5px] tracking-[0.06em] uppercase"
+                  >
+                    Código
+                  </a>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
 
       <ul className="flex flex-wrap gap-1.5">
         {project.tech.map((tech) => (
@@ -310,6 +347,7 @@ function ProjectCard({ project, tone }: { project: Project; tone: string }) {
         ))}
       </ul>
 
+      {(project.private || project.linkUrl || project.repoUrl) && (
       <div className="flex flex-wrap items-center gap-4 border-t-2 border-dashed border-stroke-soft pt-2.5 font-mono text-[11px] tracking-[0.06em] uppercase">
         {project.private ? (
           <span className="inline-flex items-center gap-1.5 text-muted">
@@ -345,6 +383,7 @@ function ProjectCard({ project, tone }: { project: Project; tone: string }) {
           </>
         )}
       </div>
+      )}
     </article>
   );
 }

@@ -16,15 +16,18 @@ type BehaviorTrait struct {
 
 // Profile holds the top-level personal/summary information.
 type Profile struct {
-	Name          string       `json:"name"`
-	Role          string       `json:"role"`
-	Location      string       `json:"location"`
-	Summary       []string     `json:"summary"`
-	ProfileBadge  string          `json:"profileBadge"`
-	Behavior      []BehaviorTrait `json:"behavior"`
-	PhotoURL      string       `json:"photoUrl"`
-	ResumeURL     string       `json:"resumeUrl"`
-	Social        []SocialLink `json:"social"`
+	Name     string   `json:"name"`
+	Role     string   `json:"role"`
+	Location string   `json:"location"`
+	Summary  []string `json:"summary"`
+	// Availability says what kinds of work she is open to and when; the contact
+	// section shows it.
+	Availability string          `json:"availability"`
+	ProfileBadge string          `json:"profileBadge"`
+	Behavior     []BehaviorTrait `json:"behavior"`
+	PhotoURL     string          `json:"photoUrl"`
+	ResumeURL    string          `json:"resumeUrl"`
+	Social       []SocialLink    `json:"social"`
 }
 
 // Experience describes one professional role.
@@ -120,15 +123,25 @@ type Project struct {
 	// para o codigo pelo selo de projeto interno.
 	RepoURL string `json:"repoUrl"`
 	Private bool   `json:"private"`
+	// Parts groups small pieces (study exercises) under one card, each with its
+	// own demo and repository links.
+	Parts []ProjectPart `json:"parts,omitempty"`
+}
+
+// ProjectPart is one piece listed inside a grouped project card.
+type ProjectPart struct {
+	Title   string `json:"title"`
+	LinkURL string `json:"linkUrl,omitempty"`
+	RepoURL string `json:"repoUrl,omitempty"`
 }
 
 // Content aggregates the entire portfolio payload served to the frontend.
 type Content struct {
-	Profile        Profile         `json:"profile"`
-	Experience     []Experience    `json:"experience"`
-	Education      []Education     `json:"education"`
-	Institutions   []Institution   `json:"institutions"`
-	InfraSkills    []InfraSkill    `json:"infraSkills"`
+	Profile         Profile         `json:"profile"`
+	Experience      []Experience    `json:"experience"`
+	Education       []Education     `json:"education"`
+	Institutions    []Institution   `json:"institutions"`
+	InfraSkills     []InfraSkill    `json:"infraSkills"`
 	SkillCategories []SkillCategory `json:"skillCategories"`
-	Projects       []Project       `json:"projects"`
+	Projects        []Project       `json:"projects"`
 }

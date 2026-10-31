@@ -14,6 +14,8 @@ export interface Profile {
   role: string;
   location: string;
   summary: string[];
+  /** Que tipo de trabalho ela aceita e quando: aparece no Contato. */
+  availability: string;
   profileBadge: string;
   behavior: BehaviorTrait[];
   photoUrl: string;
@@ -88,6 +90,14 @@ export interface Project {
   /** Vazio quando o repositorio e privado. */
   repoUrl: string;
   private: boolean;
+  /** Pecas pequenas reunidas num cartao so, cada uma com a propria demo e codigo. */
+  parts?: ProjectPart[];
+}
+
+export interface ProjectPart {
+  title: string;
+  linkUrl?: string;
+  repoUrl?: string;
 }
 
 export interface Content {
