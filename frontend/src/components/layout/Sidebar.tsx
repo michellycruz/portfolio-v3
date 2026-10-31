@@ -114,13 +114,7 @@ export function Sidebar({ profile, shown, open, onClose, activeId }: SidebarProp
 
         <div className="mt-auto flex flex-col gap-2.5">
           <div className="flex items-center gap-3 rounded-xl border-2 border-stroke bg-panel-2 p-2.5">
-            {/* O halo sai da própria menta da paleta, e não de um rgba fixo:
-                assim ele acompanha a troca em vez de ficar no verde da v3. */}
-            <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-mint shadow-[0_0_0_3px_color-mix(in_srgb,var(--c-mint)_22%,transparent)]" />
-            <span className="text-[12.5px] leading-tight">
-              <b className="block text-[13px]">Aberta a propostas</b>
-              <span className="font-mono text-[10.5px] text-muted">{profile.location}</span>
-            </span>
+            <span className="font-mono text-[11.5px] leading-tight">{profile.location}</span>
           </div>
           <ThemeToggle withLabel className="w-full" />
           <PaletteToggle withLabel className="w-full" />

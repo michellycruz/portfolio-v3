@@ -68,7 +68,6 @@ export function Contact({ profile }: ContactProps) {
           <h3 className="text-[clamp(22px,3vw,28px)] leading-tight uppercase">
             Vamos falar sobre o seu projeto
           </h3>
-          <p className="text-sm text-muted">{profile.availability}</p>
 
           <form onSubmit={handleSubmit} aria-busy={status === "sending"} className="flex flex-col gap-3">
             <label className="flex flex-col gap-1.5">
