@@ -8,23 +8,23 @@
       "Já trabalhei com suporte técnico e análise de sistemas, usando GLPI, SQL, levantamento de requisitos e protótipos. Foi aí que peguei o hábito de documentar e testar. Uso IA para desenvolver, mas reviso tudo o que vai para produção. Na pós da Multivix, tenho me interessado cada vez mais por machine learning e quero aplicar IA nos processos e nos produtos.",
       "Inglês: leio e entendo quando falam comigo, mas estou sem prática na fala."
     ],
-    "profileBadge": "Planejador Analista (PA)",
+    "profileBadge": "Executor Planejador (EP)",
     "behavior": [
       {
         "label": "Executor",
-        "percent": 13
+        "percent": 34
       },
       {
         "label": "Comunicador",
-        "percent": 22
+        "percent": 20
       },
       {
         "label": "Planejador",
-        "percent": 33
+        "percent": 26
       },
       {
         "label": "Analista",
-        "percent": 32
+        "percent": 20
       }
     ],
     "photoUrl": "/images/foto-pessoal.webp",
