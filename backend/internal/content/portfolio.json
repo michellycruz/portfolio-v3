@@ -4,8 +4,8 @@
     "role": "Analista de Sistemas",
     "location": "Espírito Santo, Brasil",
     "summary": [
-      "Analista de Sistemas na Hostbraza. Hoje construo o checkout do novo ecossistema de vendas da empresa: carrinho, pagamento e área do cliente em React e TypeScript, sobre uma API própria em Go que valida o acesso e concentra as integrações.",
-      "Já trabalhei com suporte técnico e análise de sistemas, usando GLPI, SQL, levantamento de requisitos e protótipos. Foi aí que peguei o hábito de documentar e testar. Uso IA para desenvolver, mas reviso tudo o que vai para produção. Na pós da Multivix, tenho me interessado cada vez mais por machine learning e quero aplicar IA nos processos e nos produtos.",
+      "Analista de Sistemas. Na Hostbraza, até dezembro de 2026, construí o checkout do novo ecossistema de vendas da empresa: carrinho, pagamento e área do cliente em React e TypeScript, sobre uma API própria em Go que valida o acesso e concentra as integrações.",
+      "Antes disso, trabalhei com suporte técnico e análise de sistemas, usando GLPI, SQL, levantamento de requisitos e protótipos. Foi aí que peguei o hábito de documentar e testar. Uso IA para desenvolver, mas reviso tudo o que vai para produção. Na pós da Multivix, tenho me interessado cada vez mais por machine learning e quero aplicar IA nos processos e nos produtos.",
       "Inglês: leio e entendo quando falam comigo, mas estou sem prática na fala."
     ],
     "profileBadge": "Executor Planejador (EP)",
@@ -28,7 +28,7 @@
       }
     ],
     "photoUrl": "/images/foto-pessoal.webp",
-    "resumeUrl": "/resume/curriculo_michelly.pdf?v=e94e3df5",
+    "resumeUrl": "/resume/curriculo_michelly.pdf?v=51e5b355",
     "social": [
       {
         "name": "LinkedIn",
@@ -56,18 +56,18 @@
     {
       "company": "Hostbraza LTDA",
       "role": "Analista de Sistemas",
-      "period": "Abril 2026 - Atual",
+      "period": "Abril 2026 - Dezembro 2026",
       "bullets": [
-        "Desenvolvimento do checkout do novo ecossistema de vendas da empresa (projeto interno): carrinho, cadastro, pagamento e resumo do pedido em React e TypeScript, sobre uma API própria em Go.",
-        "Integração com gateway de pagamento: parcelamento coerente com o plano contratado, cupom, webhook de confirmação e idempotência contra cobrança duplicada.",
-        "Autenticação via OIDC validada na API em Go, vínculo com o cliente já existente na base e CPF, CNPJ e endereço conferidos ainda no navegador.",
-        "Regra do registro de domínio .com.br, que exige o CPF do titular antes de o cliente chegar ao passo de identificação: o pedido do domínio fica retido no fluxo e só segue para o sistema de hospedagem depois que o CPF é informado no cadastro.",
-        "Plugins e aplicações para WordPress em PHP, além da manutenção das aplicações web da empresa.",
-        "Desenvolvimento com apoio do Claude Code: a IA explica o cenário e propõe caminhos, eu decido a arquitetura e as prioridades, e nada vai para produção sem a minha revisão e a minha liberação.",
-        "Agendamento manual do backup das contas de novos clientes pelo painel de hospedagem, até a empresa automatizar o processo.",
-        "Atendimento comercial a clientes de hospedagem: oferta de upgrade, resgate de clientes com produtos suspensos e desconto para migração."
+        "Desenvolvi o checkout do novo ecossistema de vendas da empresa (projeto interno): carrinho, cadastro, pagamento e resumo do pedido em React e TypeScript, sobre uma API própria em Go.",
+        "Integrei o gateway de pagamento: parcelamento coerente com o plano contratado, cupom, webhook de confirmação e idempotência contra cobrança duplicada.",
+        "Implementei a autenticação via OIDC validada na API em Go, o vínculo com o cliente já existente na base e a conferência de CPF, CNPJ e endereço ainda no navegador.",
+        "Implementei a regra do registro de domínio .com.br, que exige o CPF do titular antes de o cliente chegar ao passo de identificação: o pedido do domínio ficava retido no fluxo e só seguia para o sistema de hospedagem depois que o CPF era informado no cadastro.",
+        "Desenvolvi plugins e aplicações para WordPress em PHP e fiz a manutenção das aplicações web da empresa.",
+        "Desenvolvi com apoio do Claude Code: a IA explicava o cenário e propunha caminhos, eu decidia a arquitetura e as prioridades, e nada ia para produção sem a minha revisão e a minha liberação.",
+        "Agendei manualmente o backup das contas de novos clientes pelo painel de hospedagem, até a empresa automatizar o processo.",
+        "Atendi clientes de hospedagem na parte comercial: oferta de upgrade, resgate de clientes com produtos suspensos e desconto para migração."
       ],
-      "results": "Checkout no ar em produção, com pagamento por cartão habilitado e mais de 5 mil testes automatizados cobrindo cobrança duplicada, confirmação perdida e parcelamento incompatível com o meio de pagamento. A primeira venda de cliente ainda está por acontecer."
+      "results": "Checkout colocado em produção, com pagamento por cartão habilitado e mais de 5 mil testes automatizados cobrindo cobrança duplicada, confirmação perdida e parcelamento incompatível com o meio de pagamento."
     },
     {
       "company": "Secretaria de Estado da Educação - SEDU",
@@ -657,7 +657,7 @@
     },
     {
       "title": "Servidor Linux (VPS)",
-      "description": "Servidor virtual cedido pela Hostbraza para prática, acessado pelo Proxmox e pelo terminal. Nele hospedo este portfólio.",
+      "description": "Servidor virtual cedido pela Hostbraza para prática, acessado pelo Proxmox e pelo terminal. Nele hospedei este portfólio.",
       "highlights": [
         "Domínio apontado para o IP do servidor.",
         "Deploy automático: um timer do systemd puxa cada release nova do GitHub.",
@@ -714,7 +714,7 @@
     {
       "title": "Checkout de pagamento",
       "year": "2026",
-      "description": "Projeto interno, sob sigilo: carrinho, pagamento e área do cliente em React e TypeScript sobre uma API em Go, com trava contra cobrança duplicada e parcelamento coerente com o meio de pagamento. No ar em produção, ainda sem a primeira venda de cliente.",
+      "description": "Projeto interno, sob sigilo: carrinho, pagamento e área do cliente em React e TypeScript sobre uma API em Go, com trava contra cobrança duplicada e parcelamento coerente com o meio de pagamento. Entregue em produção na Hostbraza.",
       "tech": [
         "react",
         "ts",
@@ -767,7 +767,7 @@
     {
       "title": "Go Gateway API",
       "year": "2025",
-      "description": "Primeira API em Go: gateway de pagamento com domínio, repositório e serviço separados, migrations e Docker Compose. Parou no cadastro de contas, mas é a estrutura que uso hoje.",
+      "description": "Primeira API em Go: gateway de pagamento com domínio, repositório e serviço separados, migrations e Docker Compose. Parou no cadastro de contas, mas foi a estrutura que usei no checkout.",
       "tech": [
         "go"
       ],
