@@ -3,6 +3,7 @@
     "name": "Michelly Cruz",
     "role": "Analista de Sistemas",
     "location": "Espírito Santo, Brasil",
+    "availability": "Disponível para vaga CLT, projetos PJ e freelas, principalmente com IA aplicada a processos e ao desenvolvimento.",
     "summary": [
       "Analista de Sistemas. Na Hostbraza, até dezembro de 2026, construí o checkout do novo ecossistema de vendas da empresa: carrinho, pagamento e área do cliente em React e TypeScript, sobre uma API própria em Go que valida o acesso e concentra as integrações.",
       "Antes disso, trabalhei com suporte técnico e análise de sistemas, usando GLPI, SQL, levantamento de requisitos e protótipos. Foi aí que peguei o hábito de documentar e testar. Uso IA para desenvolver, mas reviso tudo o que vai para produção. Na pós da Multivix, tenho me interessado cada vez mais por machine learning e quero aplicar IA nos processos e nos produtos.",
@@ -28,7 +29,7 @@
       }
     ],
     "photoUrl": "/images/foto-pessoal.webp",
-    "resumeUrl": "/resume/curriculo_michelly.pdf?v=51e5b355",
+    "resumeUrl": "/resume/curriculo_michelly.pdf?v=2f5a7d01",
     "social": [
       {
         "name": "LinkedIn",

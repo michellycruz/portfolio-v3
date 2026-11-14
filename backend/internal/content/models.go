@@ -16,10 +16,13 @@ type BehaviorTrait struct {
 
 // Profile holds the top-level personal/summary information.
 type Profile struct {
-	Name         string          `json:"name"`
-	Role         string          `json:"role"`
-	Location     string          `json:"location"`
-	Summary      []string        `json:"summary"`
+	Name     string   `json:"name"`
+	Role     string   `json:"role"`
+	Location string   `json:"location"`
+	Summary  []string `json:"summary"`
+	// Availability says what kinds of work she is open to and when; the contact
+	// section shows it.
+	Availability string          `json:"availability"`
 	ProfileBadge string          `json:"profileBadge"`
 	Behavior     []BehaviorTrait `json:"behavior"`
 	PhotoURL     string          `json:"photoUrl"`

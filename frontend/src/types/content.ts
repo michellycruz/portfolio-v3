@@ -14,6 +14,8 @@ export interface Profile {
   role: string;
   location: string;
   summary: string[];
+  /** Que tipo de trabalho ela aceita e quando: aparece no Contato. */
+  availability: string;
   profileBadge: string;
   behavior: BehaviorTrait[];
   photoUrl: string;
