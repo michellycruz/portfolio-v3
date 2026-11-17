@@ -5,8 +5,8 @@
     "location": "Espírito Santo, Brasil",
     "availability": "Disponível para vaga CLT, projetos PJ e freelas, principalmente com IA aplicada a processos e ao desenvolvimento.",
     "summary": [
-      "Analista de Sistemas. Na Hostbraza, até dezembro de 2026, construí o checkout do novo ecossistema de vendas da empresa: carrinho, pagamento e área do cliente em React e TypeScript, sobre uma API própria em Go que valida o acesso e concentra as integrações.",
-      "Antes disso, trabalhei com suporte técnico e análise de sistemas, usando GLPI, SQL, levantamento de requisitos e protótipos. Foi aí que peguei o hábito de documentar e testar. Uso IA para desenvolver, mas reviso tudo o que vai para produção. Na pós da Multivix, tenho me interessado cada vez mais por machine learning e quero aplicar IA nos processos e nos produtos.",
+      "Sou analista de sistemas. Na Hostbraza, até dezembro de 2026, construí o checkout do novo ecossistema de vendas da empresa, com carrinho, pagamento e área do cliente, em React e TypeScript. Ele roda sobre uma API própria em Go, que valida o acesso e concentra as integrações.",
+      "Antes disso, trabalhei com suporte técnico e análise de sistemas, com GLPI, SQL, levantamento de requisitos e protótipos. Foi aí que peguei o hábito de documentar e testar. Uso IA para desenvolver, mas reviso tudo o que vai para produção. Na pós da Multivix, tenho estudado machine learning e quero aplicar IA nos processos e nos produtos.",
       "Inglês: leio e entendo quando falam comigo, mas estou sem prática na fala."
     ],
     "profileBadge": "Executor Planejador (EP)",
@@ -29,7 +29,7 @@
       }
     ],
     "photoUrl": "/images/foto-pessoal.webp",
-    "resumeUrl": "/resume/curriculo_michelly.pdf?v=2f5a7d01",
+    "resumeUrl": "/resume/curriculo_michelly.pdf?v=5bc917d3",
     "social": [
       {
         "name": "LinkedIn",
@@ -59,41 +59,41 @@
       "role": "Analista de Sistemas",
       "period": "Abril 2026 - Dezembro 2026",
       "bullets": [
-        "Desenvolvi o checkout do novo ecossistema de vendas da empresa (projeto interno): carrinho, cadastro, pagamento e resumo do pedido em React e TypeScript, sobre uma API própria em Go.",
-        "Integrei o gateway de pagamento: parcelamento coerente com o plano contratado, cupom, webhook de confirmação e idempotência contra cobrança duplicada.",
-        "Implementei a autenticação via OIDC validada na API em Go, o vínculo com o cliente já existente na base e a conferência de CPF, CNPJ e endereço ainda no navegador.",
-        "Implementei a regra do registro de domínio .com.br, que exige o CPF do titular antes de o cliente chegar ao passo de identificação: o pedido do domínio ficava retido no fluxo e só seguia para o sistema de hospedagem depois que o CPF era informado no cadastro.",
+        "Desenvolvi o checkout do novo ecossistema de vendas da empresa, um projeto interno: carrinho, cadastro, pagamento e resumo do pedido, em React e TypeScript, sobre uma API própria em Go.",
+        "Integrei o gateway de pagamento: parcelamento de acordo com o plano contratado, cupom, webhook de confirmação e idempotência para evitar cobrança duplicada.",
+        "Implementei a autenticação via OIDC, validada na API em Go, e o vínculo com o cliente que já existia na base. CPF, CNPJ e endereço eram conferidos no navegador.",
+        "Implementei a regra do domínio .com.br, que exige o CPF do titular antes do passo de identificação. O pedido do domínio ficava retido no fluxo e só seguia para o sistema de hospedagem depois que o cliente informava o CPF no cadastro.",
         "Desenvolvi plugins e aplicações para WordPress em PHP e fiz a manutenção das aplicações web da empresa.",
-        "Desenvolvi com apoio do Claude Code: a IA explicava o cenário e propunha caminhos, eu decidia a arquitetura e as prioridades, e nada ia para produção sem a minha revisão e a minha liberação.",
+        "Usei o Claude Code no desenvolvimento: a IA explicava o cenário e propunha caminhos, eu decidia a arquitetura e as prioridades, e nada ia para produção sem a minha revisão.",
         "Agendei manualmente o backup das contas de novos clientes pelo painel de hospedagem, até a empresa automatizar o processo.",
-        "Atendi clientes de hospedagem na parte comercial: oferta de upgrade, resgate de clientes com produtos suspensos e desconto para migração."
+        "Atendi clientes de hospedagem na parte comercial: ofereci upgrade, resgatei clientes com produtos suspensos e ofereci desconto para migração."
       ],
-      "results": "Checkout colocado em produção, com pagamento por cartão habilitado e mais de 5 mil testes automatizados cobrindo cobrança duplicada, confirmação perdida e parcelamento incompatível com o meio de pagamento."
+      "results": "Checkout em produção, com pagamento por cartão habilitado e mais de 5 mil testes automatizados. Os testes cobrem cobrança duplicada, confirmação perdida e parcelamento incompatível com o meio de pagamento."
     },
     {
       "company": "Secretaria de Estado da Educação - SEDU",
       "role": "Analista de Sistemas",
       "period": "Outubro 2023 - Setembro 2024",
       "bullets": [
-        "Atuação na Gerência de Tecnologia da Informação, na função de analista de sistemas.",
-        "Colaboração em reuniões de análise e levantamento de requisitos de sistemas para identificar necessidades de negócios.",
-        "Criação de protótipos de interface em Figma e Balsamiq para apoio no design e no levantamento de requisitos.",
-        "Consultas SQL no banco de dados para extração e análise de informações.",
-        "Atendimento e resolução de chamados técnicos (GLPI) relacionados aos sistemas educacionais.",
-        "Atendimento e suporte ao usuário final."
+        "Atuei na Gerência de Tecnologia da Informação como analista de sistemas.",
+        "Participei de reuniões de análise e levantamento de requisitos para entender o que o negócio precisava.",
+        "Criei protótipos de interface em Figma e Balsamiq para apoiar o design e o levantamento de requisitos.",
+        "Fiz consultas SQL para extrair e analisar informações.",
+        "Atendi e resolvi chamados técnicos (GLPI) dos sistemas educacionais.",
+        "Dei suporte ao usuário final."
       ],
-      "results": "Redução de retrabalho em homologações ao estruturar melhor os testes; maior clareza em fluxos de processos com documentação aplicada."
+      "results": "Menos retrabalho nas homologações, com testes mais bem estruturados, e fluxos de processos mais claros com a documentação."
     },
     {
       "company": "Multivix",
       "role": "Secretária",
       "period": "Abril 2021 - Outubro 2023",
       "bullets": [
-        "Suporte direto aos alunos (presencial ou remoto).",
-        "Controle e organização de processos administrativos.",
-        "Gestão de provas presenciais e apoio acadêmico."
+        "Atendi alunos, presencialmente ou à distância.",
+        "Organizei processos administrativos.",
+        "Cuidei das provas presenciais e apoiei a área acadêmica."
       ],
-      "results": "Melhoria no fluxo de atendimento aos alunos, com otimização no tempo de resposta às demandas acadêmicas."
+      "results": "Atendimento mais organizado e respostas mais rápidas às demandas dos alunos."
     }
   ],
   "education": [
@@ -650,10 +650,10 @@
   "infraSkills": [
     {
       "title": "Suporte a Usuários",
-      "description": "Atendimento via GLPI, resolução de chamados, instalação e configuração de softwares e aplicativos.",
+      "description": "Atendimento pelo GLPI, resolução de chamados e instalação e configuração de programas.",
       "highlights": [
-        "Atendimento primário a usuários internos e externos.",
-        "Acompanhamento completo de chamados, do registro à solução."
+        "Primeiro atendimento a usuários internos e externos.",
+        "Acompanhei cada chamado, do registro à solução."
       ]
     },
     {
