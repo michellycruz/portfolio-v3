@@ -296,6 +296,13 @@ textarea {
   cursor: text;
 }
 
+/* Modo tocha (botão "Apagar a luz"): o cursor vira a tocha em todo o site,
+   inclusive sobre links e campos. O !important é para vencer as regras acima. */
+html.modo-tocha,
+html.modo-tocha * {
+  cursor: url("./cursores/tocha.svg") 16 6, auto !important;
+}
+
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   font-weight: 400;
